@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jontys Hub – Premium Business Growth & Performance Marketing Presentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #111827;
+      --navy-card: #1B2436;
+      --charcoal: #171717;
+      --charcoal-card: #222222;
+      --ivory: #F7F5F0;
+      --ivory-card: #FFFFFF;
+      --ivory-soft: #EFECE4;
+      --gold: #C6A66B;
+      --bronze: #A88B5A;
+      --slate: #667085;
+      --light-muted: #9CA3AF;
+      --light-text: #E5E7EB;
+      --border-light: #E0DBD0;
+      --border-dark: #2D3748;
+      --border-charcoal: #333333;
+      --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #0B0F17;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--ivory);
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+    }
+
+    /* Presentation Stage */
+    .stage-wrapper {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 45%, #161E2E 0%, #090C12 100%);
+    }
+
+    .deck-stage {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      transform-origin: center center;
+      box-shadow: 0 32px 90px rgba(0, 0, 0, 0.72), 0 0 0 1px rgba(198, 166, 107, 0.22);
+      overflow: hidden;
+      background: var(--charcoal);
+    }
+
+    /* Top Live Progress Line */
+    .progress-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.08);
+      z-index: 40;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--bronze), var(--gold), #E4CA93);
+      width: 6.66%;
+      transition: width 0.55s var(--ease-out-expo);
+    }
+
+    /* Slide Base */
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 28px 60px 44px;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(36px) scale(0.988);
+      transition:
+        opacity 0.55s var(--ease-out-expo),
+        transform 0.65s var(--ease-out-expo),
+        visibility 0.55s;
+      pointer-events: none;
+    }
+
+    .slide.is-active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+      z-index: 5;
+    }
+
+    .slide.is-prev {
+      opacity: 0;
+      transform: translateX(-36px) scale(0.988);
+    }
+
+    .theme-light { background: var(--ivory); color: var(--navy); }
+    .theme-navy { background: var(--navy); color: var(--ivory); }
+    .theme-charcoal { background: var(--charcoal); color: var(--ivory); }
+
+    /* Shared Slide Chrome */
+    .slide-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .kicker-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .kicker-bar {
+      width: 34px;
+      height: 3px;
+      background: var(--gold);
+      transform-origin: left center;
+    }
+    .kicker {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 2.3px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .brand-mark {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+    .slide-title {
+      font-size: 31px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.4px;
+      margin-bottom: 14px;
+    }
+    .theme-light .slide-title { color: var(--navy); }
+    .slide-rule {
+      height: 1px;
+      width: 100%;
+      margin-bottom: 18px;
+    }
+    .theme-light .slide-rule { background: var(--border-light); }
+    .theme-navy .slide-rule { background: var(--border-dark); }
+    .theme-charcoal .slide-rule { background: var(--border-charcoal); }
+
+    .slide-body {
+      flex: 1;
+      min-height: 0;
+      position: relative;
+    }
+
+    .slide-footer {
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      bottom: 12px;
+      padding-top: 8px;
+      border-top: 1px solid;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10.5px;
+    }
+    .theme-light .slide-footer { border-color: var(--border-light); color: var(--slate); }
+    .theme-navy .slide-footer { border-color: var(--border-dark); color: var(--light-muted); }
+    .theme-charcoal .slide-footer { border-color: var(--border-charcoal); color: var(--light-muted); }
+    .slide-num {
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    /* Reusable Card */
+    .card {
+      border: 1px solid;
+      position: relative;
+      transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo), border-color 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+    }
+    .theme-light .card { background: var(--ivory-card); border-color: var(--border-light); }
+    .theme-navy .card { background: var(--navy-card); border-color: var(--border-dark); }
+    .theme-charcoal .card { background: var(--charcoal-card); border-color: var(--border-charcoal); }
+
+    .accent-left { border-left: 4px solid var(--gold) !important; }
+    .accent-left-bronze { border-left: 4px solid var(--bronze) !important; }
+    .accent-left-navy { border-left: 4px solid var(--navy) !important; }
+    .accent-top { border-top: 4px solid var(--gold) !important; }
+    .accent-top-bronze { border-top: 4px solid var(--bronze) !important; }
+
+    /* Staggered Reveal Animations when Slide is Active */
+    .anim {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+    }
+    .anim-left {
+      opacity: 0;
+      transform: translateX(-24px);
+      transition: opacity 0.6s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+    }
+    .anim-right {
+      opacity: 0;
+      transform: translateX(24px);
+      transition: opacity 0.6s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+    }
+    .anim-scale {
+      opacity: 0;
+      transform: scale(0.94);
+      transition: opacity 0.6s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+    }
+    .slide.is-active .anim,
+    .slide.is-active .anim-left,
+    .slide.is-active .anim-right,
+    .slide.is-active .anim-scale {
+      opacity: 1;
+      transform: none;
+    }
+
+    .d1 { transition-delay: 0.06s; }
+    .d2 { transition-delay: 0.14s; }
+    .d3 { transition-delay: 0.22s; }
+    .d4 { transition-delay: 0.30s; }
+    .d5 { transition-delay: 0.38s; }
+    .d6 { transition-delay: 0.46s; }
+    .d7 { transition-delay: 0.54s; }
+
+    @keyframes kenBurns {
+      0% { transform: scale(1.0); }
+      100% { transform: scale(1.06); }
+    }
+    .slide.is-active .hero-photo img {
+      animation: kenBurns 14s ease-out forwards;
+    }
+
+    @keyframes pulseRing {
+      0%, 100% { transform: scale(1); opacity: 0.65; }
+      50% { transform: scale(1.16); opacity: 0.22; }
+    }
+    .pulse-ring {
+      transform-origin: center;
+      animation: pulseRing 2.8s ease-in-out infinite;
+    }
+
+    @keyframes dashFlow {
+      to { stroke-dashoffset: -28; }
+    }
+    .dash-flow {
+      stroke-dasharray: 6 5;
+      animation: dashFlow 1.6s linear infinite;
+    }
+
+    /* Slide 01 & 15 Split Cover / Closing */
+    .split-full {
+      padding: 0 !important;
+      display: grid !important;
+      grid-template-columns: 1fr 535px;
+    }
+    .split-left {
+      padding: 58px 62px 46px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .hero-photo {
+      position: relative;
+      overflow: hidden;
+      border-left: 1px solid rgba(198, 166, 107, 0.55);
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Slide 02 Grid */
+    .s2-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.96fr;
+      gap: 24px;
+      height: 100%;
+    }
+    .s2-photo {
+      width: 100%;
+      height: 336px;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+    }
+    .s2-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .kpi-trio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .kpi-box {
+      background: var(--navy);
+      border-top: 4px solid var(--gold);
+      padding: 14px 14px 12px;
+      color: var(--ivory);
+    }
+    .kpi-label { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: var(--light-muted); }
+    .kpi-val { font-size: 26px; font-weight: 800; color: var(--gold); margin: 6px 0 4px; }
+    .kpi-sub { font-size: 10.5px; color: var(--light-text); line-height: 1.25; }
+
+    /* Slide 03 Drivers */
+    .s3-grid { display: grid; grid-template-columns: 1.32fr 1fr; gap: 24px; height: 100%; }
+    .driver-list { display: flex; flex-direction: column; gap: 10px; justify-content: space-between; }
+    .driver-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 13px 16px;
+    }
+    .driver-num { font-size: 17px; font-weight: 800; color: var(--gold); min-width: 28px; }
+    .driver-title { font-size: 14.5px; font-weight: 700; color: var(--ivory); margin-bottom: 3px; }
+    .driver-desc { font-size: 12px; color: var(--light-text); line-height: 1.35; }
+
+    /* Slide 04 Situation */
+    .s4-grid { display: grid; grid-template-columns: 350px 1fr; gap: 22px; height: 100%; }
+    .facts-panel {
+      background: var(--navy);
+      color: var(--ivory);
+      border-top: 4px solid var(--gold);
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .fact-row { padding: 8px 0; border-bottom: 1px solid var(--border-dark); }
+    .fact-row:last-child { border-bottom: none; }
+    .fact-k { font-size: 9px; font-weight: 700; color: var(--gold); letter-spacing: 1px; }
+    .fact-v { font-size: 12.5px; color: var(--ivory); margin-top: 2px; font-weight: 500; }
+    .areas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+      height: calc(100% - 46px);
+    }
+
+    /* Slide 05 SWOT */
+    .swot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 16px;
+      height: 100%;
+    }
+    .swot-card { padding: 18px 22px; display: flex; flex-direction: column; }
+    .swot-card ul { list-style: none; margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+    .swot-card li {
+      font-size: 12.5px;
+      color: var(--light-text);
+      line-height: 1.35;
+      padding-left: 16px;
+      position: relative;
+    }
+    .swot-card li::before {
+      content: '▪';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 14px;
+      line-height: 1.1;
+    }
+
+    /* Slide 06 Personas */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      height: calc(100% - 44px);
+      margin-top: 12px;
+    }
+    .persona-card { padding: 12px; display: flex; flex-direction: column; justify-content: space-between; }
+    .persona-top { display: flex; gap: 10px; align-items: flex-start; }
+    .persona-top img { width: 158px; height: 210px; object-fit: cover; flex-shrink: 0; }
+    .age-badge {
+      background: var(--navy);
+      color: var(--ivory);
+      font-size: 9px;
+      font-weight: 700;
+      padding: 6px 5px;
+      text-align: center;
+      margin-top: 8px;
+      line-height: 1.25;
+    }
+
+    /* Slide 07 Map */
+    .s7-grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: 22px; height: 100%; }
+    .map-box {
+      background: #0B1220;
+      border: 1px solid var(--border-dark);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 14px 18px;
+    }
+
+    /* Slide 08 Funnel */
+    .funnel-grid { display: flex; flex-direction: column; gap: 12px; height: 100%; justify-content: center; }
+    .funnel-row {
+      display: grid;
+      grid-template-columns: 500px 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .funnel-bar {
+      margin: 0 auto;
+      height: 82px;
+      border-radius: 8px;
+      border: 1px solid var(--gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8px 14px;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    .funnel-bar:hover { transform: scale(1.025); }
+
+    /* Slide 09 Video-View Remarketing Architecture */
+    .remarketing-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin: 14px 0;
+      height: 318px;
+      position: relative;
+    }
+    .rm-card {
+      padding: 16px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .rm-card:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -17px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      font-size: 20px;
+      font-weight: 800;
+      z-index: 4;
+    }
+    .rm-pill {
+      background: var(--navy);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 7px 8px;
+      margin: 10px 0;
+    }
+    .rm-goal .rm-pill {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* Slide 10 Connected Ecosystem */
+    .eco-grid {
+      display: grid;
+      grid-template-columns: 1fr 310px 1fr;
+      gap: 28px;
+      height: 100%;
+      position: relative;
+      align-items: center;
+    }
+    .eco-col { display: flex; flex-direction: column; gap: 16px; z-index: 2; }
+    .eco-center { display: flex; flex-direction: column; gap: 16px; z-index: 2; }
+    .eco-hub {
+      background: var(--navy);
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      padding: 22px 18px;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(198, 166, 107, 0.16);
+    }
+
+    /* Slide 11 Categories */
+    .cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; height: 100%; }
+    .cat-card { display: flex; flex-direction: column; overflow: hidden; }
+    .cat-card img { width: 100%; height: 292px; object-fit: cover; display: block; border-bottom: 4px solid var(--gold); }
+    .cat-body { padding: 12px 13px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+
+    /* Slide 12 Revenue & Chart */
+    .s12-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 22px; height: 100%; }
+    .chart-box { padding: 16px 20px; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+    .bars-wrap {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      height: 210px;
+      border-bottom: 1px solid var(--border-dark);
+      padding: 20px 12px 0;
+      position: relative;
+    }
+    .bar-col { display: flex; flex-direction: column; align-items: center; width: 110px; }
+    .bar-val { font-size: 13px; font-weight: 800; color: var(--ivory); margin-bottom: 6px; }
+    .bar-rect {
+      width: 66px;
+      background: linear-gradient(180deg, #D9BC84, var(--gold));
+      border-radius: 3px 3px 0 0;
+      height: 0;
+      transition: height 1s var(--ease-out-expo) 0.25s;
+    }
+    .slide.is-active .bar-rect[data-h="52"] { height: 52px; }
+    .slide.is-active .bar-rect[data-h="125"] { height: 125px; }
+    .slide.is-active .bar-rect[data-h="172"] { height: 172px; }
+
+    /* Slide 13 Roadmap */
+    .roadmap-spine {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      height: 100%;
+      padding-top: 52px;
+    }
+    .spine-line {
+      position: absolute;
+      top: 18px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: var(--gold);
+    }
+    .phase-col { position: relative; display: flex; flex-direction: column; height: 100%; }
+    .phase-dot {
+      position: absolute;
+      top: -49px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid var(--ivory);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+    .phase-card {
+      flex: 1;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Slide 14 KPI */
+    .kpi-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 14px; height: calc(100% - 102px); }
+    .kpi-stage-col { padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+    .metric-pill {
+      background: var(--charcoal);
+      border: 1px solid var(--border-charcoal);
+      padding: 10px 13px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Presenter Control HUD */
+    .hud {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(17, 24, 39, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(198, 166, 107, 0.35);
+      border-radius: 999px;
+      padding: 7px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 100;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+      transition: opacity 0.3s ease;
+    }
+    .hud button {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: var(--ivory);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .hud button:hover:not(:disabled) {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+    }
+    .hud button:disabled { opacity: 0.35; cursor: not-allowed; }
+    .hud-counter {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 58px;
+      text-align: center;
+    }
+
+    /* Overview Grid Modal */
+    .overview-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 12, 18, 0.94);
+      backdrop-filter: blur(10px);
+      z-index: 200;
+      padding: 36px 48px;
+      overflow-y: auto;
+      display: none;
+    }
+    .overview-modal.open { display: block; }
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .ov-item {
+      background: var(--navy-card);
+      border: 1px solid var(--border-dark);
+      padding: 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .ov-item:hover, .ov-item.current {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .ov-num { font-size: 11px; font-weight: 800; color: var(--gold); margin-bottom: 6px; }
+    .ov-title { font-size: 13.5px; font-weight: 700; color: var(--ivory); line-height: 1.3; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage-wrapper">
+    <main class="deck-stage" id="deckStage">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+      <!-- SLIDE 01: COVER -->
+      <section class="slide theme-charcoal split-full is-active" data-title="Cover: Jontys Hub Growth Strategy">
+        <div class="split-left">
+          <div>
+            <div class="anim d1" style="width:48px;height:3px;background:var(--gold);margin-bottom:14px;"></div>
+            <div class="anim d1" style="font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--gold);">CLIENT ACQUISITION &amp; GROWTH PROPOSAL</div>
+            <h1 class="anim d2" style="font-size:58px;font-weight:800;letter-spacing:1.5px;margin:28px 0 16px;color:var(--ivory);">JONTYS HUB</h1>
+            <div class="anim d2" style="width:110px;height:4px;background:var(--gold);margin-bottom:24px;"></div>
+            <h2 class="anim d3" style="font-size:24px;font-weight:700;line-height:1.3;color:var(--ivory);max-width:560px;">
+              Building a Premium Men's Fashion Brand Through Video Remarketing &amp; High-Intent Store Visits.
+            </h2>
+            <p class="anim d4" style="margin-top:20px;font-size:14.5px;line-height:1.6;color:var(--light-muted);max-width:530px;">
+              A commercially disciplined B2C growth blueprint engineered to educate buyers, build brand authority, attract high-intent walk-ins, and protect &lt; 25% gross margins.
+            </p>
+          </div>
+
+          <div class="anim d5" style="border-top:1px solid var(--border-charcoal);padding-top:16px;">
+            <div style="font-size:14.5px;font-weight:700;color:var(--gold);">Strategic Growth Proposal &nbsp;|&nbsp; LB Nagar, Hyderabad</div>
+            <div style="font-size:11.5px;color:var(--light-muted);margin-top:5px;">Beside B.D. Reddy Gardens, B.N. Reddy Nagar, Hyderabad, Telangana – 500079</div>
+            <div style="font-size:11px;font-weight:700;color:var(--bronze);margin-top:12px;">01 &nbsp;/&nbsp; 15</div>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="assets/slide01_cover.jpg" alt="Jontys Hub Menswear Editorial" />
+        </div>
+      </section>
+
+      <!-- SLIDE 02: BUSINESS OVERVIEW -->
+      <section class="slide theme-light" data-title="Business Foundation & Benchmarks">
+        <div class="slide-top">
+          <div class="kicker-wrap"><div class="kicker-bar"></div><div class="kicker">Business Foundation</div></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; GROWTH STRATEGY</div>
+        </div>
+        <h2 class="slide-title anim d1">A Premium Men's Fashion Destination.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="s2-grid">
+            <div style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div class="s2-photo anim-scale d2">
+                <img src="assets/slide02_store_display.jpg" alt="Jontys Hub Boutique Display" />
+              </div>
+              <div class="card accent-left anim d3" style="padding:14px 18px;">
+                <div style="font-size:10px;font-weight:700;letter-spacing:1.4px;color:var(--bronze);">BRAND POSITIONING &amp; STORE ANCHOR</div>
+                <div style="font-size:13px;font-weight:600;color:var(--navy);margin:6px 0;line-height:1.4;">
+                  Dedicated exclusively to premium men's apparel in LB Nagar — built around curated wardrobing, never mass discounting.
+                </div>
+                <div style="font-size:11px;color:var(--slate);">Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;">
+              <div class="kpi-trio anim d2">
+                <div class="kpi-box">
+                  <div class="kpi-label">AVG PRODUCT PRICE</div>
+                  <div class="kpi-val">₹2,000</div>
+                  <div class="kpi-sub">Premium entry point</div>
+                </div>
+                <div class="kpi-box">
+                  <div class="kpi-label">AVG CUSTOMER BILL</div>
+                  <div class="kpi-val">₹5,000</div>
+                  <div class="kpi-sub">Multi-item basket</div>
+                </div>
+                <div class="kpi-box">
+                  <div class="kpi-label">GROSS MARGIN</div>
+                  <div class="kpi-val">&lt; 25%</div>
+                  <div class="kpi-sub">Strict CAC discipline</div>
+                </div>
+              </div>
+              <div class="card anim d3" style="padding:16px 20px;flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+                <div style="font-size:10.5px;font-weight:700;letter-spacing:1.5px;color:var(--bronze);">FIVE CORE MENSWEAR CATEGORIES</div>
+                <div style="display:flex;flex-direction:column;gap:9px;">
+                  <div style="display:flex;align-items:center;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--border-light);">
+                    <span style="width:26px;height:26px;background:var(--ivory-soft);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;">01</span>
+                    <strong style="width:130px;font-size:13.5px;">Casual Shirts</strong>
+                    <span style="font-size:12px;color:var(--slate);">Weekend, smart-casual &amp; textured weaves</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--border-light);">
+                    <span style="width:26px;height:26px;background:var(--ivory-soft);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;">02</span>
+                    <strong style="width:130px;font-size:13.5px;">Formal Shirts</strong>
+                    <span style="font-size:12px;color:var(--slate);">Tailored crisp workwear &amp; occasion wear</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--border-light);">
+                    <span style="width:26px;height:26px;background:var(--ivory-soft);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;">03</span>
+                    <strong style="width:130px;font-size:13.5px;">T-Shirts</strong>
+                    <span style="font-size:12px;color:var(--slate);">Elevated crew-necks &amp; structured basics</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--border-light);">
+                    <span style="width:26px;height:26px;background:var(--ivory-soft);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;">04</span>
+                    <strong style="width:130px;font-size:13.5px;">Jeans</strong>
+                    <span style="font-size:12px;color:var(--slate);">Clean-wash, tapered &amp; stretch denim fits</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:12px;">
+                    <span style="width:26px;height:26px;background:var(--ivory-soft);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;">05</span>
+                    <strong style="width:130px;font-size:13.5px;">Trousers</strong>
+                    <span style="font-size:12px;color:var(--slate);">Tailored office, chino &amp; dress staples</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079 &nbsp;•&nbsp; Confidential Client Proposal</span><span class="slide-num">02 &nbsp;/&nbsp; 15</span></div>
+      </section>
+
+      <!-- SLIDE 03: MARKET OPPORTUNITY -->
+      <section class="slide theme-navy" data-title="Category & Consumer Shifts">
+        <div class="slide-top">
+          <div class="kicker-wrap"><div class="kicker-bar"></div><div class="kicker">Category &amp; Consumer Shifts</div></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; GROWTH STRATEGY</div>
+        </div>
+        <h2 class="slide-title anim d1">The Future of Men's Fashion Is Style, Quality &amp; Experience.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="s3-grid">
+            <div class="driver-list">
+              <div class="card accent-left driver-item anim d1"><div class="driver-num">01</div><div><div class="driver-title">Video-First Discovery</div><div class="driver-desc">Local men watch short-form Instagram Reels &amp; YouTube ads to shortlist styles before stepping into a store.</div></div></div>
+              <div class="card accent-left driver-item anim d2"><div class="driver-num">02</div><div><div class="driver-title">Product Education Wins</div><div class="driver-desc">Showing fabric quality, collar structure &amp; fit builds premium value far faster than price-led banners.</div></div></div>
+              <div class="card accent-left driver-item anim d3"><div class="driver-num">03</div><div><div class="driver-title">Dedicated Men-Only Trust</div><div class="driver-desc">Discerning buyers prefer focused menswear stores for personalised sizing and curated outfit pairings.</div></div></div>
+              <div class="card accent-left driver-item anim d4"><div class="driver-num">04</div><div><div class="driver-title">High-Intent Local Walk-Ins</div><div class="driver-desc">Remarketing educated viewers with Maps directions turns casual video watchers into store visitors.</div></div></div>
+              <div class="card accent-left driver-item anim d5"><div class="driver-num">05</div><div><div class="driver-title">Community-Led Retention</div><div class="driver-desc">WhatsApp stock updates &amp; referral discounts keep buyers returning without costly paid re-acquisition.</div></div></div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div class="anim-scale d2" style="height:348px;overflow:hidden;border:1px solid var(--border-dark);">
+                <img src="assets/slide03_shopping.jpg" alt="Premium Menswear Shopping Experience" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              </div>
+              <div class="card accent-top anim d3" style="background:var(--charcoal);border-color:var(--gold);padding:16px 20px;">
+                <div style="font-size:10px;font-weight:700;letter-spacing:1.6px;color:var(--gold);margin-bottom:6px;">STRATEGIC MARKET INSIGHT</div>
+                <div style="font-size:12.5px;color:var(--ivory);line-height:1.45;">
+                  Local shoppers happily pay ₹2,000+ per piece when video ads educate them first and guide them smoothly into a high-trust physical try-on.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079 &nbsp;•&nbsp; Confidential Client Proposal</span><span class="slide-num">03 &nbsp;/&nbsp; 15</span></div>
+      </section>
+
+      <!-- SLIDE 04: CURRENT BUSINESS SITUATION -->
+      <section class="slide theme-light" data-title="Diagnostic & Growth Priorities">
+        <div class="slide-top">
+          <div class="kicker-wrap"><div class="kicker-bar"></div><div class="kicker">Diagnostic &amp; Growth Gaps</div></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; GROWTH STRATEGY</div>
+        </div>
+        <h2 class="slide-title anim d1">Connecting Digital Discovery With Physical Store Sales.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="s4-grid">
+            <div class="facts-panel anim-left d2">
+              <div>
+                <div style="font-size:10.5px;font-weight:700;letter-spacing:1.5px;color:var(--gold);">VERIFIED BUSINESS FACTS</div>
+                <div style="font-size:11.5px;color:var(--light-muted);margin:6px 0 12px;">Confirmed operational baseline prior to Phase-1 audit:</div>
+              </div>
+              <div>
+                <div class="fact-row"><div class="fact-k">STORE FORMAT</div><div class="fact-v">Pure-play Premium Men's Fashion</div></div>
+                <div class="fact-row"><div class="fact-k">CATCHMENT ANCHOR</div><div class="fact-v">B.N. Reddy Nagar, LB Nagar</div></div>
+                <div class="fact-row"><div class="fact-k">MERCHANDISE MIX</div><div class="fact-v">Casual/Formal Shirts, Tees, Jeans, Trousers</div></div>
+                <div class="fact-row"><div class="fact-k">AVG PRODUCT PRICE</div><div class="fact-v">₹2,000 per piece</div></div>
+                <div class="fact-row"><div class="fact-k">AVG CUSTOMER BILL</div><div class="fact-v">₹5,000 multi-item basket</div></div>
+                <div class="fact-row"><div class="fact-k">MARGIN PROFILE</div><div class="fact-v">Below 25% gross margin guardrail</div></div>
+              </div>
+            </div>
+            <div>
+              <div class="anim d2" style="background:var(--ivory-soft);border:1px solid var(--gold);padding:8px 14px;font-size:10.5px;font-weight:700;letter-spacing:1.1px;color:var(--navy);">
+                KEY STRATEGIC PRIORITIES (TO VALIDATE IN DAYS 1–15 AUDIT)
+              </div>
+              <div class="areas-grid">
+                <div class="card accent-left-bronze anim d2" style="padding:15px 18px;">
+                  <div style="display:flex;gap:10px;align-items:center;margin-bottom:6px;"><span style="font-weight:800;color:var(--gold);">01</span><strong style="font-size:14.5px;">Distinct Brand Positioning</strong></div>
+                  <div style="font-size:12px;color:var(--slate);line-height:1.4;">Position Jontys Hub on Instagram, Facebook &amp; Maps as LB Nagar's specialist menswear destination.</div>
+                </div>
+                <div class="card accent-left-bronze anim d3" style="padding:15px 18px;">
+                  <div style="display:flex;gap:10px;align-items:center;margin-bottom:6px;"><span style="font-weight:800;color:var(--gold);">02</span><strong style="font-size:14.5px;">Educate Through Video</strong></div>
+                  <div style="font-size:12px;color:var(--slate);line-height:1.4;">Use short Reels &amp; YouTube ads to highlight fabric quality, tailoring &amp; outfit pairings.</div>
+                </div>
+                <div class="card accent-left-bronze anim d4" style="padding:15px 18px;">
+                  <div style="display:flex;gap:10px;align-items:center;margin-bottom:6px;"><span style="font-weight:800;color:var(--gold);">03</span><strong style="font-size:14.5px;">Video-View Remarketing</strong></div>
+                  <div style="font-size:12px;color:var(--slate);line-height:1.4;">Retarget engaged video viewers across Meta &amp; Display to nurture high-intent buying audiences.</div>
+                </div>
+                <div class="card accent-left-bronze anim d4" style="padding:15px 18px;">
+                  <div style="display:flex;gap:10px;align-items:center;margin-bottom:6px;"><span style="font-weight:800;color:var(--gold);">04</span><strong style="font-size:14.5px;">Goal: High-Intent Store Visits</strong></div>
+                  <div style="font-size:12px;color:var(--slate);line-height:1.4;">Guide educated prospects straight to the store with Maps pins, styling checks &amp; stock hooks.</div>
+                </div>
+                <div class="card accent-left-bronze anim d5" style="padding:15px 18px;">
+                  <div style="display:flex;gap:10px;align-items:center;margin-bottom:6px;"><span style="font-weight:800;color:var(--gold);">05</span><strong style="font-size:14.5px;">WhatsApp Community &amp; Referrals</strong></div>
+                  <div style="font-size:12px;color:var(--slate);line-height:1.4;">Share daily/weekly new-stock drops and margin-safe referral perks for repeat walk-ins.</div>
+                </div>
+                <div class="card accent-left-bronze anim d5" style="padding:15px 18px;">
+                  <div style="display:flex;gap:10px;align-items:center;margin-bottom:6px;"><span style="font-weight:800;color:var(--gold);">06</span><strong style="font-size:14.5px;">Profit-Led Measurement</strong></div>
+                  <div style="font-size:12px;color:var(--slate);line-height:1.4;">Track every ad Rupee against store visits, ₹5,000+ bills &amp; net gross profit contribution.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079 &nbsp;•&nbsp; Confidential Client Proposal</span><span class="slide-num">04 &nbsp;/&nbsp; 15</span></div>
+      </section>
+
+      <!-- SLIDE 05: SWOT -->
+      <section class="slide theme-charcoal" data-title="SWOT Strategic Position">
+        <div class="slide-top">
+          <div class="kicker-wrap"><div class="kicker-bar"></div><div class="kicker">Strategic Position</div></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; GROWTH STRATEGY</div>
+        </div>
+        <h2 class="slide-title anim d1">SWOT Analysis: Building on Strengths, Protecting Margins.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="swot-grid">
+            <div class="card accent-top swot-card anim d1">
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:1.4px;color:var(--gold);">INTERNAL &nbsp;•&nbsp; POSITIVE</div>
+              <div style="font-size:18px;font-weight:800;margin-top:4px;">STRENGTHS</div>
+              <ul>
+                <li>100% dedicated men's fashion focus — clear specialist brand positioning</li>
+                <li>Five complementary categories built for complete outfit cross-selling</li>
+                <li>Established B.N. Reddy Nagar store in a prime LB Nagar corridor</li>
+                <li>Strong ₹5,000 average bill (~2.5x ₹2,000 avg product price)</li>
+              </ul>
+            </div>
+            <div class="card accent-top-bronze swot-card anim d2">
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:1.4px;color:var(--bronze);">INTERNAL &nbsp;•&nbsp; CONSTRAINTS</div>
+              <div style="font-size:18px;font-weight:800;margin-top:4px;">WEAKNESSES</div>
+              <ul>
+                <li>Gross margin under 25% forbids unfocused, low-intent ad spend</li>
+                <li>Digital brand positioning &amp; video storytelling need structured launch</li>
+                <li>No active video-view remarketing pool capturing warm local viewers</li>
+                <li>No store-visit attribution linking online impressions to bills</li>
+              </ul>
+            </div>
+            <div class="card accent-top swot-card anim d3">
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:1.4px;color:var(--gold);">EXTERNAL &nbsp;•&nbsp; UPSIDE</div>
+              <div style="font-size:18px;font-weight:800;margin-top:4px;">OPPORTUNITIES</div>
+              <ul>
+                <li>Capture 50%+ video-ad viewers as warm local remarketing audiences</li>
+                <li>Educate buyers on fit &amp; fabric to attract high-intent store visits</li>
+                <li>WhatsApp community for daily/weekly new-stock alerts &amp; referrals</li>
+                <li>Outfit styling hooks to expand ₹5,000+ multi-item store baskets</li>
+              </ul>
+            </div>
+            <div class="card swot-card anim d4" style="border-top:4px solid var(--slate);">
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:1.4px;color:var(--light-muted);">EXTERNAL &nbsp;•&nbsp; RISKS</div>
+              <div style="font-size:18px;font-weight:800;margin-top:4px;">THREATS</div>
+              <ul>
+                <li>Competing retail chains &amp; nearby menswear outlets</li>
+                <li>Market-wide discounting habits that compress net margins</li>
+                <li>Rising CPMs if ads target low-intent cold traffic without retargeting</li>
+                <li>Price resistance when brand positioning &amp; quality are not explained</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079 &nbsp;•&nbsp; Confidential Client Proposal</span><span class="slide-num">05 &nbsp;/&nbsp; 15</span></div>
+      </section>
+
+      <!-- SLIDE 06: IDEAL CUSTOMER PROFILE -->
+      <section class="slide theme-light" data-title="Ideal Customer Personas">
+        <div class="slide-top">
+          <div class="kicker-wrap"><div class="kicker-bar"></div><div class="kicker">Target Audience Architecture</div></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; GROWTH STRATEGY</div>
+        </div>
+        <h2 class="slide-title anim d1">Reaching the Right Customers.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="anim d1" style="background:var(--ivory-soft);border:1px solid var(--gold);padding:7px 14px;font-size:10px;font-weight:700;letter-spacing:1.1px;color:var(--navy);">
+            PROPOSED AUDIENCE SEGMENTS TO VALIDATE &nbsp;•&nbsp; ALL PERSONAS REPRESENT HYPOTHESES FOR PHASE-1 VIDEO &amp; REMARKETING TESTS
+          </div>
+          <div class="persona-grid">
+            <div class="card accent-top persona-card anim d2">
+              <div class="persona-top">
+                <img src="assets/icp1_young_fashion.jpg" alt="Young Fashion-Conscious Men" />
+                <div style="flex:1;text-align:right;"><div style="font-size:22px;font-weight:800;color:var(--gold);">01</div><div class="age-badge">AGE<br>20–30</div><div style="font-size:8px;font-weight:700;color:var(--slate);margin-top:8px;">SEGMENT<br>TO TEST</div></div>
+              </div>
+              <div>
+                <h3 style="font-size:14px;font-weight:800;padding:8px 0 6px;border-bottom:1px solid var(--border-light);color:var(--navy);">Young Fashion-Conscious Men</h3>
+                <div style="margin-top:7px;font-size:10.5px;color:var(--slate);line-height:1.35;">
+                  <div style="font-size:8.5px;font-weight:700;color:var(--bronze);">MOTIVATION</div>Trend-aligned styling &amp; sharp silhouettes.<br>
+                  <div style="font-size:8.5px;font-weight:700;color:var(--bronze);margin-top:5px;">PRODUCT FOCUS</div>Casual Shirts, T-Shirts, Slim Jeans<br>
+                  <div style="font-size:8.5px;font-weight:700;color:var(--bronze);margin-top:5px;">HOOK</div>Short Reels &amp; fresh drop alerts.
+                </div>
+              </div>
+            </div>
+            <div class="card accent-top persona-card anim d3">
+              <div class="persona-top">
+                <img src="assets/icp2_working_pro.jpg" alt="Working Professionals" />
+                <div style="flex:1;text-align:right;"><div style="font-size:22px;font-weight:800;color:var(--gold);">02</div><div class="age-badge">AGE<br>25–40</div><div style="font-size:8px;font-weight:700;color:var(--slate);margin-top:8px;">SEGMENT<br>TO TEST</div></div>
+              </div>
+              <div>
+                <h3 style="font-size:14px;font-weight:800;padding:8px 0 6px;border-bottom:1px solid var(--border-light);color:var(--navy);">Working Professionals</h3>
+                <div style="margin-top:7px;font-size:10.5px;color:var(--slate);line-height:1.35;">
+                  <div style="font-size:8.5px;font-weight:700;color:var(--bronze);">MOTIVATION</div>All-day comfort &amp; crisp work-to-evening polish.<br>
+                  <div style="font-size:8.5px;font-weight:700;color:var(--bronze);margin-top:5px;">PRODUCT FOCUS</div>Formal Shirts, Tailored Trousers<br>
+                  <div style="font-size:8.5px;font-weight:700;color:var(--bronze);margin-top:5px;">HOOK</div>Fabric education via Meta &amp; YouTube.
+                </div>
+              </div>
+            </div>
+            <div class="card accent-top persona-card anim d4">
+              <div class="persona-top">
+                <img src="assets/icp3_aspirational.jpg" alt="Aspirational Fashion Buyers" />
+                <div style="flex:1;text-align:right;"><div style="font-size:22px;font-weight:800;color:var(--gold);">03</div><div class="age-badge">AGE<br>25–40</div><div style="font-size:8px;font-weight:700;color:var(--slate);margin-top:8px;">SEGMENT<br>TO TEST</div></div>
+              </div>
+              <div>
+                <h3 style="font-size:14px;font-weight:800;padding:8px 0 6px;border-bottom:1px solid var(--border-light);color:var(--navy);">Aspirational Fashion Buyers</h3>
+                <div style="margin-top:7px;font-size:10.5px;color:var(--slate);line-height:1.35;">
+                  <div style="font-size:8.5px;font-weight:700;color:var(--bronze);">MOTIVATION</div>Upgrading wardrobe to elevated essentials.<br>
+                  <div style="font-size:8.5px;font-weight:700;color:var(--bronze);margin-top:5px;">PRODUCT FOCUS</div>Layered Casuals, Tees, Trousers<br>
+                  <div style="font-size:8.5px;font-weight:700;color:var(--bronze);margin-top:5px;">HOOK</div>Outfit lookbooks &amp; WhatsApp stock drops.
+                </div>
+              </div>
+            </div>
+            <div class="card accent-top persona-card anim d5">
+              <div class="persona-top">
+                <img src="assets/icp4_occasion.jpg" alt="Occasion-Based Shoppers" />
+                <div style="flex:1;text-align:right;"><div style="font-size:22px;font-weight:800;color:var(--gold);">04</div><div class="age-badge">AGE<br>23–45</div><div style="font-size:8px;font-weight:700;color:var(--slate);margin-top:8px;">SEGMENT<br>TO TEST</div></div>
+              </div>
+              <div>
+                <h3 style="font-size:14px;font-weight:800;padding:8px 0 6px;border-bottom:1px solid var(--border-light);color:var(--navy);">Occasion-Based Shoppers</h3>
+                <div style="margin-top:7px;font-size:10.5px;color:var(--slate);line-height:1.35;">
+                  <div style="font-size:8.5px;font-weight:700;color:var(--bronze);">MOTIVATION</div>Ready-to-wear outfits for events &amp; dinners.<br>
+                  <div style="font-size:8.5px;font-weight:700;color:var(--bronze);margin-top:5px;">PRODUCT FOCUS</div>Dark Formal Shirts, Crisp Trousers<br>
+                  <div style="font-size:8.5px;font-weight:700;color:var(--bronze);margin-top:5px;">HOOK</div>Event styling videos &amp; referral invites.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079 &nbsp;•&nbsp; Confidential Client Proposal</span><span class="slide-num">06 &nbsp;/&nbsp; 15</span></div>
+      </section>
+
+      <!-- SLIDE 07: LOCAL MARKET STRATEGY -->
+      <section class="slide theme-navy" data-title="Hyper-Local Catchment Targeting">
+        <div class="slide-top">
+          <div class="kicker-wrap"><div class="kicker-bar"></div><div class="kicker">Hyper-Local Catchment Targeting</div></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; GROWTH STRATEGY</div>
+        </div>
+        <h2 class="slide-title anim d1">Winning the Local Men's Fashion Market.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="s7-grid">
+            <div class="map-box anim-scale d2">
+              <div style="font-size:9px;font-weight:700;letter-spacing:0.8px;color:var(--light-muted);">HYDERABAD SOUTH-EAST CATCHMENT TOPOLOGY &nbsp;(NO INVENTED DEMOGRAPHIC ESTIMATES)</div>
+              <svg viewBox="0 0 680 410" style="width:100%;height:390px;">
+                <ellipse cx="325" cy="240" rx="260" ry="185" fill="#131E33" fill-opacity="0.65" stroke="#667085" stroke-width="1.3" stroke-dasharray="6 5" />
+                <ellipse cx="325" cy="240" rx="185" ry="132" fill="#192640" fill-opacity="0.7" stroke="#A88B5A" stroke-width="1.6" />
+                <ellipse cx="325" cy="240" rx="108" ry="78" fill="#C6A66B" fill-opacity="0.16" stroke="#C6A66B" stroke-width="2" />
+                <ellipse cx="325" cy="240" rx="54" ry="42" fill="none" stroke="#C6A66B" stroke-width="1.5" class="pulse-ring" />
+
+                <line x1="265" y1="30" x2="320" y2="380" stroke="#334155" stroke-width="2.5" />
+                <line x1="55" y1="145" x2="620" y2="95" stroke="#334155" stroke-width="2.5" />
+                <text x="470" y="90" fill="#9CA3AF" font-size="11" font-family="Montserrat">NH 65 / Vijayawada Hwy</text>
+                <text x="120" y="340" fill="#9CA3AF" font-size="11" font-family="Montserrat">Nagarjuna Sagar Rd</text>
+
+                <!-- Anchor -->
+                <circle cx="325" cy="240" r="11" fill="#C6A66B" stroke="#F7F5F0" stroke-width="2.5" />
+                <text x="325" y="268" fill="#C6A66B" font-size="12" font-weight="800" text-anchor="middle" font-family="Montserrat">JONTYS HUB</text>
+                <text x="325" y="283" fill="#C6A66B" font-size="11" font-weight="700" text-anchor="middle" font-family="Montserrat">B.N. Reddy Nagar</text>
+
+                <!-- Primary -->
+                <circle cx="408" cy="212" r="7" fill="#C6A66B" stroke="#F7F5F0" stroke-width="1.5" />
+                <text x="408" y="198" fill="#F7F5F0" font-size="11.5" font-weight="700" text-anchor="middle">Vanasthalipuram</text>
+                <circle cx="248" cy="278" r="7" fill="#C6A66B" stroke="#F7F5F0" stroke-width="1.5" />
+                <text x="248" y="300" fill="#F7F5F0" font-size="11.5" font-weight="700" text-anchor="middle">Hastinapuram</text>
+
+                <!-- Secondary -->
+                <circle cx="315" cy="122" r="7" fill="#A88B5A" stroke="#F7F5F0" stroke-width="1.5" />
+                <text x="315" y="108" fill="#F7F5F0" font-size="11.5" font-weight="700" text-anchor="middle">LB Nagar</text>
+                <circle cx="470" cy="155" r="7" fill="#A88B5A" stroke="#F7F5F0" stroke-width="1.5" />
+                <text x="470" y="142" fill="#F7F5F0" font-size="11.5" font-weight="700" text-anchor="middle">Chintalkunta</text>
+
+                <!-- Testing -->
+                <circle cx="178" cy="72" r="7" fill="#9CA3AF" stroke="#F7F5F0" stroke-width="1.5" />
+                <text x="178" y="58" fill="#E5E7EB" font-size="11.5" font-weight="700" text-anchor="middle">Kothapet</text>
+              </svg>
+              <div style="background:var(--navy);border:1px solid var(--border-dark);padding:8px 14px;display:flex;justify-content:space-between;font-size:11px;">
+                <span><strong style="color:var(--gold);">●</strong> Store Anchor</span>
+                <span><strong style="color:var(--gold);">●</strong> Primary Zone</span>
+                <span><strong style="color:var(--bronze);">●</strong> Secondary Zone</span>
+                <span><strong style="color:var(--light-muted);">●</strong> Testing Zone</span>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:space-between;gap:12px;">
+              <div class="card accent-left anim d2" style="padding:14px 18px;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">TIER 01 &nbsp;•&nbsp; PRIMARY ZONE</div>
+                <div style="font-size:15px;font-weight:800;margin:4px 0;">B.N. Reddy Nagar, Vanasthalipuram, Hastinapuram</div>
+                <div style="font-size:12px;color:var(--light-text);line-height:1.35;">Core video reach, Maps visibility &amp; high-intent store-visit remarketing.</div>
+              </div>
+              <div class="card accent-left-bronze anim d3" style="padding:14px 18px;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--bronze);">TIER 02 &nbsp;•&nbsp; SECONDARY ZONE</div>
+                <div style="font-size:15px;font-weight:800;margin:4px 0;">LB Nagar &amp; Chintalkunta</div>
+                <div style="font-size:12px;color:var(--light-text);line-height:1.35;">Instagram, Facebook, YouTube &amp; Display ads capturing surrounding B2C buyers.</div>
+              </div>
+              <div class="card anim d4" style="padding:14px 18px;border-left:4px solid var(--slate);">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--light-muted);">TIER 03 &nbsp;•&nbsp; TESTING ZONE</div>
+                <div style="font-size:15px;font-weight:800;margin:4px 0;">Kothapet</div>
+                <div style="font-size:12px;color:var(--light-text);line-height:1.35;">Controlled expansion tests measuring travel intent and visit economics.</div>
+              </div>
+              <div class="card anim d5" style="background:var(--charcoal);border-color:var(--gold);padding:14px 18px;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">STORE LOCATION ANCHOR</div>
+                <div style="font-size:12.5px;font-weight:600;margin:5px 0;">Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</div>
+                <div style="font-size:10.5px;color:var(--light-muted);font-style:italic;">Radius scales outward only after Primary Zone unit economics are proven.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079 &nbsp;•&nbsp; Confidential Client Proposal</span><span class="slide-num">07 &nbsp;/&nbsp; 15</span></div>
+      </section>
+
+      <!-- SLIDE 08: CUSTOMER ACQUISITION FUNNEL -->
+      <section class="slide theme-light" data-title="5-Stage Acquisition Funnel">
+        <div class="slide-top">
+          <div class="kicker-wrap"><div class="kicker-bar"></div><div class="kicker">Conversion Architecture</div></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; GROWTH STRATEGY</div>
+        </div>
+        <h2 class="slide-title anim d1">From Video Discovery to High-Intent Store Purchase.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="funnel-grid">
+            <div class="funnel-row anim d1">
+              <div class="funnel-bar" style="width:490px;background:var(--navy);color:var(--ivory);">
+                <div style="font-size:14px;font-weight:800;color:var(--gold);">01 &nbsp; VIDEO DISCOVERY</div>
+                <div style="font-size:11px;margin-top:3px;">Instagram Reels • Facebook Video • YouTube</div>
+              </div>
+              <div class="card accent-left" style="padding:14px 20px;">
+                <div style="font-size:14px;font-weight:800;color:var(--navy);">Capture attention &amp; pool engaged local video viewers.</div>
+                <div style="font-size:12px;color:var(--slate);margin-top:4px;">Style-led video ads reach LB Nagar men; 50%+ video viewers enter the custom remarketing pool.</div>
+              </div>
+            </div>
+            <div class="funnel-row anim d2">
+              <div class="funnel-bar" style="width:435px;background:#1E293B;color:var(--ivory);">
+                <div style="font-size:14px;font-weight:800;color:var(--gold);">02 &nbsp; EDUCATE &amp; POSITION</div>
+                <div style="font-size:11px;margin-top:3px;">Video-View Remarketing • Meta &amp; Display</div>
+              </div>
+              <div class="card accent-left" style="padding:14px 20px;">
+                <div style="font-size:14px;font-weight:800;color:var(--navy);">Educate warm viewers &amp; establish premium positioning.</div>
+                <div style="font-size:12px;color:var(--slate);margin-top:4px;">Sequential ads teach fabric feel, collar fit &amp; styling—building authority before store entry.</div>
+              </div>
+            </div>
+            <div class="funnel-row anim d3">
+              <div class="funnel-bar" style="width:380px;background:#2A3447;color:var(--ivory);">
+                <div style="font-size:14px;font-weight:800;color:var(--gold);">03 &nbsp; HIGH-INTENT FILTER</div>
+                <div style="font-size:11px;margin-top:3px;">WhatsApp Community • Google Business Profile</div>
+              </div>
+              <div class="card accent-left" style="padding:14px 20px;">
+                <div style="font-size:14px;font-weight:800;color:var(--navy);">Qualify high-intent buyers ready to visit the store.</div>
+                <div style="font-size:12px;color:var(--slate);margin-top:4px;">Maps directions, sizing previews &amp; fresh-stock highlights isolate serious local shoppers.</div>
+              </div>
+            </div>
+            <div class="funnel-row anim d4">
+              <div class="funnel-bar" style="width:325px;background:var(--charcoal);color:var(--ivory);">
+                <div style="font-size:14px;font-weight:800;color:var(--gold);">04 &nbsp; STORE VISIT GOAL</div>
+                <div style="font-size:11px;margin-top:3px;">In-Store Trial • Outfit Styling</div>
+              </div>
+              <div class="card accent-left" style="padding:14px 20px;">
+                <div style="font-size:14px;font-weight:800;color:var(--navy);">Convert high-intent walk-ins into ₹5,000+ bills.</div>
+                <div style="font-size:12px;color:var(--slate);margin-top:4px;">Educated buyers arrive pre-sold on quality—staff guide complete multi-item outfit trials.</div>
+              </div>
+            </div>
+            <div class="funnel-row anim d5">
+              <div class="funnel-bar" style="width:270px;background:var(--gold);color:var(--navy);border-color:var(--bronze);">
+                <div style="font-size:14px;font-weight:800;color:var(--navy);">05 &nbsp; RETENTION</div>
+                <div style="font-size:11px;margin-top:3px;">WhatsApp Drops • Referrals</div>
+              </div>
+              <div class="card accent-left-navy" style="padding:14px 20px;">
+                <div style="font-size:14px;font-weight:800;color:var(--navy);">Turn buyers into repeat members and peer referrers.</div>
+                <div style="font-size:12px;color:var(--slate);margin-top:4px;">Daily/weekly new-stock updates &amp; margin-safe referral discounts drive repeat store visits.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079 &nbsp;•&nbsp; Confidential Client Proposal</span><span class="slide-num">08 &nbsp;/&nbsp; 15</span></div>
+      </section>
+
+      <!-- SLIDE 09: VIDEO-VIEW REMARKETING & POSITIONING (NEW DEDICATED STRATEGY SLIDE) -->
+      <section class="slide theme-navy" data-title="Video-View Remarketing & Positioning">
+        <div class="slide-top">
+          <div class="kicker-wrap"><div class="kicker-bar"></div><div class="kicker">Remarketing &amp; Positioning Architecture</div></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; GROWTH STRATEGY</div>
+        </div>
+        <h2 class="slide-title anim d1">Turn Video Viewers Into High-Intent Store Visitors.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body" style="display:flex;flex-direction:column;justify-content:space-between;">
+          <div class="card accent-left anim d1" style="background:var(--charcoal);border-color:var(--gold);padding:12px 20px;">
+            <div style="font-size:9.5px;font-weight:700;letter-spacing:1.4px;color:var(--gold);">CORE REMARKETING STRATEGY</div>
+            <div style="font-size:12.5px;color:var(--ivory);margin-top:4px;line-height:1.4;">
+              Anyone watching our Reels or YouTube video ads enters a custom <strong>Remarketing Audience</strong> — educated sequentially to create clear brand positioning and drive <strong>high-intent store visits</strong>.
+            </div>
+          </div>
+
+          <div class="remarketing-flow">
+            <div class="card accent-top rm-card anim d2">
+              <div>
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--gold);">01 &nbsp;•&nbsp; AUDIENCE CAPTURE</div>
+                <h3 style="font-size:17px;font-weight:800;margin-top:6px;line-height:1.25;">Video Viewers Become Remarketing Pool</h3>
+                <div class="rm-pill">50%+ VIDEO WATCHERS</div>
+                <p style="font-size:12px;color:var(--light-text);line-height:1.45;">
+                  Run style-led Instagram Reels, Facebook Video &amp; YouTube Ads locally. Engaged viewers (50%+ watch time) automatically form our warm retargeting pool.
+                </p>
+              </div>
+              <div style="border-top:1px solid var(--border-dark);padding-top:8px;font-size:11.5px;font-weight:700;color:var(--light-muted);">Signal: Proven Attention</div>
+            </div>
+
+            <div class="card accent-top rm-card anim d3">
+              <div>
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--gold);">02 &nbsp;•&nbsp; CUSTOMER EDUCATION</div>
+                <h3 style="font-size:17px;font-weight:800;margin-top:6px;line-height:1.25;">Educate on Fit, Fabric &amp; Quality</h3>
+                <div class="rm-pill">SHOW VALUE BEFORE PRICE</div>
+                <p style="font-size:12px;color:var(--light-text);line-height:1.45;">
+                  Retarget warm viewers with close-up fabric weaves, collar structure &amp; 5-category pairings — explaining why ₹2,000+ apparel fits and lasts better.
+                </p>
+              </div>
+              <div style="border-top:1px solid var(--border-dark);padding-top:8px;font-size:11.5px;font-weight:700;color:var(--light-muted);">Outcome: Educated Buyer</div>
+            </div>
+
+            <div class="card accent-top-bronze rm-card anim d4">
+              <div>
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--bronze);">03 &nbsp;•&nbsp; BRAND POSITIONING</div>
+                <h3 style="font-size:17px;font-weight:800;margin-top:6px;line-height:1.25;">Build Distinct Store Positioning</h3>
+                <div class="rm-pill">MEN-ONLY STYLE AUTHORITY</div>
+                <p style="font-size:12px;color:var(--light-text);line-height:1.45;">
+                  Consistent Meta &amp; Display lookbooks position Jontys Hub as B.N. Reddy Nagar's dedicated menswear specialist — never a discount rack.
+                </p>
+              </div>
+              <div style="border-top:1px solid var(--border-dark);padding-top:8px;font-size:11.5px;font-weight:700;color:var(--light-muted);">Outcome: Brand Preference</div>
+            </div>
+
+            <div class="card accent-top rm-card rm-goal anim d5" style="background:var(--charcoal);border-color:var(--gold);">
+              <div>
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--gold);">04 &nbsp;•&nbsp; ULTIMATE GOAL</div>
+                <h3 style="font-size:17px;font-weight:800;margin-top:6px;line-height:1.25;">Convert High-Intent Store Visits</h3>
+                <div class="rm-pill">IN-STORE TRIAL &amp; ₹5,000+ BILLS</div>
+                <p style="font-size:12px;color:var(--light-text);line-height:1.45;">
+                  Show Google Maps routes, fresh stock previews &amp; WhatsApp sizing checks strictly to educated viewers — bringing high-intent buyers into the store.
+                </p>
+              </div>
+              <div style="border-top:1px solid var(--border-dark);padding-top:8px;font-size:12px;font-weight:800;color:var(--gold);">Goal: Visit the Store</div>
+            </div>
+          </div>
+
+          <div class="card accent-left-bronze anim d6" style="padding:12px 20px;">
+            <div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">WHY THIS PROTECTS OUR &lt; 25% MARGIN</div>
+            <div style="font-size:12px;color:var(--light-text);margin-top:3px;">
+              Instead of paying high costs for uninterested cold clicks, video ads educate locals cheaply — concentrating store-visit spend strictly on <strong>high-intent buyers ready to shop</strong>.
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079 &nbsp;•&nbsp; Confidential Client Proposal</span><span class="slide-num">09 &nbsp;/&nbsp; 15</span></div>
+      </section>
+
+      <!-- SLIDE 10: CONNECTED DIGITAL GROWTH STRATEGY -->
+      <section class="slide theme-charcoal" data-title="Connected B2C Channel Architecture">
+        <div class="slide-top">
+          <div class="kicker-wrap"><div class="kicker-bar"></div><div class="kicker">Channel Architecture</div></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; GROWTH STRATEGY</div>
+        </div>
+        <h2 class="slide-title anim d1">A Connected Digital Growth Strategy.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <svg viewBox="0 0 1160 510" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;">
+            <line x1="395" y1="80" x2="435" y2="255" stroke="#C6A66B" stroke-width="1.5" class="dash-flow" />
+            <line x1="395" y1="255" x2="435" y2="255" stroke="#C6A66B" stroke-width="1.5" class="dash-flow" />
+            <line x1="395" y1="430" x2="435" y2="255" stroke="#C6A66B" stroke-width="1.5" class="dash-flow" />
+            <line x1="765" y1="80" x2="725" y2="255" stroke="#C6A66B" stroke-width="1.5" class="dash-flow" />
+            <line x1="765" y1="255" x2="725" y2="255" stroke="#C6A66B" stroke-width="1.5" class="dash-flow" />
+            <line x1="765" y1="430" x2="725" y2="255" stroke="#C6A66B" stroke-width="1.5" class="dash-flow" />
+          </svg>
+          <div class="eco-grid">
+            <div class="eco-col">
+              <div class="card accent-top anim-left d1" style="padding:16px 20px;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.3px;color:var(--gold);">VIDEO DISCOVERY &amp; POOL</div>
+                <div style="font-size:17px;font-weight:800;margin:4px 0 6px;">Instagram Ads</div>
+                <div style="font-size:12px;color:var(--light-text);line-height:1.4;">Style reels that capture 50%+ video viewers for warm remarketing &amp; local positioning.</div>
+              </div>
+              <div class="card accent-top anim-left d2" style="padding:16px 20px;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.3px;color:var(--gold);">LOCAL REMARKETING</div>
+                <div style="font-size:17px;font-weight:800;margin:4px 0 6px;">Facebook Ads</div>
+                <div style="font-size:12px;color:var(--light-text);line-height:1.4;">Educate warm video viewers across LB Nagar on fabric, fit &amp; complete outfit pairings.</div>
+              </div>
+              <div class="card accent-top anim-left d3" style="padding:16px 20px;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.3px;color:var(--gold);">EDUCATION &amp; STORYTELLING</div>
+                <div style="font-size:17px;font-weight:800;margin:4px 0 6px;">YouTube Ads</div>
+                <div style="font-size:12px;color:var(--light-text);line-height:1.4;">Shorts &amp; in-stream videos building brand authority and feeding high-intent remarketing.</div>
+              </div>
+            </div>
+
+            <div class="eco-center">
+              <div class="card anim d2" style="padding:14px 18px;text-align:center;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.3px;color:var(--gold);">OMNICHANNEL LOOP</div>
+                <div style="font-size:12px;color:var(--light-text);margin-top:6px;line-height:1.4;">Video ads build the remarketing pool; education &amp; Maps convert high-intent store visits.</div>
+              </div>
+              <div class="eco-hub anim-scale d3">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.5px;color:var(--gold);">CENTRAL GROWTH ENGINE</div>
+                <div style="font-size:21px;font-weight:800;margin:10px 0;line-height:1.25;">JONTYS HUB<br>B2C COMMUNITY</div>
+                <div style="font-size:10.5px;color:var(--light-text);">Store Visits &nbsp;•&nbsp; Stock Drops &nbsp;•&nbsp; Referrals</div>
+              </div>
+              <div class="card anim d4" style="padding:14px 18px;text-align:center;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.3px;color:var(--bronze);">MARGIN DISCIPLINE</div>
+                <div style="font-size:12px;color:var(--light-text);margin-top:6px;line-height:1.4;">Store buyers join WhatsApp Community, driving repeat visits &amp; referrals at near-zero CAC.</div>
+              </div>
+            </div>
+
+            <div class="eco-col">
+              <div class="card accent-top anim-right d1" style="padding:16px 20px;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.3px;color:var(--gold);">SEQUENTIAL RECALL</div>
+                <div style="font-size:17px;font-weight:800;margin:4px 0 6px;">Google Display Ads</div>
+                <div style="font-size:12px;color:var(--light-text);line-height:1.4;">Keep Jontys Hub top-of-mind with educated local viewers until they visit the store.</div>
+              </div>
+              <div class="card accent-top anim-right d2" style="padding:16px 20px;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.3px;color:var(--gold);">GOAL: STORE VISIT</div>
+                <div style="font-size:17px;font-weight:800;margin:4px 0 6px;">Google Business Profile</div>
+                <div style="font-size:12px;color:var(--light-text);line-height:1.4;">Maps pins, photos &amp; reviews converting high-intent prospects into store walk-ins.</div>
+              </div>
+              <div class="card accent-top anim-right d3" style="padding:16px 20px;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.3px;color:var(--gold);">STOCK DROPS &amp; REFERRALS</div>
+                <div style="font-size:17px;font-weight:800;margin:4px 0 6px;">WhatsApp Community</div>
+                <div style="font-size:12px;color:var(--light-text);line-height:1.4;">Daily/weekly new stock alerts &amp; margin-safe referral perks driving repeat bills.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079 &nbsp;•&nbsp; Confidential Client Proposal</span><span class="slide-num">10 &nbsp;/&nbsp; 15</span></div>
+      </section>
+
+      <!-- SLIDE 11: CREATIVE STRATEGY -->
+      <section class="slide theme-light" data-title="Creative & Merchandising Direction">
+        <div class="slide-top">
+          <div class="kicker-wrap"><div class="kicker-bar"></div><div class="kicker">Creative &amp; Merchandising Direction</div></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; GROWTH STRATEGY</div>
+        </div>
+        <h2 class="slide-title anim d1">Make Every Product Worth Discovering.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="cat-grid">
+            <div class="card cat-card anim d1">
+              <img src="assets/cat1_casual_shirts.jpg" alt="Casual Shirts" />
+              <div class="cat-body">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--bronze);">CASUAL SHIRTS</div>
+                <div style="font-size:13px;font-weight:800;color:var(--navy);">"Upgrade Your Everyday Style."</div>
+                <div style="font-size:11px;color:var(--slate);line-height:1.38;">Weekend transition reels showing textured cottons &amp; effortless fits.</div>
+              </div>
+            </div>
+            <div class="card cat-card anim d2">
+              <img src="assets/cat2_formal_shirts.jpg" alt="Formal Shirts" />
+              <div class="cat-body">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--bronze);">FORMAL SHIRTS</div>
+                <div style="font-size:13px;font-weight:800;color:var(--navy);">"Premium Style. Everyday Confidence."</div>
+                <div style="font-size:11px;color:var(--slate);line-height:1.38;">Sharp collar, cuff &amp; weave close-ups educating buyers on office polish.</div>
+              </div>
+            </div>
+            <div class="card cat-card anim d3">
+              <img src="assets/cat3_tshirts.jpg" alt="T-Shirts" />
+              <div class="cat-body">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--bronze);">T-SHIRTS</div>
+                <div style="font-size:13px;font-weight:800;color:var(--navy);">"Dress Better. Feel Better."</div>
+                <div style="font-size:11px;color:var(--slate);line-height:1.38;">Studio lookbooks proving heavyweight drape &amp; clean neckline hold.</div>
+              </div>
+            </div>
+            <div class="card cat-card anim d4">
+              <img src="assets/cat4_jeans.jpg" alt="Jeans" />
+              <div class="cat-body">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--bronze);">JEANS</div>
+                <div style="font-size:13px;font-weight:800;color:var(--navy);">"Find Your Perfect Fit."</div>
+                <div style="font-size:11px;color:var(--slate);line-height:1.38;">360-degree fit-check videos proving tapered cuts &amp; all-day comfort.</div>
+              </div>
+            </div>
+            <div class="card cat-card anim d5">
+              <img src="assets/cat5_trousers.jpg" alt="Trousers" />
+              <div class="cat-body">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--bronze);">TROUSERS</div>
+                <div style="font-size:13px;font-weight:800;color:var(--navy);">"Redefine Your Wardrobe."</div>
+                <div style="font-size:11px;color:var(--slate);line-height:1.38;">Full-outfit pairing videos elevating both casual &amp; formal shirts.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079 &nbsp;•&nbsp; Confidential Client Proposal</span><span class="slide-num">11 &nbsp;/&nbsp; 15</span></div>
+      </section>
+
+      <!-- SLIDE 12: REVENUE & PROFITABILITY -->
+      <section class="slide theme-navy" data-title="Commercial & Margin Discipline">
+        <div class="slide-top">
+          <div class="kicker-wrap"><div class="kicker-bar"></div><div class="kicker">Commercial &amp; Unit-Economics Discipline</div></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; GROWTH STRATEGY</div>
+        </div>
+        <h2 class="slide-title anim d1">Grow Sales Without Compromising Margins.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="s12-grid">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div class="kpi-trio anim d1" style="margin-bottom:0;">
+                <div class="kpi-box" style="border:1px solid var(--gold);border-top:4px solid var(--gold);">
+                  <div class="kpi-label">AVG PRODUCT PRICE</div><div class="kpi-val" style="margin-bottom:0;">₹2,000</div>
+                </div>
+                <div class="kpi-box" style="border:1px solid var(--gold);border-top:4px solid var(--gold);">
+                  <div class="kpi-label">AVG CUSTOMER BILL</div><div class="kpi-val" style="margin-bottom:0;">₹5,000</div>
+                </div>
+                <div class="kpi-box" style="border:1px solid var(--gold);border-top:4px solid var(--gold);">
+                  <div class="kpi-label">GROSS MARGIN</div><div class="kpi-val" style="margin-bottom:0;">&lt; 25%</div>
+                </div>
+              </div>
+              <div class="card chart-box anim d2">
+                <div>
+                  <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:var(--gold);">ILLUSTRATIVE BASKET SCENARIOS (₹) &nbsp;—&nbsp; FOR PLANNING ONLY</div>
+                  <div style="font-size:11.5px;color:var(--light-text);margin-top:4px;">Outfit styling multiplies gross profit headroom per store visit vs single-item sales.</div>
+                </div>
+                <div class="bars-wrap">
+                  <div class="bar-col"><div class="bar-val">₹2,000</div><div class="bar-rect" data-h="52"></div><div style="font-size:10.5px;text-align:center;margin-top:8px;">Single Item<br><span style="color:var(--light-muted);font-size:9.5px;">(Baseline ₹2,000)</span></div></div>
+                  <div class="bar-col"><div class="bar-val">₹5,000</div><div class="bar-rect" data-h="125"></div><div style="font-size:10.5px;text-align:center;margin-top:8px;">Current Avg Bill<br><span style="color:var(--light-muted);font-size:9.5px;">(2.5 Items)</span></div></div>
+                  <div class="bar-col"><div class="bar-val">₹7,000</div><div class="bar-rect" data-h="172"></div><div style="font-size:10.5px;text-align:center;margin-top:8px;">Outfit Pairing*<br><span style="color:var(--light-muted);font-size:9.5px;">(Illustrative)</span></div></div>
+                </div>
+                <div style="font-size:9.5px;font-style:italic;color:var(--light-muted);">*Illustrative 3-item outfit scenario (e.g. Shirt + Trouser/Jeans + T-Shirt). Not a revenue forecast.</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div class="card accent-left-bronze anim d2" style="background:var(--charcoal);padding:12px 18px;">
+                <div style="font-size:14px;font-weight:800;color:var(--gold);">Revenue Is Not Equal to Profit</div>
+                <div style="font-size:11.5px;color:var(--light-text);margin-top:4px;">With &lt; 25% gross margin, scaling clicks without high buyer intent erodes net store cash.</div>
+              </div>
+              <div class="card accent-left anim d3" style="background:var(--charcoal);padding:12px 18px;">
+                <div style="font-size:14px;font-weight:800;color:var(--gold);">Remarket Educated Video Viewers</div>
+                <div style="font-size:11.5px;color:var(--light-text);margin-top:4px;">Focus conversion spend on warm 50%+ video viewers who already understand our quality &amp; fit.</div>
+              </div>
+              <div class="card accent-left anim d4" style="background:var(--charcoal);padding:12px 18px;">
+                <div style="font-size:14px;font-weight:800;color:var(--gold);">Complete Outfit Recommendations</div>
+                <div style="font-size:11.5px;color:var(--light-text);margin-top:4px;">Pair Shirts + Jeans/Trousers so each store visit converts at ₹5,000+ rather than ₹2,000.</div>
+              </div>
+              <div class="card accent-left-bronze anim d5" style="background:var(--charcoal);padding:12px 18px;">
+                <div style="font-size:14px;font-weight:800;color:var(--gold);">Structured Referrals Over Blanket Discounts</div>
+                <div style="font-size:11.5px;color:var(--light-text);margin-top:4px;">Protect positioning—use referral perks only on verified repeat/referred bills, never storewide cuts.</div>
+              </div>
+              <div class="card accent-left anim d6" style="background:var(--charcoal);padding:12px 18px;">
+                <div style="font-size:14px;font-weight:800;color:var(--gold);">WhatsApp Community &amp; Repeat Growth</div>
+                <div style="font-size:11.5px;color:var(--light-text);margin-top:4px;">Daily/weekly stock drops bring high-intent community members back at near-zero CAC.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079 &nbsp;•&nbsp; Confidential Client Proposal</span><span class="slide-num">12 &nbsp;/&nbsp; 15</span></div>
+      </section>
+
+      <!-- SLIDE 13: 90-DAY ROADMAP -->
+      <section class="slide theme-light" data-title="90-Day Execution Roadmap">
+        <div class="slide-top">
+          <div class="kicker-wrap"><div class="kicker-bar"></div><div class="kicker">Implementation Plan</div></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; GROWTH STRATEGY</div>
+        </div>
+        <h2 class="slide-title anim d1">From Strategy to Measurable Growth.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="roadmap-spine">
+            <div class="spine-line anim d1"></div>
+            <div class="phase-col anim d1">
+              <div class="phase-dot">01</div>
+              <div class="card accent-top phase-card" style="background:var(--navy);color:var(--ivory);border-color:var(--navy);">
+                <div>
+                  <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">DAYS 01 – 15</div>
+                  <h3 style="font-size:16px;font-weight:800;margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--border-dark);">Foundation &amp; Positioning</h3>
+                  <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:11.5px;color:var(--light-text);line-height:1.35;">
+                    <li>▪ Audit Instagram, Facebook &amp; Maps</li>
+                    <li>▪ Set Video-View Remarketing pools &amp; Pixel</li>
+                    <li>▪ Define &lt;25% margin &amp; referral caps</li>
+                    <li>▪ Film fabric, fit &amp; styling videos</li>
+                  </ul>
+                </div>
+                <div style="background:#1F2937;border:1px solid var(--gold);padding:10px 12px;">
+                  <div style="font-size:8.5px;font-weight:700;letter-spacing:1px;color:var(--bronze);">EXPECTED MILESTONE</div>
+                  <div style="font-size:11.5px;font-weight:700;margin-top:3px;">Positioning, tracking &amp; videos ready</div>
+                </div>
+              </div>
+            </div>
+            <div class="phase-col anim d2">
+              <div class="phase-dot">02</div>
+              <div class="card accent-top phase-card">
+                <div>
+                  <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">DAYS 16 – 30</div>
+                  <h3 style="font-size:16px;font-weight:800;margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--border-light);color:var(--navy);">Video Capture &amp; Education</h3>
+                  <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:11.5px;color:var(--slate);line-height:1.35;">
+                    <li>▪ Launch Reels, Facebook &amp; YouTube video ads</li>
+                    <li>▪ Pool 50%+ viewers into remarketing</li>
+                    <li>▪ Run fabric &amp; fit education on Meta &amp; Display</li>
+                    <li>▪ Start weekly WhatsApp stock broadcasts</li>
+                  </ul>
+                </div>
+                <div style="background:var(--ivory-soft);border:1px solid var(--gold);padding:10px 12px;">
+                  <div style="font-size:8.5px;font-weight:700;letter-spacing:1px;color:var(--bronze);">EXPECTED MILESTONE</div>
+                  <div style="font-size:11.5px;font-weight:700;color:var(--navy);margin-top:3px;">Warm video remarketing audience built</div>
+                </div>
+              </div>
+            </div>
+            <div class="phase-col anim d3">
+              <div class="phase-dot">03</div>
+              <div class="card accent-top phase-card">
+                <div>
+                  <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">DAYS 31 – 60</div>
+                  <h3 style="font-size:16px;font-weight:800;margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--border-light);color:var(--navy);">High-Intent Store Visits</h3>
+                  <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:11.5px;color:var(--slate);line-height:1.35;">
+                    <li>▪ Retarget educated viewers with Maps CTAs</li>
+                    <li>▪ Filter high-intent buyers across 4 personas</li>
+                    <li>▪ Onboard walk-ins to WhatsApp Community</li>
+                    <li>▪ Verify store bills from ads &amp; stock drops</li>
+                  </ul>
+                </div>
+                <div style="background:var(--ivory-soft);border:1px solid var(--gold);padding:10px 12px;">
+                  <div style="font-size:8.5px;font-weight:700;letter-spacing:1px;color:var(--bronze);">EXPECTED MILESTONE</div>
+                  <div style="font-size:11.5px;font-weight:700;color:var(--navy);margin-top:3px;">High-intent walk-ins &amp; visit cost verified</div>
+                </div>
+              </div>
+            </div>
+            <div class="phase-col anim d4">
+              <div class="phase-dot">04</div>
+              <div class="card accent-top phase-card" style="background:var(--charcoal);color:var(--ivory);border-color:var(--charcoal);">
+                <div>
+                  <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">DAYS 61 – 90</div>
+                  <h3 style="font-size:16px;font-weight:800;margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--border-dark);">Scale &amp; Referral Loops</h3>
+                  <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;font-size:11.5px;color:var(--light-text);line-height:1.35;">
+                    <li>▪ Scale top store-visit &amp; margin creatives</li>
+                    <li>▪ Expand winning pools to LB Nagar &amp; Kothapet</li>
+                    <li>▪ Launch WhatsApp referral rewards &amp; drops</li>
+                    <li>▪ Deliver 90-day gross profit vs spend review</li>
+                  </ul>
+                </div>
+                <div style="background:#1F2937;border:1px solid var(--gold);padding:10px 12px;">
+                  <div style="font-size:8.5px;font-weight:700;letter-spacing:1px;color:var(--bronze);">EXPECTED MILESTONE</div>
+                  <div style="font-size:11.5px;font-weight:700;margin-top:3px;">Repeatable community-led B2C growth</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079 &nbsp;•&nbsp; Confidential Client Proposal</span><span class="slide-num">13 &nbsp;/&nbsp; 15</span></div>
+      </section>
+
+      <!-- SLIDE 14: BI MEASUREMENT -->
+      <section class="slide theme-charcoal" data-title="BI Measurement Framework">
+        <div class="slide-top">
+          <div class="kicker-wrap"><div class="kicker-bar"></div><div class="kicker">Executive BI Dashboard Framework</div></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; GROWTH STRATEGY</div>
+        </div>
+        <h2 class="slide-title anim d1">Measuring What Actually Matters.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="card accent-left anim d1" style="background:var(--navy);border-color:var(--gold);padding:14px 22px;display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:1.4px;color:var(--gold);">NORTH STAR PROFITABILITY METRIC &nbsp;•&nbsp; TRACKED WEEKLY</div>
+              <div style="font-size:21px;font-weight:800;margin-top:4px;">Marketing-Generated Gross Profit Versus Advertising Spend</div>
+            </div>
+            <div style="font-size:9.5px;font-weight:700;color:var(--gold);border:1px solid rgba(198,166,107,0.45);padding:6px 12px;">FRAMEWORK ONLY — NO INVENTED RESULTS</div>
+          </div>
+          <div class="kpi-cols">
+            <div class="card kpi-stage-col anim d2" style="border-top:4px solid var(--slate);">
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--light-muted);">STAGE 01 &nbsp;•&nbsp; VIDEO &amp; REMARKETING POOL</div>
+              <div class="metric-pill" style="border-left:4px solid var(--slate);"><strong style="font-size:13.5px;">Local Video Reach</strong><span style="font-size:11px;color:var(--light-muted);margin-top:3px;">Unique men reached in LB Nagar radius.</span></div>
+              <div class="metric-pill" style="border-left:4px solid var(--slate);"><strong style="font-size:13.5px;">Video Viewers (50%+)</strong><span style="font-size:11px;color:var(--light-muted);margin-top:3px;">Warm pool built for sequential education.</span></div>
+              <div class="metric-pill" style="border-left:4px solid var(--slate);"><strong style="font-size:13.5px;">High-Intent Enquiries</strong><span style="font-size:11px;color:var(--light-muted);margin-top:3px;">WhatsApp &amp; DM sizing/stock questions.</span></div>
+            </div>
+            <div class="card kpi-stage-col anim d3" style="border-top:4px solid var(--bronze);">
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--bronze);">STAGE 02 &nbsp;•&nbsp; GOAL: HIGH-INTENT WALK-INS</div>
+              <div class="metric-pill" style="border-left:4px solid var(--bronze);"><strong style="font-size:13.5px;">Store Directions</strong><span style="font-size:11px;color:var(--light-muted);margin-top:3px;">Google Maps &amp; remarketing route taps.</span></div>
+              <div class="metric-pill" style="border-left:4px solid var(--bronze);"><strong style="font-size:13.5px;">Educated Store Visits</strong><span style="font-size:11px;color:var(--light-muted);margin-top:3px;">Walk-in buyers pre-sold via video positioning.</span></div>
+              <div class="metric-pill" style="border-left:4px solid var(--bronze);"><strong style="font-size:13.5px;">Verified Purchases</strong><span style="font-size:11px;color:var(--light-muted);margin-top:3px;">In-store bills tied to remarketing &amp; drops.</span></div>
+            </div>
+            <div class="card kpi-stage-col anim d4" style="border-top:4px solid var(--gold);">
+              <div style="font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--gold);">STAGE 03 &nbsp;•&nbsp; COMMERCIAL PROFITABILITY</div>
+              <div class="metric-pill" style="border-left:4px solid var(--gold);"><strong style="font-size:13.5px;">Average Bill Value</strong><span style="font-size:11px;color:var(--light-muted);margin-top:3px;">Tracked against ₹5,000 benchmark.</span></div>
+              <div class="metric-pill" style="border-left:4px solid var(--gold);"><strong style="font-size:13.5px;">Marketing-Attributed Revenue</strong><span style="font-size:11px;color:var(--light-muted);margin-top:3px;">Sales verified from tracked visitors.</span></div>
+              <div class="metric-pill" style="border-left:4px solid var(--gold);"><strong style="font-size:13.5px;">Gross Profit Contribution</strong><span style="font-size:11px;color:var(--light-muted);margin-top:3px;">Net gross profit earned after COGS.</span></div>
+              <div class="metric-pill" style="border-left:4px solid var(--gold);"><strong style="font-size:13.5px;">Repeat &amp; Referral Purchases</strong><span style="font-size:11px;color:var(--light-muted);margin-top:3px;">WhatsApp drops &amp; referred walk-in bills.</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079 &nbsp;•&nbsp; Confidential Client Proposal</span><span class="slide-num">14 &nbsp;/&nbsp; 15</span></div>
+      </section>
+
+      <!-- SLIDE 15: CLOSING -->
+      <section class="slide theme-navy split-full" data-title="Closing: Partnership Roadmap">
+        <div class="split-left">
+          <div>
+            <div class="kicker-wrap anim d1" style="margin-bottom:14px;"><div class="kicker-bar"></div><div class="kicker">Partnership Roadmap</div></div>
+            <h2 class="anim d2" style="font-size:28px;font-weight:800;line-height:1.24;margin-bottom:24px;">
+              LET'S BUILD THE NEXT GROWTH<br>CHAPTER OF JONTYS HUB.
+            </h2>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div class="card accent-left anim d3" style="background:var(--navy-card);border-color:var(--border-dark);padding:14px 18px;display:flex;gap:16px;align-items:center;">
+                <span style="font-size:18px;font-weight:800;color:var(--gold);">01</span>
+                <div><div style="font-size:14px;font-weight:800;letter-spacing:1px;">UNDERSTAND</div><div style="font-size:12px;color:var(--light-text);margin-top:3px;">Understand the business, margin structure and local male shoppers.</div></div>
+              </div>
+              <div class="card accent-left anim d4" style="background:var(--navy-card);border-color:var(--border-dark);padding:14px 18px;display:flex;gap:16px;align-items:center;">
+                <span style="font-size:18px;font-weight:800;color:var(--gold);">02</span>
+                <div><div style="font-size:14px;font-weight:800;letter-spacing:1px;">BUILD</div><div style="font-size:12px;color:var(--light-text);margin-top:3px;">Build video-view remarketing, brand positioning &amp; WhatsApp community tracking.</div></div>
+              </div>
+              <div class="card accent-left anim d5" style="background:var(--navy-card);border-color:var(--border-dark);padding:14px 18px;display:flex;gap:16px;align-items:center;">
+                <span style="font-size:18px;font-weight:800;color:var(--gold);">03</span>
+                <div><div style="font-size:14px;font-weight:800;letter-spacing:1px;">GROW</div><div style="font-size:12px;color:var(--light-text);margin-top:3px;">Convert high-intent local buyers into store visits &amp; repeat retention.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="anim d6" style="border-top:1px solid var(--gold);padding-top:14px;font-size:13px;font-style:italic;line-height:1.45;color:var(--ivory);">
+              "Our objective is to help Jontys Hub educate the right buyers, convert high-intent store visits, and build a stronger premium men's fashion brand."
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;font-size:10.5px;color:var(--light-muted);">
+              <span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span>
+              <span class="slide-num">15 &nbsp;/&nbsp; 15</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="assets/slide14_closing.jpg" alt="Jontys Hub Closing Menswear Editorial" />
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Interactive Presenter HUD -->
+  <nav class="hud" aria-label="Presentation Controls">
+    <button id="prevBtn" title="Previous Slide (Left Arrow)">← Prev</button>
+    <button id="overviewBtn" title="Slide Overview (G)">Grid</button>
+    <span class="hud-counter" id="hudCounter">01 / 15</span>
+    <button id="fsBtn" title="Fullscreen Mode (F)">Present</button>
+    <button id="nextBtn" title="Next Slide (Right Arrow / Space)">Next →</button>
+  </nav>
+
+  <!-- Slide Grid Drawer -->
+  <div class="overview-modal" id="overviewModal">
+    <div style="display:flex;justify-content:space-between;align-items:center;max-width:1280px;margin:0 auto;">
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--gold);">SLIDE NAVIGATOR</div>
+        <h2 style="font-size:22px;font-weight:800;margin-top:4px;">Jontys Hub — 15-Slide Growth Deck</h2>
+      </div>
+      <button id="closeOverview" style="background:var(--gold);color:var(--navy);border:none;padding:8px 16px;border-radius:999px;font-weight:700;cursor:pointer;">Close (Esc)</button>
+    </div>
+    <div class="overview-grid" id="overviewGrid" style="max-width:1280px;margin:20px auto 0;"></div>
+  </div>
+
+  <script>
+    (function () {
+      const stage = document.getElementById('deckStage');
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const progressFill = document.getElementById('progressFill');
+      const hudCounter = document.getElementById('hudCounter');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const fsBtn = document.getElementById('fsBtn');
+      const overviewBtn = document.getElementById('overviewBtn');
+      const overviewModal = document.getElementById('overviewModal');
+      const overviewGrid = document.getElementById('overviewGrid');
+      const closeOverview = document.getElementById('closeOverview');
+
+      let current = 0;
+
+      function fitStage() {
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const scale = Math.min(vw / 1280, vh / 720) * 0.96;
+        stage.style.transform = `scale(${scale})`;
+      }
+      window.addEventListener('resize', fitStage);
+      fitStage();
+
+      // Build overview cards
+      slides.forEach((s, idx) => {
+        const item = document.createElement('div');
+        item.className = 'ov-item';
+        item.innerHTML = `<div class="ov-num">SLIDE ${String(idx + 1).padStart(2, '0')}</div><div class="ov-title">${s.dataset.title || 'Slide'}</div>`;
+        item.addEventListener('click', () => {
+          goTo(idx);
+          overviewModal.classList.remove('open');
+        });
+        overviewGrid.appendChild(item);
+      });
+
+      function goTo(index) {
+        if (index < 0 || index >= slides.length) return;
+        current = index;
+        slides.forEach((s, idx) => {
+          s.classList.remove('is-active', 'is-prev');
+          if (idx === current) s.classList.add('is-active');
+          else if (idx < current) s.classList.add('is-prev');
+        });
+        const pct = ((current + 1) / slides.length) * 100;
+        progressFill.style.width = `${pct}%`;
+        hudCounter.textContent = `${String(current + 1).padStart(2, '0')} / ${slides.length}`;
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === slides.length - 1;
+        Array.from(overviewGrid.children).forEach((el, i) => el.classList.toggle('current', i === current));
+      }
+
+      prevBtn.addEventListener('click', () => goTo(current - 1));
+      nextBtn.addEventListener('click', () => goTo(current + 1));
+
+      overviewBtn.addEventListener('click', () => overviewModal.classList.toggle('open'));
+      closeOverview.addEventListener('click', () => overviewModal.classList.remove('open'));
+
+      fsBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen?.();
+          fsBtn.textContent = 'Exit';
+        } else {
+          document.exitFullscreen?.();
+          fsBtn.textContent = 'Present';
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (overviewModal.classList.contains('open')) {
+          if (e.key === 'Escape') overviewModal.classList.remove('open');
+          return;
+        }
+        if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(e.key)) {
+          e.preventDefault();
+          goTo(current + 1);
+        } else if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) {
+          e.preventDefault();
+          goTo(current - 1);
+        } else if (e.key === 'Home') {
+          goTo(0);
+        } else if (e.key === 'End') {
+          goTo(slides.length - 1);
+        } else if (e.key.toLowerCase() === 'g') {
+          overviewModal.classList.toggle('open');
+        } else if (e.key.toLowerCase() === 'f') {
+          fsBtn.click();
+        }
+      });
+
+      // Touch swipe support
+      let touchStartX = 0;
+      document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+      document.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].screenX - touchStartX;
+        if (dx < -45) goTo(current + 1);
+        else if (dx > 45) goTo(current - 1);
+      }, { passive: true });
+
+      goTo(0);
+    })();
+  </script>
+</body>
+</html>
