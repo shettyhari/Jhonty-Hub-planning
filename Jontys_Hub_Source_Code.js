@@ -1,15 +1,15 @@
 /**
- * JONTYS HUB – PREMIUM BUSINESS GROWTH & PERFORMANCE MARKETING PRESENTATION
+ * JONTYS HUB – LUXURY MEN'S FASHION GROWTH BLUEPRINT
  * Editable 14-Slide Widescreen (16:9) Deck Generator via PptxGenJS
  *
- * Design System: PREMIUM BUSINESS GROWTH
+ * Theme: Quiet-Luxury Men's Tailoring & Editorial Atelier
  * Palette:
- *   Deep Midnight Navy: #111827
- *   Charcoal Black:     #171717
- *   Warm Ivory:         #F7F5F0
- *   Champagne Gold:     #C6A66B
- *   Muted Bronze:       #A88B5A
- *   Slate Grey:         #667085
+ *   Obsidian Black:     #0F1115
+ *   Midnight Velvet:    #141923
+ *   Warm Atelier Ivory: #F6F2EA
+ *   Champagne Gold:     #C9A96E
+ *   Antique Bronze:     #9E7F4B
+ *   Muted Stone:        #6B7280
  */
 
 const path = require('path');
@@ -18,103 +18,119 @@ const PptxGenJS = require('pptxgenjs');
 const ASSETS_DIR = path.join(__dirname, 'assets');
 const OUTPUT_PPTX = path.join(__dirname, 'Jontys_Hub_Premium_Growth_Strategy.pptx');
 
-// Design Tokens
 const COLORS = {
-  navy: '111827',
-  navyCard: '1B2436',
-  charcoal: '171717',
-  charcoalCard: '222222',
-  ivory: 'F7F5F0',
+  obsidian: '0F1115',
+  obsidianCard: '171A21',
+  velvet: '141923',
+  velvetCard: '1C2230',
+  ivory: 'F6F2EA',
   ivoryCard: 'FFFFFF',
-  ivorySoft: 'EFECE4',
-  gold: 'C6A66B',
-  bronze: 'A88B5A',
-  slate: '667085',
+  ivorySoft: 'EDE7DB',
+  gold: 'C9A96E',
+  bronze: '9E7F4B',
+  stone: '5E6573',
   lightMuted: '9CA3AF',
   lightText: 'E5E7EB',
-  borderLight: 'E0DBD0',
-  borderDark: '2D3748',
-  borderCharcoal: '333333',
-  successMuted: '3F6A58',
-  warnMuted: '9A4A3D',
+  borderLight: 'DFD8CA',
+  borderDark: '293040',
+  borderObsidian: '262A34',
 };
 
+// Georgia is natively installed on Windows PowerPoint -> crisp luxury serif headlines with zero font-fallback bugs
 const FONTS = {
-  heading: 'Montserrat',
-  body: 'Montserrat',
+  editorial: 'Georgia',
+  ui: 'Montserrat',
 };
 
 const W = 13.333;
 const H = 7.5;
-const MARGIN_X = 0.65;
-const CONTENT_W = W - MARGIN_X * 2; // 12.033
+const MARGIN_X = 0.68;
+const CONTENT_W = W - MARGIN_X * 2; // 11.973
 
 const img = (name) => path.join(ASSETS_DIR, name);
 
 function addSlideChrome(slide, opts) {
   const {
-    theme = 'light', // 'light' | 'navy' | 'charcoal'
+    theme = 'light', // 'light' | 'obsidian' | 'velvet'
+    step = 'STEP 01',
     kicker = '',
     title = '',
     slideNum = 2,
-    totalSlides = 15,
+    totalSlides = 14,
   } = opts;
 
   const isDark = theme !== 'light';
-  const bg = theme === 'navy' ? COLORS.navy : theme === 'charcoal' ? COLORS.charcoal : COLORS.ivory;
-  const titleColor = isDark ? COLORS.ivory : COLORS.navy;
-  const footerText = isDark ? COLORS.lightMuted : COLORS.slate;
-  const dividerColor = isDark ? (theme === 'navy' ? COLORS.borderDark : COLORS.borderCharcoal) : COLORS.borderLight;
+  const bg = theme === 'velvet' ? COLORS.velvet : theme === 'obsidian' ? COLORS.obsidian : COLORS.ivory;
+  const titleColor = isDark ? COLORS.ivory : COLORS.obsidian;
+  const footerText = isDark ? COLORS.lightMuted : COLORS.stone;
+  const dividerColor = isDark
+    ? theme === 'velvet'
+      ? COLORS.borderDark
+      : COLORS.borderObsidian
+    : COLORS.borderLight;
 
   slide.background = { color: bg };
 
-  // Top subtle accent bar on left margin
+  // Subtle step badge + category kicker
   slide.addShape('rect', {
     x: MARGIN_X,
-    y: 0.42,
-    w: 0.36,
-    h: 0.035,
-    fill: { color: COLORS.gold },
-    line: { type: 'none' },
+    y: 0.36,
+    w: 1.04,
+    h: 0.25,
+    fill: { color: isDark ? COLORS.obsidianCard : COLORS.ivorySoft },
+    line: { color: COLORS.gold, width: 0.65 },
   });
 
-  // Kicker label
-  slide.addText(kicker.toUpperCase(), {
-    x: MARGIN_X + 0.48,
-    y: 0.31,
-    w: 8.5,
+  slide.addText(step.toUpperCase(), {
+    x: MARGIN_X,
+    y: 0.36,
+    w: 1.04,
     h: 0.25,
-    fontFace: FONTS.body,
-    fontSize: 10,
+    fontFace: FONTS.ui,
+    fontSize: 8.5,
     bold: true,
     color: COLORS.gold,
-    charSpacing: 2.2,
+    align: 'center',
     valign: 'middle',
+    charSpacing: 1.2,
     margin: 0,
   });
 
-  // Top right brand mark
-  slide.addText('JONTYS HUB  |  GROWTH STRATEGY', {
+  slide.addText(kicker.toUpperCase(), {
+    x: MARGIN_X + 1.18,
+    y: 0.36,
+    w: 6.5,
+    h: 0.25,
+    fontFace: FONTS.ui,
+    fontSize: 9.5,
+    bold: true,
+    color: isDark ? COLORS.lightMuted : COLORS.bronze,
+    valign: 'middle',
+    charSpacing: 2.0,
+    margin: 0,
+  });
+
+  slide.addText('JONTYS HUB  |  MENSWEAR ATELIER', {
     x: W - MARGIN_X - 4.2,
-    y: 0.31,
+    y: 0.36,
     w: 4.2,
     h: 0.25,
-    fontFace: FONTS.body,
-    fontSize: 9.5,
+    fontFace: FONTS.ui,
+    fontSize: 9,
     color: footerText,
     align: 'right',
-    charSpacing: 1.5,
+    charSpacing: 1.6,
     valign: 'middle',
     margin: 0,
   });
 
-  // Main slide headline
+  // Luxury Editorial Serif Headline
   slide.addText(title, {
     x: MARGIN_X,
-    y: 0.64,
+    y: 0.68,
     w: CONTENT_W,
-    h: 0.62,
-    fontFace: FONTS.heading,
+    h: 0.58,
+    fontFace: FONTS.editorial,
     fontSize: 27,
     bold: true,
     color: titleColor,
@@ -122,7 +138,7 @@ function addSlideChrome(slide, opts) {
     margin: 0,
   });
 
-  // Thin structural hairline below header
+  // Champagne hairline rule
   slide.addShape('line', {
     x: MARGIN_X,
     y: 1.32,
@@ -131,7 +147,7 @@ function addSlideChrome(slide, opts) {
     line: { color: dividerColor, width: 0.75 },
   });
 
-  // Footer hairline & metadata
+  // Footer hairline & clean location anchor
   slide.addShape('line', {
     x: MARGIN_X,
     y: 7.02,
@@ -140,13 +156,13 @@ function addSlideChrome(slide, opts) {
     line: { color: dividerColor, width: 0.6 },
   });
 
-  slide.addText('Jontys Hub  •  B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079  •  Confidential Client Proposal', {
+  slide.addText('Jontys Hub  •  Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079', {
     x: MARGIN_X,
     y: 7.08,
-    w: 9.5,
+    w: 9.8,
     h: 0.28,
-    fontFace: FONTS.body,
-    fontSize: 9.5,
+    fontFace: FONTS.ui,
+    fontSize: 9,
     color: footerText,
     valign: 'middle',
     margin: 0,
@@ -158,8 +174,8 @@ function addSlideChrome(slide, opts) {
     y: 7.08,
     w: 1.4,
     h: 0.28,
-    fontFace: FONTS.heading,
-    fontSize: 10,
+    fontFace: FONTS.ui,
+    fontSize: 9.5,
     bold: true,
     color: COLORS.gold,
     align: 'right',
@@ -183,7 +199,7 @@ function addCard(slide, x, y, w, h, opts = {}) {
     w,
     h,
     fill: { color: fill },
-    line: { color: border, width: 0.75 },
+    line: { color: border, width: 0.65 },
   });
 
   if (accentTop) {
@@ -191,7 +207,7 @@ function addCard(slide, x, y, w, h, opts = {}) {
       x,
       y,
       w,
-      h: 0.045,
+      h: 0.035,
       fill: { color: accentColor },
       line: { type: 'none' },
     });
@@ -200,7 +216,7 @@ function addCard(slide, x, y, w, h, opts = {}) {
     slide.addShape('rect', {
       x,
       y,
-      w: 0.055,
+      w: 0.045,
       h,
       fill: { color: accentColor },
       line: { type: 'none' },
@@ -211,19 +227,18 @@ function addCard(slide, x, y, w, h, opts = {}) {
 async function buildPresentation() {
   const pptx = new PptxGenJS();
   pptx.layout = 'LAYOUT_WIDE';
-  pptx.author = 'Strategic Growth & Performance Marketing Advisory';
+  pptx.author = 'Jontys Hub Growth Advisory';
   pptx.company = 'Jontys Hub';
-  pptx.subject = 'Premium Business Growth & Performance Marketing Strategy';
-  pptx.title = 'Jontys Hub – Premium Business Growth Strategy';
+  pptx.subject = "Luxury Men's Fashion Growth & B2C Remarketing Strategy";
+  pptx.title = "Jontys Hub – Luxury Men's Fashion Growth Blueprint";
 
   // =========================================================================
-  // SLIDE 01 – COVER (Charcoal Black)
+  // SLIDE 01 – COVER (Obsidian Black)
   // =========================================================================
   {
     const s = pptx.addSlide();
-    s.background = { color: COLORS.charcoal };
+    s.background = { color: COLORS.obsidian };
 
-    // Right editorial portrait (exact 3:4 aspect ratio -> 5.60 x 7.50)
     s.addImage({
       path: img('slide01_cover.jpg'),
       x: 7.733,
@@ -232,130 +247,124 @@ async function buildPresentation() {
       h: 7.5,
     });
 
-    // Subtle vertical gold hairline framing the portrait seam
     s.addShape('line', {
       x: 7.733,
-      y: 0.65,
+      y: 0.60,
       w: 0,
-      h: 6.2,
-      line: { color: COLORS.gold, width: 1.0 },
+      h: 6.30,
+      line: { color: COLORS.gold, width: 0.9 },
     });
 
-    // Left dark editorial zone
     s.addShape('rect', {
-      x: 0.75,
-      y: 0.85,
+      x: 0.78,
+      y: 0.88,
       w: 0.55,
-      h: 0.04,
+      h: 0.035,
       fill: { color: COLORS.gold },
       line: { type: 'none' },
     });
 
-    s.addText('CLIENT ACQUISITION & GROWTH PROPOSAL', {
-      x: 0.75,
-      y: 1.05,
-      w: 6.4,
-      h: 0.3,
-      fontFace: FONTS.body,
-      fontSize: 10.5,
+    s.addText("LUXURY MEN'S FASHION  •  B2C GROWTH BLUEPRINT", {
+      x: 0.78,
+      y: 1.06,
+      w: 6.5,
+      h: 0.28,
+      fontFace: FONTS.ui,
+      fontSize: 9.8,
       bold: true,
       color: COLORS.gold,
-      charSpacing: 2.5,
+      charSpacing: 2.2,
       margin: 0,
     });
 
     s.addText('JONTYS HUB', {
-      x: 0.75,
+      x: 0.78,
       y: 1.85,
       w: 6.5,
       h: 0.95,
-      fontFace: FONTS.heading,
+      fontFace: FONTS.editorial,
       fontSize: 48,
       bold: true,
       color: COLORS.ivory,
-      charSpacing: 1.5,
+      charSpacing: 1.8,
       margin: 0,
     });
 
     s.addShape('rect', {
-      x: 0.75,
-      y: 2.95,
+      x: 0.78,
+      y: 2.94,
       w: 1.25,
-      h: 0.045,
+      h: 0.035,
       fill: { color: COLORS.gold },
       line: { type: 'none' },
     });
 
-    s.addText(
-      "Building a Premium Men's Fashion Brand\nThrough Performance Marketing.",
-      {
-        x: 0.75,
-        y: 3.30,
-        w: 6.55,
-        h: 1.10,
-        fontFace: FONTS.heading,
-        fontSize: 20.5,
-        bold: true,
-        color: COLORS.ivory,
-        lineSpacingMultiple: 1.25,
-        margin: 0,
-      }
-    );
-
-    s.addText(
-      'A commercially disciplined partnership blueprint engineered to elevate brand authority, drive qualified local footfall, and protect store-level gross margins.',
-      {
-        x: 0.75,
-        y: 4.65,
-        w: 6.1,
-        h: 0.95,
-        fontFace: FONTS.body,
-        fontSize: 14,
-        color: COLORS.lightMuted,
-        lineSpacingMultiple: 1.38,
-        margin: 0,
-      }
-    );
-
-    // Location & metadata block at bottom left
-    s.addShape('line', {
-      x: 0.75,
-      y: 6.08,
-      w: 6.1,
-      h: 0,
-      line: { color: COLORS.borderCharcoal, width: 0.75 },
+    s.addText("Elevating a Dedicated Men's Fashion Store Into a High-Intent Luxury Brand.", {
+      x: 0.78,
+      y: 3.30,
+      w: 6.45,
+      h: 1.15,
+      fontFace: FONTS.editorial,
+      fontSize: 22,
+      bold: true,
+      color: COLORS.ivory,
+      lineSpacingMultiple: 1.28,
+      margin: 0,
     });
 
-    s.addText('Strategic Growth Proposal  |  LB Nagar, Hyderabad', {
-      x: 0.75,
+    s.addText(
+      'A step-by-step growth roadmap combining video discovery, customer education, remarketing positioning, and WhatsApp community retention.',
+      {
+        x: 0.78,
+        y: 4.70,
+        w: 6.10,
+        h: 0.90,
+        fontFace: FONTS.ui,
+        fontSize: 13.5,
+        color: COLORS.lightMuted,
+        lineSpacingMultiple: 1.4,
+        margin: 0,
+      }
+    );
+
+    s.addShape('line', {
+      x: 0.78,
+      y: 6.08,
+      w: 6.10,
+      h: 0,
+      line: { color: COLORS.borderObsidian, width: 0.75 },
+    });
+
+    s.addText('LB Nagar Menswear Store  |  Hyderabad', {
+      x: 0.78,
       y: 6.24,
-      w: 6.1,
-      h: 0.34,
-      fontFace: FONTS.heading,
-      fontSize: 13.5,
+      w: 6.10,
+      h: 0.32,
+      fontFace: FONTS.ui,
+      fontSize: 13,
       bold: true,
       color: COLORS.gold,
       margin: 0,
     });
 
-    s.addText('Beside B.D. Reddy Gardens, B.N. Reddy Nagar, Hyderabad, Telangana – 500079', {
-      x: 0.75,
-      y: 6.60,
-      w: 6.1,
-      h: 0.3,
-      fontFace: FONTS.body,
-      fontSize: 10.5,
+    s.addText('Beside B.D. Reddy Gardens, B.N. Reddy Nagar, Hyderabad – 500079', {
+      x: 0.78,
+      y: 6.58,
+      w: 6.10,
+      h: 0.28,
+      fontFace: FONTS.ui,
+      fontSize: 10,
       color: COLORS.lightMuted,
       margin: 0,
     });
 
-    s.addText('01  /  15', {
-      x: 0.75,
-      y: 7.05,
+    s.addText('01  /  14', {
+      x: 0.78,
+      y: 7.04,
       w: 1.5,
       h: 0.25,
-      fontFace: FONTS.heading,
-      fontSize: 10,
+      fontFace: FONTS.ui,
+      fontSize: 9.5,
       bold: true,
       color: COLORS.bronze,
       margin: 0,
@@ -363,40 +372,39 @@ async function buildPresentation() {
   }
 
   // =========================================================================
-  // SLIDE 02 – BUSINESS OVERVIEW (Warm Ivory)
+  // SLIDE 02 – STEP 01: BRAND FOUNDATION (Warm Atelier Ivory)
   // =========================================================================
   {
     const s = pptx.addSlide();
     addSlideChrome(s, {
       theme: 'light',
-      kicker: 'Business Foundation',
-      title: "A Premium Men's Fashion Destination.",
+      step: 'Step 01',
+      kicker: 'Brand Foundation',
+      title: 'A Dedicated Luxury Menswear Destination.',
       slideNum: 2,
     });
 
-    // Top-left photography (16:9 image -> 6.30 x 3.52)
     s.addImage({
       path: img('slide02_store_display.jpg'),
       x: MARGIN_X,
-      y: 1.58,
-      w: 6.30,
-      h: 3.52,
+      y: 1.56,
+      w: 6.26,
+      h: 3.50,
     });
 
-    // Subtle caption bar under image
-    addCard(s, MARGIN_X, 5.22, 6.30, 1.56, {
+    addCard(s, MARGIN_X, 5.20, 6.26, 1.58, {
       fill: COLORS.ivoryCard,
       border: COLORS.borderLight,
       accentLeft: true,
     });
 
-    s.addText('BRAND POSITIONING & STORE ANCHOR', {
+    s.addText('ATELIER POSITIONING', {
       x: MARGIN_X + 0.24,
       y: 5.36,
       w: 5.8,
-      h: 0.25,
-      fontFace: FONTS.body,
-      fontSize: 10,
+      h: 0.22,
+      fontFace: FONTS.ui,
+      fontSize: 9.5,
       bold: true,
       color: COLORS.bronze,
       charSpacing: 1.6,
@@ -404,68 +412,66 @@ async function buildPresentation() {
     });
 
     s.addText(
-      "Dedicated exclusively to premium men's apparel in LB Nagar — engineered around curated wardrobing rather than mass-market discounting.",
+      'Exclusively curated for discerning men in LB Nagar — built around elevated fit, fabric drape, and complete wardrobing rather than discounting.',
       {
         x: MARGIN_X + 0.24,
-        y: 5.64,
+        y: 5.66,
         w: 5.8,
-        h: 0.56,
-        fontFace: FONTS.body,
-        fontSize: 11.8,
-        color: COLORS.navy,
-        lineSpacingMultiple: 1.25,
+        h: 0.62,
+        fontFace: FONTS.ui,
+        fontSize: 12,
+        color: COLORS.obsidian,
+        lineSpacingMultiple: 1.28,
         margin: 0,
       }
     );
 
-    s.addText('Location: Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079', {
+    s.addText('B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079', {
       x: MARGIN_X + 0.24,
-      y: 6.32,
+      y: 6.36,
       w: 5.8,
-      h: 0.34,
-      fontFace: FONTS.body,
+      h: 0.28,
+      fontFace: FONTS.ui,
       fontSize: 10,
-      color: COLORS.slate,
+      color: COLORS.stone,
       margin: 0,
     });
 
-    // Right column: 3 Prominent Commercial KPI Cards + 5 Product Categories
     const rx = 7.22;
-    const rw = 5.46;
+    const rw = CONTENT_W - (rx - MARGIN_X); // 5.433
 
-    // 3 Metric Cards side-by-side at top right
     const kpis = [
-      { label: 'AVG PRODUCT PRICE', val: '₹2,000', sub: 'Premium entry price point' },
-      { label: 'AVG CUSTOMER BILL', val: '₹5,000', sub: 'Multi-item basket strength' },
-      { label: 'GROSS MARGIN', val: '< 25%', sub: 'Strict CAC & discount discipline' },
+      { label: 'AVG PRODUCT PRICE', val: '₹2,000', sub: 'Premium quality tier' },
+      { label: 'AVG CUSTOMER BILL', val: '₹5,000', sub: 'Multi-item outfit basket' },
+      { label: 'GROSS MARGIN', val: '< 25%', sub: 'Protected via high intent' },
     ];
-    const kw = (rw - 0.30) / 3;
+    const kw = (rw - 0.28) / 3;
     kpis.forEach((k, i) => {
-      const kx = rx + i * (kw + 0.15);
-      addCard(s, kx, 1.58, kw, 1.62, {
-        fill: COLORS.navy,
-        border: COLORS.navy,
+      const kx = rx + i * (kw + 0.14);
+      addCard(s, kx, 1.56, kw, 1.62, {
+        fill: COLORS.obsidian,
+        border: COLORS.obsidian,
         accentTop: true,
         accentColor: COLORS.gold,
       });
       s.addText(k.label, {
         x: kx + 0.14,
-        y: 1.74,
+        y: 1.72,
         w: kw - 0.28,
-        h: 0.28,
-        fontFace: FONTS.body,
-        fontSize: 9,
+        h: 0.26,
+        fontFace: FONTS.ui,
+        fontSize: 8.5,
         bold: true,
         color: COLORS.lightMuted,
-        charSpacing: 1.0,
+        charSpacing: 0.9,
         margin: 0,
       });
       s.addText(k.val, {
         x: kx + 0.14,
-        y: 2.08,
+        y: 2.04,
         w: kw - 0.28,
         h: 0.56,
-        fontFace: FONTS.heading,
+        fontFace: FONTS.editorial,
         fontSize: 25,
         bold: true,
         color: COLORS.gold,
@@ -473,30 +479,29 @@ async function buildPresentation() {
       });
       s.addText(k.sub, {
         x: kx + 0.14,
-        y: 2.70,
+        y: 2.68,
         w: kw - 0.28,
-        h: 0.38,
-        fontFace: FONTS.body,
-        fontSize: 10,
+        h: 0.36,
+        fontFace: FONTS.ui,
+        fontSize: 9.8,
         color: COLORS.lightText,
         lineSpacingMultiple: 1.15,
         margin: 0,
       });
     });
 
-    // Core Product Assortment Card
-    addCard(s, rx, 3.40, rw, 3.38, {
+    addCard(s, rx, 3.38, rw, 3.40, {
       fill: COLORS.ivoryCard,
       border: COLORS.borderLight,
     });
 
-    s.addText('FIVE CORE MENSWEAR CATEGORIES', {
-      x: rx + 0.25,
-      y: 3.58,
-      w: rw - 0.5,
-      h: 0.28,
-      fontFace: FONTS.body,
-      fontSize: 10.5,
+    s.addText('FIVE CORE MENSWEAR PILLARS', {
+      x: rx + 0.24,
+      y: 3.56,
+      w: rw - 0.48,
+      h: 0.26,
+      fontFace: FONTS.ui,
+      fontSize: 10,
       bold: true,
       color: COLORS.bronze,
       charSpacing: 1.5,
@@ -504,64 +509,55 @@ async function buildPresentation() {
     });
 
     const cats = [
-      { name: 'Casual Shirts', desc: 'Weekend, smart-casual & textured contemporary weaves' },
-      { name: 'Formal Shirts', desc: 'Tailored crisp workwear & occasion silhouettes' },
-      { name: 'T-Shirts', desc: 'Elevated everyday crew-necks & structured basics' },
-      { name: 'Jeans', desc: 'Clean-wash, modern tapered & stretch denim fits' },
-      { name: 'Trousers', desc: 'Tailored office, chino & dress trouser staples' },
+      { name: 'Casual Shirts', desc: 'Textured cottons, smart-casual & weekend weaves' },
+      { name: 'Formal Shirts', desc: 'Tailored office polish & evening collar precision' },
+      { name: 'T-Shirts', desc: 'Heavyweight crew-necks & structured minimalism' },
+      { name: 'Jeans', desc: 'Clean luxury washes, modern tapered & stretch fits' },
+      { name: 'Trousers', desc: 'Tailored dress trousers & refined daily chinos' },
     ];
 
     cats.forEach((c, idx) => {
       const cy = 3.96 + idx * 0.54;
-      s.addShape('rect', {
-        x: rx + 0.25,
-        y: cy + 0.08,
-        w: 0.28,
-        h: 0.28,
-        fill: { color: COLORS.ivorySoft },
-        line: { color: COLORS.gold, width: 0.75 },
-      });
       s.addText(`0${idx + 1}`, {
-        x: rx + 0.25,
-        y: cy + 0.08,
-        w: 0.28,
-        h: 0.28,
-        fontFace: FONTS.heading,
-        fontSize: 9.5,
+        x: rx + 0.24,
+        y: cy + 0.04,
+        w: 0.34,
+        h: 0.34,
+        fontFace: FONTS.editorial,
+        fontSize: 13,
         bold: true,
-        color: COLORS.navy,
-        align: 'center',
+        color: COLORS.gold,
         valign: 'middle',
         margin: 0,
       });
       s.addText(c.name, {
-        x: rx + 0.65,
+        x: rx + 0.64,
         y: cy + 0.02,
-        w: 1.65,
+        w: 1.55,
         h: 0.36,
-        fontFace: FONTS.heading,
-        fontSize: 13.5,
+        fontFace: FONTS.ui,
+        fontSize: 13,
         bold: true,
-        color: COLORS.navy,
+        color: COLORS.obsidian,
         valign: 'middle',
         margin: 0,
       });
       s.addText(c.desc, {
-        x: rx + 2.30,
+        x: rx + 2.22,
         y: cy + 0.02,
-        w: 2.95,
+        w: 3.00,
         h: 0.38,
-        fontFace: FONTS.body,
-        fontSize: 11.5,
-        color: COLORS.slate,
+        fontFace: FONTS.ui,
+        fontSize: 11,
+        color: COLORS.stone,
         valign: 'middle',
         margin: 0,
       });
       if (idx < cats.length - 1) {
         s.addShape('line', {
-          x: rx + 0.25,
+          x: rx + 0.24,
           y: cy + 0.46,
-          w: rw - 0.5,
+          w: rw - 0.48,
           h: 0,
           line: { color: COLORS.borderLight, width: 0.5 },
         });
@@ -570,112 +566,106 @@ async function buildPresentation() {
   }
 
   // =========================================================================
-  // SLIDE 03 – MARKET OPPORTUNITY (Deep Midnight Navy)
+  // SLIDE 03 – STEP 02: MARKET SHIFT (Midnight Velvet)
   // =========================================================================
   {
     const s = pptx.addSlide();
     addSlideChrome(s, {
-      theme: 'navy',
-      kicker: 'Category & Consumer Shifts',
-      title: "The Future of Men's Fashion Is Style, Quality & Experience.",
+      theme: 'velvet',
+      step: 'Step 02',
+      kicker: 'Consumer Buying Shift',
+      title: 'Why Luxury Men Choose Video Discovery & Store Trust.',
       slideNum: 3,
     });
 
-    // Left 5 structured market opportunity drivers
-    const drivers = [
+    const shifts = [
       {
         num: '01',
-        title: 'Video-First Discovery',
-        body: 'Local men watch short-form Instagram Reels & YouTube ads to shortlist styles before ever stepping into a store.',
+        title: 'Video-First Inspiration',
+        body: 'Style reels on Instagram and YouTube shape outfit desire long before shoppers leave home.',
       },
       {
         num: '02',
-        title: 'Product Education Wins',
-        body: 'Showing fabric quality, collar structure & fit builds premium value far faster than price-led banners.',
+        title: 'Education Beats Discounting',
+        body: 'Showing fabric drape, collar finish, and fit builds ₹2,000+ perceived value without price cuts.',
       },
       {
         num: '03',
-        title: 'Dedicated Men-Only Trust',
-        body: 'Discerning buyers prefer focused menswear stores for personalised sizing and curated outfit pairings.',
+        title: 'Specialist Store Preference',
+        body: 'Discerning men trust a focused menswear boutique over crowded general stores for fit assurance.',
       },
       {
         num: '04',
-        title: 'High-Intent Local Walk-Ins',
-        body: 'Remarketing educated viewers with Maps directions turns casual video watchers into store visitors.',
-      },
-      {
-        num: '05',
-        title: 'Community-Led Retention',
-        body: 'WhatsApp stock updates & referral discounts keep buyers returning without costly paid re-acquisition.',
+        title: 'Community-Driven Loyalty',
+        body: 'Exclusive WhatsApp new-stock drops & referral perks turn first-time buyers into repeat patrons.',
       },
     ];
 
-    drivers.forEach((d, i) => {
-      const dy = 1.56 + i * 1.04;
-      addCard(s, MARGIN_X, dy, 6.75, 0.92, {
-        fill: COLORS.navyCard,
+    shifts.forEach((d, i) => {
+      const dy = 1.58 + i * 1.30;
+      addCard(s, MARGIN_X, dy, 6.72, 1.14, {
+        fill: COLORS.velvetCard,
         border: COLORS.borderDark,
         accentLeft: true,
         accentColor: COLORS.gold,
       });
       s.addText(d.num, {
-        x: MARGIN_X + 0.20,
-        y: dy + 0.16,
-        w: 0.45,
-        h: 0.4,
-        fontFace: FONTS.heading,
-        fontSize: 16,
+        x: MARGIN_X + 0.22,
+        y: dy + 0.20,
+        w: 0.50,
+        h: 0.50,
+        fontFace: FONTS.editorial,
+        fontSize: 20,
         bold: true,
         color: COLORS.gold,
         margin: 0,
       });
       s.addText(d.title, {
-        x: MARGIN_X + 0.72,
-        y: dy + 0.12,
-        w: 5.8,
-        h: 0.28,
-        fontFace: FONTS.heading,
-        fontSize: 14,
+        x: MARGIN_X + 0.78,
+        y: dy + 0.18,
+        w: 5.72,
+        h: 0.30,
+        fontFace: FONTS.ui,
+        fontSize: 15,
         bold: true,
         color: COLORS.ivory,
         margin: 0,
       });
       s.addText(d.body, {
-        x: MARGIN_X + 0.72,
-        y: dy + 0.42,
-        w: 5.8,
-        h: 0.42,
-        fontFace: FONTS.body,
-        fontSize: 11.5,
+        x: MARGIN_X + 0.78,
+        y: dy + 0.52,
+        w: 5.72,
+        h: 0.48,
+        fontFace: FONTS.ui,
+        fontSize: 12,
         color: COLORS.lightText,
-        lineSpacingMultiple: 1.2,
+        lineSpacingMultiple: 1.25,
         margin: 0,
       });
     });
 
-    // Right column: 4:3 Editorial photo (5.00 x 3.74) + Strategic Takeaway Card
     const rx = 7.68;
-    const rw = 5.00;
+    const rw = 4.97;
     s.addImage({
       path: img('slide03_shopping.jpg'),
       x: rx,
-      y: 1.56,
+      y: 1.58,
       w: rw,
-      h: 3.74,
+      h: 3.72,
     });
 
-    addCard(s, rx, 5.46, rw, 1.30, {
-      fill: COLORS.charcoal,
+    addCard(s, rx, 5.44, rw, 1.30, {
+      fill: COLORS.obsidian,
       border: COLORS.gold,
       accentTop: true,
     });
 
-    s.addText('STRATEGIC MARKET INSIGHT', {
+    s.addText('LUXURY INSIGHT', {
       x: rx + 0.22,
-      y: 5.60,
+      y: 5.58,
       w: rw - 0.44,
-      h: 0.24,
-      fontFace: FONTS.body,
+      h: 0.22,
+      fontFace: FONTS.ui,
       fontSize: 9.5,
       bold: true,
       color: COLORS.gold,
@@ -684,213 +674,163 @@ async function buildPresentation() {
     });
 
     s.addText(
-      'Local menswear shoppers already buy across ₹2,000+ price tiers when digital inspiration smoothly guides them to a high-trust physical try-on experience.',
+      'When digital storytelling proves quality first, customers visit ready to experience complete outfits—not hunt for bargains.',
       {
         x: rx + 0.22,
-        y: 5.88,
+        y: 5.86,
         w: rw - 0.44,
         h: 0.76,
-        fontFace: FONTS.body,
+        fontFace: FONTS.ui,
         fontSize: 12,
         color: COLORS.ivory,
-        lineSpacingMultiple: 1.28,
+        lineSpacingMultiple: 1.3,
         margin: 0,
       }
     );
   }
 
   // =========================================================================
-  // SLIDE 04 – CURRENT BUSINESS SITUATION (Warm Ivory)
+  // SLIDE 04 – STEP 03: STRATEGIC POSITION (Warm Atelier Ivory)
   // =========================================================================
   {
     const s = pptx.addSlide();
     addSlideChrome(s, {
       theme: 'light',
-      kicker: 'Diagnostic & Growth Gaps',
-      title: 'Connecting Digital Discovery With Physical Store Sales.',
+      step: 'Step 03',
+      kicker: 'Strategic Position',
+      title: 'Where We Stand Today & What We Unlock Next.',
       slideNum: 4,
     });
 
-    // Left panel: Verified Business Facts (clearly separated)
-    addCard(s, MARGIN_X, 1.56, 3.65, 5.20, {
-      fill: COLORS.navy,
-      border: COLORS.navy,
+    // Left Dark Atelier Column: Current Strengths & Constraint
+    const lw = 4.65;
+    addCard(s, MARGIN_X, 1.58, lw, 5.18, {
+      fill: COLORS.obsidian,
+      border: COLORS.obsidian,
       accentTop: true,
+      accentColor: COLORS.gold,
     });
 
-    s.addText('VERIFIED BUSINESS FACTS', {
-      x: MARGIN_X + 0.24,
-      y: 1.78,
-      w: 3.17,
+    s.addText('CORE FOUNDATION TODAY', {
+      x: MARGIN_X + 0.28,
+      y: 1.82,
+      w: lw - 0.56,
       h: 0.26,
-      fontFace: FONTS.body,
+      fontFace: FONTS.ui,
       fontSize: 10,
       bold: true,
       color: COLORS.gold,
-      charSpacing: 1.5,
+      charSpacing: 1.6,
       margin: 0,
     });
 
-    s.addText('Confirmed operational baseline prior to Phase-1 audit:', {
-      x: MARGIN_X + 0.24,
-      y: 2.08,
-      w: 3.17,
-      h: 0.44,
-      fontFace: FONTS.body,
-      fontSize: 11.5,
-      color: COLORS.lightMuted,
-      margin: 0,
-    });
-
-    const facts = [
-      { k: 'Store Format', v: "Pure-play Premium Men's Fashion Retail" },
-      { k: 'Catchment Anchor', v: 'B.N. Reddy Nagar, LB Nagar, Hyderabad' },
-      { k: 'Merchandise Mix', v: 'Casual & Formal Shirts, T-shirts, Jeans, Trousers' },
-      { k: 'Avg Product Price', v: '₹2,000 per piece' },
-      { k: 'Avg Customer Bill', v: '₹5,000 (strong multi-piece basket)' },
-      { k: 'Margin Profile', v: 'Below 25% gross margin constraint' },
+    const strengths = [
+      { k: 'Focused Menswear Brand', v: '100% men-only specialty store building authority across 5 categories.' },
+      { k: 'High Basket Value', v: '₹5,000 average customer bill shows strong multi-piece styling potential.' },
+      { k: 'Prime LB Nagar Anchor', v: 'Accessible physical boutique in B.N. Reddy Nagar built for personal trial.' },
+      { k: 'Margin Guardrail (< 25%)', v: 'Requires high-intent buyers & remarketing discipline instead of broad discounts.' },
     ];
 
-    facts.forEach((f, i) => {
-      const fy = 2.68 + i * 0.65;
-      s.addText(f.k.toUpperCase(), {
-        x: MARGIN_X + 0.24,
-        y: fy,
-        w: 3.17,
-        h: 0.20,
-        fontFace: FONTS.body,
-        fontSize: 9,
+    strengths.forEach((st, i) => {
+      const sy = 2.24 + i * 1.08;
+      s.addText(st.k, {
+        x: MARGIN_X + 0.28,
+        y: sy,
+        w: lw - 0.56,
+        h: 0.28,
+        fontFace: FONTS.ui,
+        fontSize: 13.5,
         bold: true,
-        color: COLORS.gold,
-        charSpacing: 0.8,
-        margin: 0,
-      });
-      s.addText(f.v, {
-        x: MARGIN_X + 0.24,
-        y: fy + 0.21,
-        w: 3.17,
-        h: 0.34,
-        fontFace: FONTS.body,
-        fontSize: 11.5,
         color: COLORS.ivory,
         margin: 0,
       });
-      if (i < facts.length - 1) {
+      s.addText(st.v, {
+        x: MARGIN_X + 0.28,
+        y: sy + 0.30,
+        w: lw - 0.56,
+        h: 0.58,
+        fontFace: FONTS.ui,
+        fontSize: 11.2,
+        color: COLORS.lightMuted,
+        lineSpacingMultiple: 1.24,
+        margin: 0,
+      });
+      if (i < strengths.length - 1) {
         s.addShape('line', {
-          x: MARGIN_X + 0.24,
-          y: fy + 0.59,
-          w: 3.17,
+          x: MARGIN_X + 0.28,
+          y: sy + 0.94,
+          w: lw - 0.56,
           h: 0,
-          line: { color: COLORS.borderDark, width: 0.5 },
+          line: { color: COLORS.borderObsidian, width: 0.5 },
         });
       }
     });
 
-    // Right panel header: Preliminary Opportunities to Audit & Build
-    const gx = MARGIN_X + 3.92;
-    const gw = CONTENT_W - 3.92; // 8.113
+    // Right Column: 4 Clean Growth Priorities
+    const gx = MARGIN_X + lw + 0.32;
+    const gw = CONTENT_W - lw - 0.32; // 7.003
 
-    s.addShape('rect', {
-      x: gx,
-      y: 1.56,
-      w: gw,
-      h: 0.42,
-      fill: { color: COLORS.ivorySoft },
-      line: { color: COLORS.gold, width: 0.75 },
-    });
-
-    s.addText('PRELIMINARY STRATEGIC IMPROVEMENT AREAS (TO VALIDATE IN DAYS 1–15 AUDIT)', {
-      x: gx + 0.18,
-      y: 1.56,
-      w: gw - 0.36,
-      h: 0.42,
-      fontFace: FONTS.body,
-      fontSize: 10,
-      bold: true,
-      color: COLORS.navy,
-      charSpacing: 1.2,
-      valign: 'middle',
-      margin: 0,
-    });
-
-    const areas = [
+    const priorities = [
       {
         num: '01',
-        title: 'Distinct Brand Positioning',
-        desc: 'Position Jontys Hub on Instagram, Facebook & Maps as B.N. Reddy Nagar’s specialist menswear destination.',
+        title: 'Build Luxury Brand Positioning',
+        desc: 'Elevate Instagram, Facebook & Google Maps to reflect a refined, trusted menswear atelier.',
       },
       {
         num: '02',
-        title: 'Educate Through Video',
-        desc: 'Use short Reels & YouTube ads to highlight fabric quality, tailoring, and complete outfit pairings.',
+        title: 'Educate With Video-View Remarketing',
+        desc: 'Pool 50%+ video ad viewers and serve sequential fabric, fit & styling ads.',
       },
       {
         num: '03',
-        title: 'Video-View Remarketing',
-        desc: 'Retarget engaged video viewers across Meta & Display to nurture warm, high-intent buying audiences.',
+        title: 'Attract High-Intent Store Visitors',
+        desc: 'Target warm, educated buyers with Maps pins, sizing checks & fresh-stock store hooks.',
       },
       {
         num: '04',
-        title: 'Goal: High-Intent Store Visits',
-        desc: 'Guide educated prospects straight to the store with Maps pins, styling checks & fresh-stock hooks.',
-      },
-      {
-        num: '05',
-        title: 'WhatsApp Community & Referrals',
-        desc: 'Share daily/weekly new-stock drops and margin-safe referral perks to spark repeat walk-ins.',
-      },
-      {
-        num: '06',
-        title: 'Profit-Led Measurement',
-        desc: 'Track every ad Rupee against store visits, ₹5,000+ bills, and net gross profit contribution.',
+        title: 'Retention via WhatsApp Community',
+        desc: 'Share daily/weekly new-stock drops & structured referral discounts to grow repeat bills.',
       },
     ];
 
-    const cw = (gw - 0.24) / 2;
-    const ch = 1.44;
-    areas.forEach((a, idx) => {
-      const col = idx % 2;
-      const row = Math.floor(idx / 2);
-      const ax = gx + col * (cw + 0.24);
-      const ay = 2.14 + row * (ch + 0.16);
-
-      addCard(s, ax, ay, cw, ch, {
+    priorities.forEach((p, i) => {
+      const py = 1.58 + i * 1.32;
+      addCard(s, gx, py, gw, 1.18, {
         fill: COLORS.ivoryCard,
         border: COLORS.borderLight,
         accentLeft: true,
-        accentColor: COLORS.bronze,
+        accentColor: i === 2 ? COLORS.obsidian : COLORS.gold,
       });
-
-      s.addText(a.num, {
-        x: ax + 0.20,
-        y: ay + 0.16,
-        w: 0.4,
-        h: 0.28,
-        fontFace: FONTS.heading,
-        fontSize: 13,
+      s.addText(p.num, {
+        x: gx + 0.24,
+        y: py + 0.22,
+        w: 0.50,
+        h: 0.50,
+        fontFace: FONTS.editorial,
+        fontSize: 20,
         bold: true,
         color: COLORS.gold,
         margin: 0,
       });
-      s.addText(a.title, {
-        x: ax + 0.62,
-        y: ay + 0.16,
-        w: cw - 0.78,
-        h: 0.28,
-        fontFace: FONTS.heading,
-        fontSize: 14,
+      s.addText(p.title, {
+        x: gx + 0.80,
+        y: py + 0.20,
+        w: gw - 1.04,
+        h: 0.30,
+        fontFace: FONTS.ui,
+        fontSize: 15,
         bold: true,
-        color: COLORS.navy,
+        color: COLORS.obsidian,
         margin: 0,
       });
-      s.addText(a.desc, {
-        x: ax + 0.20,
-        y: ay + 0.54,
-        w: cw - 0.38,
-        h: 0.76,
-        fontFace: FONTS.body,
-        fontSize: 11.5,
-        color: COLORS.slate,
+      s.addText(p.desc, {
+        x: gx + 0.80,
+        y: py + 0.54,
+        w: gw - 1.04,
+        h: 0.48,
+        fontFace: FONTS.ui,
+        fontSize: 12,
+        color: COLORS.stone,
         lineSpacingMultiple: 1.25,
         margin: 0,
       });
@@ -898,447 +838,271 @@ async function buildPresentation() {
   }
 
   // =========================================================================
-  // SLIDE 05 – SWOT ANALYSIS (Charcoal Black)
+  // SLIDE 05 – STEP 04: IDEAL CUSTOMER PROFILES (Obsidian Black)
   // =========================================================================
   {
     const s = pptx.addSlide();
     addSlideChrome(s, {
-      theme: 'charcoal',
-      kicker: 'Strategic Position',
-      title: 'SWOT Analysis: Building on Strengths, Protecting Margins.',
-      slideNum: 5,
-    });
-
-    const qw = (CONTENT_W - 0.28) / 2; // 5.876
-    const qh = 2.60;
-
-    const quadrants = [
-      {
-        col: 0,
-        row: 0,
-        tag: 'INTERNAL  •  POSITIVE',
-        title: 'STRENGTHS',
-        accent: COLORS.gold,
-        items: [
-          "100% dedicated men's fashion focus — clear specialist brand positioning",
-          'Five complementary categories built for complete outfit cross-selling',
-          'Established B.N. Reddy Nagar store in a prime LB Nagar corridor',
-          'Strong ₹5,000 average bill (~2.5x ₹2,000 avg product price)',
-        ],
-      },
-      {
-        col: 1,
-        row: 0,
-        tag: 'INTERNAL  •  CONSTRAINTS',
-        title: 'WEAKNESSES',
-        accent: COLORS.bronze,
-        items: [
-          'Gross margin under 25% forbids unfocused, low-intent ad spend',
-          'Digital brand positioning & video storytelling need structured launch',
-          'No active video-view remarketing pool capturing warm local viewers',
-          'No store-visit attribution linking online impressions to bills',
-        ],
-      },
-      {
-        col: 0,
-        row: 1,
-        tag: 'EXTERNAL  •  UPSIDE',
-        title: 'OPPORTUNITIES',
-        accent: COLORS.gold,
-        items: [
-          'Capture 50%+ video-ad viewers as warm local remarketing audiences',
-          'Educate buyers on fit & fabric to attract high-intent store visits',
-          'WhatsApp community for daily/weekly new-stock alerts & referrals',
-          'Outfit styling hooks to expand ₹5,000+ multi-item store baskets',
-        ],
-      },
-      {
-        col: 1,
-        row: 1,
-        tag: 'EXTERNAL  •  RISKS',
-        title: 'THREATS',
-        accent: COLORS.slate,
-        items: [
-          'Competing retail chains & nearby menswear outlets',
-          'Market-wide discounting habits that compress net margins',
-          'Rising CPMs if ads target low-intent cold traffic without retargeting',
-          'Price resistance when brand positioning & quality are not explained',
-        ],
-      },
-    ];
-
-    quadrants.forEach((q) => {
-      const qx = MARGIN_X + q.col * (qw + 0.28);
-      const qy = 1.50 + q.row * (qh + 0.16);
-
-      addCard(s, qx, qy, qw, qh, {
-        fill: COLORS.charcoalCard,
-        border: COLORS.borderCharcoal,
-        accentTop: true,
-        accentColor: q.accent,
-      });
-
-      s.addText(q.tag, {
-        x: qx + 0.24,
-        y: qy + 0.14,
-        w: 3.5,
-        h: 0.22,
-        fontFace: FONTS.body,
-        fontSize: 9,
-        bold: true,
-        color: q.accent,
-        charSpacing: 1.5,
-        margin: 0,
-      });
-
-      s.addText(q.title, {
-        x: qx + 0.24,
-        y: qy + 0.36,
-        w: 4.0,
-        h: 0.34,
-        fontFace: FONTS.heading,
-        fontSize: 17.5,
-        bold: true,
-        color: COLORS.ivory,
-        margin: 0,
-      });
-
-      const bulletText = q.items.map((txt) => ({
-        text: txt,
-        options: { bullet: { code: '25AA', color: q.accent }, indentLevel: 0 },
-      }));
-
-      s.addText(bulletText, {
-        x: qx + 0.24,
-        y: qy + 0.76,
-        w: qw - 0.48,
-        h: 1.72,
-        fontFace: FONTS.body,
-        fontSize: 10.4,
-        color: COLORS.lightText,
-        lineSpacingMultiple: 1.18,
-        paraSpaceAfter: 3,
-        valign: 'top',
-        margin: 0,
-      });
-    });
-  }
-
-  // =========================================================================
-  // SLIDE 06 – IDEAL CUSTOMER PROFILE (Warm Ivory)
-  // =========================================================================
-  {
-    const s = pptx.addSlide();
-    addSlideChrome(s, {
-      theme: 'light',
+      theme: 'obsidian',
+      step: 'Step 04',
       kicker: 'Target Audience Architecture',
-      title: 'Reaching the Right Customers.',
-      slideNum: 6,
-    });
-
-    // Validation badge banner
-    s.addShape('rect', {
-      x: MARGIN_X,
-      y: 1.46,
-      w: CONTENT_W,
-      h: 0.34,
-      fill: { color: COLORS.ivorySoft },
-      line: { color: COLORS.gold, width: 0.75 },
-    });
-    s.addText('PROPOSED AUDIENCE SEGMENTS TO VALIDATE  •  ALL PERSONAS REPRESENT HYPOTHESES FOR PHASE-1 CAMPAIGN TESTING', {
-      x: MARGIN_X + 0.16,
-      y: 1.46,
-      w: CONTENT_W - 0.32,
-      h: 0.34,
-      fontFace: FONTS.body,
-      fontSize: 9.5,
-      bold: true,
-      color: COLORS.navy,
-      charSpacing: 1.1,
-      valign: 'middle',
-      margin: 0,
+      title: 'Four High-Value Men We Attract to Store.',
+      slideNum: 5,
     });
 
     const personas = [
       {
         img: 'icp1_young_fashion.jpg',
-        title: 'Young Fashion-Conscious Men',
-        age: 'AGE 20 – 30',
-        motivation: 'Trend-aligned styling, sharp silhouettes & social confidence.',
-        interests: 'Casual Shirts, T-Shirts, Slim Jeans',
-        comms: 'Short-form Reels, outfit styling hooks & fresh drop alerts.',
+        title: 'Young Style Leaders',
+        age: '20 – 30 YRS',
+        focus: 'Casual Shirts, T-Shirts & Slim Jeans',
+        hook: 'Trendy Reels & fresh weekly stock alerts.',
       },
       {
         img: 'icp2_working_pro.jpg',
         title: 'Working Professionals',
-        age: 'AGE 25 – 40',
-        motivation: 'All-day comfort, crisp polish & reliable office-to-evening versatility.',
-        interests: 'Formal Shirts, Tailored Trousers',
-        comms: 'Fit & fabric quality focus via Meta, Display & YouTube ads.',
+        age: '25 – 40 YRS',
+        focus: 'Formal Shirts & Tailored Trousers',
+        hook: 'Fabric quality & all-day office comfort videos.',
       },
       {
         img: 'icp3_aspirational.jpg',
-        title: 'Aspirational Fashion Buyers',
-        age: 'AGE 25 – 40',
-        motivation: 'Upgrading personal wardrobe from basic wear to elevated essentials.',
-        interests: 'Layered Casuals, T-Shirts, Trousers',
-        comms: 'Complete lookbook pairings & weekly WhatsApp stock alerts.',
+        title: 'Wardrobe Upgraders',
+        age: '25 – 40 YRS',
+        focus: 'Layered Casuals, Tees & Trousers',
+        hook: 'Complete outfit pairing & styling education.',
       },
       {
         img: 'icp4_occasion.jpg',
-        title: 'Occasion-Based Shoppers',
-        age: 'AGE 23 – 45',
-        motivation: 'Ready-to-wear elevated outfits for celebrations, dinners & events.',
-        interests: 'Dark Formal Shirts, Crisp Trousers',
-        comms: 'Event outfit videos, WhatsApp previews & referral invitations.',
+        title: 'Occasion Shoppers',
+        age: '23 – 45 YRS',
+        focus: 'Evening Formals & Curated Outfits',
+        hook: 'VIP in-store trial & peer referral privileges.',
       },
     ];
 
-    const cw = (CONTENT_W - 0.22 * 3) / 4; // 2.843
-    const imgW = cw;
-    const imgH = 2.50; // Framed carefully inside top of card — wait: maintain 3:4 or centered framing!
-    // Let's keep exact 3:4 aspect ratio to prevent any stretching: w = 1.95", h = 2.61" centered OR full card width with exact 3:4?
-    // At w = 2.843, 3:4 height would be 3.80" which leaves only 1.1" for text.
-    // Instead, let's place a clean 1.88" x 2.52" portrait (ratio 0.746) on left or centered, OR horizontal split inside each tall card!
-    // Even better: horizontal portrait frame? No, 1.88 x 2.52 portrait on top-center with dark/ivory mat, OR portrait left? No, 4 columns at 2.84" wide:
-    // If image is w = 1.80", h = 2.41" (exact 0.747 ratio!) inside an architectural charcoal/ivory top band, OR w = 2.84", h = 2.45" using PptxGenJS crop?
-    // Wait: let's check if PptxGenJS `sizing: { type: 'crop', ... }` or exact 3:4 `w=1.80, h=2.41` looks cleaner. Exact 3:4 (`w=1.86, h=2.49`) with a side editorial badge looks super editorial AND never distorts! Let's check: 2.84 - 1.86 = 0.98" next to the portrait for the Age Pill + Persona Number (`01`..`04`)! That looks like a bespoke magazine profile card!
-
+    const cw = (CONTENT_W - 0.24 * 3) / 4; // 2.813
     personas.forEach((p, i) => {
-      const px = MARGIN_X + i * (cw + 0.22);
-      const py = 1.94;
-      const ch = 4.90;
+      const px = MARGIN_X + i * (cw + 0.24);
+      const py = 1.58;
+      const ch = 5.20;
 
       addCard(s, px, py, cw, ch, {
-        fill: COLORS.ivoryCard,
-        border: COLORS.borderLight,
+        fill: COLORS.obsidianCard,
+        border: COLORS.borderObsidian,
         accentTop: true,
         accentColor: COLORS.gold,
       });
 
-      // Top zone: 3:4 portrait on left (1.82 x 2.44) + editorial index & age rail on right
+      // Exact 3:4 Portrait centered cleanly at top of card
+      const imgW = cw - 0.24; // 2.573
+      const imgH = +(imgW / 0.747).toFixed(3); // 3.444? Wait: height limit = 3.25" at w=2.42"
+      const pImgW = 2.40;
+      const pImgH = 3.20; // 2.40 / 3.20 = 0.75 exact 3:4!
+      const pImgX = px + (cw - pImgW) / 2;
+
       s.addImage({
         path: img(p.img),
-        x: px + 0.14,
+        x: pImgX,
         y: py + 0.16,
-        w: 1.76,
-        h: 2.36, // 1.76 / 2.36 = 0.746 exact match!
+        w: pImgW,
+        h: pImgH,
       });
 
-      s.addText(`0${i + 1}`, {
-        x: px + 1.96,
-        y: py + 0.18,
-        w: 0.78,
-        h: 0.44,
-        fontFace: FONTS.heading,
-        fontSize: 22,
-        bold: true,
-        color: COLORS.gold,
-        align: 'right',
-        margin: 0,
-      });
-
+      // Subtle dark age pill overlaid neatly bottom-left of portrait
       s.addShape('rect', {
-        x: px + 1.98,
-        y: py + 0.72,
-        w: 0.74,
-        h: 0.42,
-        fill: { color: COLORS.navy },
-        line: { type: 'none' },
+        x: pImgX + 0.10,
+        y: py + 0.26,
+        w: 0.92,
+        h: 0.26,
+        fill: { color: COLORS.obsidian },
+        line: { color: COLORS.gold, width: 0.6 },
       });
       s.addText(p.age, {
-        x: px + 1.98,
-        y: py + 0.72,
-        w: 0.74,
-        h: 0.42,
-        fontFace: FONTS.body,
+        x: pImgX + 0.10,
+        y: py + 0.26,
+        w: 0.92,
+        h: 0.26,
+        fontFace: FONTS.ui,
         fontSize: 8.5,
         bold: true,
-        color: COLORS.ivory,
+        color: COLORS.gold,
         align: 'center',
         valign: 'middle',
         margin: 0,
       });
 
-      s.addText('SEGMENT\nTO TEST', {
-        x: px + 1.98,
-        y: py + 1.24,
-        w: 0.74,
-        h: 0.42,
-        fontFace: FONTS.body,
-        fontSize: 7.5,
-        bold: true,
-        color: COLORS.slate,
-        align: 'right',
-        margin: 0,
-      });
-
-      // Persona Name
       s.addText(p.title, {
-        x: px + 0.14,
-        y: py + 2.62,
-        w: cw - 0.28,
-        h: 0.48,
-        fontFace: FONTS.heading,
-        fontSize: 13.5,
+        x: px + 0.18,
+        y: py + 3.48,
+        w: cw - 0.36,
+        h: 0.34,
+        fontFace: FONTS.editorial,
+        fontSize: 14.5,
         bold: true,
-        color: COLORS.navy,
-        valign: 'top',
+        color: COLORS.ivory,
         margin: 0,
       });
 
       s.addShape('line', {
-        x: px + 0.14,
-        y: py + 3.12,
-        w: cw - 0.28,
+        x: px + 0.18,
+        y: py + 3.84,
+        w: cw - 0.36,
         h: 0,
-        line: { color: COLORS.borderLight, width: 0.6 },
+        line: { color: COLORS.borderObsidian, width: 0.6 },
       });
 
-      // Details
-      const fields = [
-        { label: 'MOTIVATION', val: p.motivation, y: py + 3.20 },
-        { label: 'PRODUCT FOCUS', val: p.interests, y: py + 3.80 },
-        { label: 'COMMUNICATION', val: p.comms, y: py + 4.30 },
-      ];
-      fields.forEach((f) => {
-        s.addText(f.label, {
-          x: px + 0.14,
-          y: f.y,
-          w: cw - 0.28,
-          h: 0.16,
-          fontFace: FONTS.body,
-          fontSize: 8,
-          bold: true,
-          color: COLORS.bronze,
-          charSpacing: 0.8,
-          margin: 0,
-        });
-        s.addText(f.val, {
-          x: px + 0.14,
-          y: f.y + 0.17,
-          w: cw - 0.28,
-          h: 0.38,
-          fontFace: FONTS.body,
-          fontSize: 10,
-          color: COLORS.slate,
-          lineSpacingMultiple: 1.15,
-          margin: 0,
-        });
+      s.addText('STAPLE FOCUS', {
+        x: px + 0.18,
+        y: py + 3.92,
+        w: cw - 0.36,
+        h: 0.18,
+        fontFace: FONTS.ui,
+        fontSize: 8,
+        bold: true,
+        color: COLORS.gold,
+        charSpacing: 1.0,
+        margin: 0,
+      });
+      s.addText(p.focus, {
+        x: px + 0.18,
+        y: py + 4.10,
+        w: cw - 0.36,
+        h: 0.34,
+        fontFace: FONTS.ui,
+        fontSize: 10.5,
+        color: COLORS.lightText,
+        margin: 0,
+      });
+
+      s.addText('VIDEO & REMARKETING HOOK', {
+        x: px + 0.18,
+        y: py + 4.52,
+        w: cw - 0.36,
+        h: 0.18,
+        fontFace: FONTS.ui,
+        fontSize: 8,
+        bold: true,
+        color: COLORS.bronze,
+        charSpacing: 0.8,
+        margin: 0,
+      });
+      s.addText(p.hook, {
+        x: px + 0.18,
+        y: py + 4.70,
+        w: cw - 0.36,
+        h: 0.38,
+        fontFace: FONTS.ui,
+        fontSize: 10.5,
+        color: COLORS.lightMuted,
+        margin: 0,
       });
     });
   }
 
   // =========================================================================
-  // SLIDE 07 – LOCAL MARKET STRATEGY (Deep Midnight Navy)
+  // SLIDE 06 – STEP 05: LOCAL CATCHMENT FOCUS (Midnight Velvet)
   // =========================================================================
   {
     const s = pptx.addSlide();
     addSlideChrome(s, {
-      theme: 'navy',
-      kicker: 'Hyper-Local Catchment Targeting',
-      title: "Winning the Local Men's Fashion Market.",
-      slideNum: 7,
+      theme: 'velvet',
+      step: 'Step 05',
+      kicker: 'Hyper-Local Catchment Focus',
+      title: 'Step-by-Step Radius Expansion Around LB Nagar.',
+      slideNum: 6,
     });
 
-    // Left 7.4" Custom Editable Vector Catchment Map of LB Nagar / B.N. Reddy Nagar
     const mx = MARGIN_X;
     const my = 1.56;
-    const mw = 7.35;
+    const mw = 7.25;
     const mh = 5.20;
 
     addCard(s, mx, my, mw, mh, {
-      fill: '0B1220',
+      fill: '0B0E14',
       border: COLORS.borderDark,
     });
 
-    s.addText('HYDERABAD SOUTH-EAST CATCHMENT TOPOLOGY  (NO INVENTED DEMOGRAPHIC ESTIMATES)', {
-      x: mx + 0.20,
-      y: my + 0.14,
-      w: mw - 0.40,
+    s.addText('SOUTH-EAST HYDERABAD RETAIL CATCHMENT', {
+      x: mx + 0.22,
+      y: my + 0.16,
+      w: mw - 0.44,
       h: 0.22,
-      fontFace: FONTS.body,
-      fontSize: 8.0,
+      fontFace: FONTS.ui,
+      fontSize: 9,
       bold: true,
-      color: COLORS.lightMuted,
-      charSpacing: 0.7,
+      color: COLORS.gold,
+      charSpacing: 1.2,
       margin: 0,
     });
 
-    // Store center coordinates inside map box
-    const cx = mx + 3.45;
-    const cy = my + 3.25;
+    const cx = mx + 3.40;
+    const cy = my + 3.22;
 
-    // Outer Testing Ring (Kothapet reach)
     s.addShape('ellipse', {
-      x: cx - 2.95,
-      y: cy - 2.55,
-      w: 5.90,
-      h: 4.50,
-      fill: { color: '131E33', transparency: 35 },
-      line: { color: COLORS.slate, width: 1.0, dashType: 'dash' },
+      x: cx - 2.90,
+      y: cy - 2.50,
+      w: 5.80,
+      h: 4.42,
+      fill: { color: '131A29', transparency: 35 },
+      line: { color: COLORS.stone, width: 1.0, dashType: 'dash' },
     });
 
-    // Secondary Ring (LB Nagar & Chintalkunta)
     s.addShape('ellipse', {
-      x: cx - 2.05,
-      y: cy - 1.75,
-      w: 4.10,
-      h: 3.20,
-      fill: { color: '192640', transparency: 25 },
+      x: cx - 2.02,
+      y: cy - 1.72,
+      w: 4.04,
+      h: 3.16,
+      fill: { color: '182236', transparency: 25 },
       line: { color: COLORS.bronze, width: 1.25 },
     });
 
-    // Primary Ring (B.N. Reddy Nagar, Vanasthalipuram, Hastinapuram)
     s.addShape('ellipse', {
-      x: cx - 1.15,
-      y: cy - 0.95,
-      w: 2.30,
-      h: 1.80,
+      x: cx - 1.14,
+      y: cy - 0.94,
+      w: 2.28,
+      h: 1.78,
       fill: { color: COLORS.gold, transparency: 82 },
       line: { color: COLORS.gold, width: 1.75 },
     });
 
-    // Stylized Major Arterial Roads (Nagarjuna Sagar Road / NH65 / Inner Ring Rd)
     s.addShape('line', {
-      x: mx + 2.85,
-      y: my + 0.55,
+      x: mx + 2.80,
+      y: my + 0.56,
       w: 0.56,
-      h: 3.90,
-      line: { color: '334155', width: 2.0 },
+      h: 3.86,
+      line: { color: '2B3648', width: 1.8 },
     });
     s.addShape('line', {
       x: mx + 0.70,
-      y: my + 1.20,
-      w: 5.95,
+      y: my + 1.22,
+      w: 5.88,
       h: 0.45,
       flipV: true,
-      line: { color: '334155', width: 2.0 },
+      line: { color: '2B3648', width: 1.8 },
     });
 
-    // Road labels
     s.addText('NH 65 / Vijayawada Hwy', {
-      x: mx + 4.85,
+      x: mx + 4.82,
       y: my + 0.96,
       w: 1.9,
       h: 0.22,
-      fontFace: FONTS.body,
+      fontFace: FONTS.ui,
       fontSize: 8.5,
       color: COLORS.lightMuted,
       margin: 0,
     });
     s.addText('Nagarjuna Sagar Rd', {
       x: mx + 1.38,
-      y: my + 4.18,
+      y: my + 4.14,
       w: 1.65,
       h: 0.22,
-      fontFace: FONTS.body,
+      fontFace: FONTS.ui,
       fontSize: 8.5,
       color: COLORS.lightMuted,
       margin: 0,
     });
 
-    // Map Nodes
     const mapPin = (px, py, label, tierColor, isAnchor = false) => {
       const sz = isAnchor ? 0.26 : 0.16;
       s.addShape('ellipse', {
@@ -1353,9 +1117,9 @@ async function buildPresentation() {
         x: px - 0.85,
         y: py + (isAnchor ? 0.16 : 0.10),
         w: 1.70,
-        h: 0.26,
-        fontFace: isAnchor ? FONTS.heading : FONTS.body,
-        fontSize: isAnchor ? 10 : 9.5,
+        h: 0.28,
+        fontFace: FONTS.ui,
+        fontSize: isAnchor ? 9.5 : 9.2,
         bold: true,
         color: isAnchor ? COLORS.gold : COLORS.ivory,
         align: 'center',
@@ -1363,31 +1127,26 @@ async function buildPresentation() {
       });
     };
 
-    // Anchor Store
     mapPin(cx, cy, 'JONTYS HUB\nB.N. Reddy Nagar', COLORS.gold, true);
-    // Primary Zone
-    mapPin(cx + 0.85, cy - 0.30, 'Vanasthalipuram', COLORS.gold);
-    mapPin(cx - 0.78, cy + 0.50, 'Hastinapuram', COLORS.gold);
-    // Secondary Zone
-    mapPin(cx - 0.10, cy - 1.35, 'LB Nagar', COLORS.bronze);
-    mapPin(cx + 1.45, cy - 1.05, 'Chintalkunta', COLORS.bronze);
-    // Testing Zone
-    mapPin(cx - 1.55, cy - 2.15, 'Kothapet', COLORS.lightMuted);
+    mapPin(cx + 0.84, cy - 0.30, 'Vanasthalipuram', COLORS.gold);
+    mapPin(cx - 0.78, cy + 0.48, 'Hastinapuram', COLORS.gold);
+    mapPin(cx - 0.10, cy - 1.32, 'LB Nagar', COLORS.bronze);
+    mapPin(cx + 1.44, cy - 1.04, 'Chintalkunta', COLORS.bronze);
+    mapPin(cx - 1.52, cy - 2.10, 'Kothapet', COLORS.lightMuted);
 
-    // Map Legend Bar inside bottom of map
     s.addShape('rect', {
-      x: mx + 0.20,
+      x: mx + 0.22,
       y: my + mh - 0.52,
-      w: mw - 0.40,
+      w: mw - 0.44,
       h: 0.36,
-      fill: { color: COLORS.navy },
+      fill: { color: COLORS.velvet },
       line: { color: COLORS.borderDark, width: 0.6 },
     });
     const legendItems = [
-      { label: 'Store Anchor', color: COLORS.gold, x: mx + 0.35 },
-      { label: 'Primary Zone', color: COLORS.gold, x: mx + 1.95 },
-      { label: 'Secondary Zone', color: COLORS.bronze, x: mx + 3.65 },
-      { label: 'Testing Zone', color: COLORS.lightMuted, x: mx + 5.45 },
+      { label: 'Store Anchor', color: COLORS.gold, x: mx + 0.38 },
+      { label: 'Zone 01 Primary', color: COLORS.gold, x: mx + 1.95 },
+      { label: 'Zone 02 Secondary', color: COLORS.bronze, x: mx + 3.65 },
+      { label: 'Zone 03 Expand', color: COLORS.lightMuted, x: mx + 5.45 },
     ];
     legendItems.forEach((l) => {
       s.addShape('ellipse', {
@@ -1402,42 +1161,41 @@ async function buildPresentation() {
         y: my + mh - 0.44,
         w: 1.4,
         h: 0.22,
-        fontFace: FONTS.body,
-        fontSize: 9.5,
+        fontFace: FONTS.ui,
+        fontSize: 9,
         color: COLORS.lightText,
         margin: 0,
       });
     });
 
-    // Right column: 3 Tier Cards + Store Anchor Card
-    const rx = mx + mw + 0.28;
-    const rw = CONTENT_W - mw - 0.28; // 4.403
+    const rx = mx + mw + 0.30;
+    const rw = CONTENT_W - mw - 0.30; // 4.423
 
     const tiers = [
       {
-        tier: 'TIER 01  •  PRIMARY ZONE',
+        tier: 'ZONE 01  •  PRIMARY RADIUS',
         places: 'B.N. Reddy Nagar, Vanasthalipuram, Hastinapuram',
-        role: 'Core always-on local reach, Google Maps visibility, and high-frequency store-visit creative.',
+        role: 'High-frequency video ads, Google Maps visibility & local store-visit remarketing.',
         accent: COLORS.gold,
       },
       {
-        tier: 'TIER 02  •  SECONDARY ZONE',
+        tier: 'ZONE 02  •  SECONDARY RADIUS',
         places: 'LB Nagar & Chintalkunta',
-        role: 'Category-led Instagram, Facebook, YouTube & Display ads for nearby B2C shoppers.',
+        role: 'Educated lookbooks & Instagram/YouTube retargeting for nearby style buyers.',
         accent: COLORS.bronze,
       },
       {
-        tier: 'TIER 03  •  TESTING ZONE',
+        tier: 'ZONE 03  •  EXPANSION TEST',
         places: 'Kothapet',
-        role: 'Controlled budget expansion tests to measure travel willingness and incremental store-visit economics.',
-        accent: COLORS.slate,
+        role: 'Selective budget expansion once Primary store-visit payback is verified.',
+        accent: COLORS.stone,
       },
     ];
 
     tiers.forEach((t, i) => {
       const ty = 1.56 + i * 1.32;
       addCard(s, rx, ty, rw, 1.18, {
-        fill: COLORS.navyCard,
+        fill: COLORS.velvetCard,
         border: COLORS.borderDark,
         accentLeft: true,
         accentColor: t.accent,
@@ -1447,10 +1205,10 @@ async function buildPresentation() {
         y: ty + 0.12,
         w: rw - 0.34,
         h: 0.20,
-        fontFace: FONTS.body,
+        fontFace: FONTS.ui,
         fontSize: 9,
         bold: true,
-        color: t.accent,
+        color: t.accent === COLORS.stone ? COLORS.lightMuted : t.accent,
         charSpacing: 1.2,
         margin: 0,
       });
@@ -1459,8 +1217,8 @@ async function buildPresentation() {
         y: ty + 0.34,
         w: rw - 0.34,
         h: 0.30,
-        fontFace: FONTS.heading,
-        fontSize: 13.5,
+        fontFace: FONTS.ui,
+        fontSize: 13,
         bold: true,
         color: COLORS.ivory,
         margin: 0,
@@ -1470,7 +1228,7 @@ async function buildPresentation() {
         y: ty + 0.66,
         w: rw - 0.34,
         h: 0.44,
-        fontFace: FONTS.body,
+        fontFace: FONTS.ui,
         fontSize: 11,
         color: COLORS.lightText,
         lineSpacingMultiple: 1.2,
@@ -1479,15 +1237,15 @@ async function buildPresentation() {
     });
 
     addCard(s, rx, 5.54, rw, 1.22, {
-      fill: COLORS.charcoal,
+      fill: COLORS.obsidian,
       border: COLORS.gold,
     });
-    s.addText('STORE LOCATION ANCHOR', {
+    s.addText('FLAGSHIP STORE ADDRESS', {
       x: rx + 0.20,
-      y: 5.66,
+      y: 5.68,
       w: rw - 0.40,
       h: 0.22,
-      fontFace: FONTS.body,
+      fontFace: FONTS.ui,
       fontSize: 9,
       bold: true,
       color: COLORS.gold,
@@ -1496,37 +1254,28 @@ async function buildPresentation() {
     });
     s.addText('Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079', {
       x: rx + 0.20,
-      y: 5.92,
+      y: 5.96,
       w: rw - 0.40,
-      h: 0.42,
-      fontFace: FONTS.body,
+      h: 0.56,
+      fontFace: FONTS.ui,
       fontSize: 11.5,
       color: COLORS.ivory,
-      margin: 0,
-    });
-    s.addText('Budget expands outward only after Primary Zone unit economics are proven.', {
-      x: rx + 0.20,
-      y: 6.38,
-      w: rw - 0.40,
-      h: 0.26,
-      fontFace: FONTS.body,
-      fontSize: 10,
-      italic: true,
-      color: COLORS.lightMuted,
+      lineSpacingMultiple: 1.25,
       margin: 0,
     });
   }
 
   // =========================================================================
-  // SLIDE 08 – CUSTOMER ACQUISITION FUNNEL (Warm Ivory)
+  // SLIDE 07 – STEP 06: 5-STAGE ACQUISITION FUNNEL (Warm Atelier Ivory)
   // =========================================================================
   {
     const s = pptx.addSlide();
     addSlideChrome(s, {
       theme: 'light',
+      step: 'Step 06',
       kicker: 'Conversion Architecture',
-      title: 'From Fashion Discovery to Store Purchase.',
-      slideNum: 8,
+      title: 'Step-by-Step Journey From Scroll to Store Purchase.',
+      slideNum: 7,
     });
 
     const stages = [
@@ -1534,67 +1283,60 @@ async function buildPresentation() {
         num: '01',
         name: 'VIDEO DISCOVERY',
         channel: 'Instagram Reels • Facebook Video • YouTube',
-        objective: 'Capture attention & pool engaged local video viewers.',
-        action: 'Style-led video ads reach LB Nagar men; 50%+ video viewers enter the custom remarketing pool.',
-        w: 5.20,
-        bg: COLORS.navy,
+        objective: 'Capture local attention & pool engaged video viewers.',
+        action: 'Style-led video ads reach LB Nagar men; 50%+ video viewers enter the warm remarketing audience.',
+        w: 5.15,
+        bg: COLORS.obsidian,
         txt: COLORS.ivory,
-        badge: COLORS.gold,
       },
       {
         num: '02',
         name: 'EDUCATE & POSITION',
         channel: 'Video-View Remarketing • Meta & Display',
-        objective: 'Educate warm viewers & establish premium positioning.',
-        action: 'Sequential ads teach fabric feel, collar fit & complete styling—building authority before store entry.',
-        w: 4.55,
-        bg: '1E293B',
+        objective: 'Educate buyers & build luxury brand positioning.',
+        action: 'Sequential ads highlight fabric drape, collar finish & styling—proving value before store entry.',
+        w: 4.50,
+        bg: '181D27',
         txt: COLORS.ivory,
-        badge: COLORS.gold,
       },
       {
         num: '03',
         name: 'HIGH-INTENT FILTER',
         channel: 'WhatsApp Community • Google Business Profile',
-        objective: 'Qualify high-intent buyers ready to visit the store.',
-        action: 'Maps directions, sizing previews & fresh-stock highlights isolate serious local shoppers.',
-        w: 3.90,
-        bg: '2A3447',
+        objective: 'Identify serious buyers ready to visit in person.',
+        action: 'Maps directions, sizing checks & fresh-stock previews isolate genuine local shoppers.',
+        w: 3.85,
+        bg: '232A38',
         txt: COLORS.ivory,
-        badge: COLORS.gold,
       },
       {
         num: '04',
-        name: 'STORE VISIT GOAL',
+        name: 'GOAL: STORE VISIT',
         channel: 'In-Store Trial • Outfit Styling',
         objective: 'Convert high-intent walk-ins into ₹5,000+ bills.',
-        action: 'Educated buyers arrive pre-sold on quality—staff guide complete multi-item outfit trials.',
-        w: 3.25,
-        bg: COLORS.charcoal,
+        action: 'Educated guests arrive pre-sold on quality—staff guide complete multi-item outfit trials.',
+        w: 3.20,
+        bg: '2D3340',
         txt: COLORS.ivory,
-        badge: COLORS.gold,
       },
       {
         num: '05',
         name: 'RETENTION',
         channel: 'WhatsApp Drops • Referrals',
-        objective: 'Turn buyers into repeat members and peer referrers.',
-        action: 'Daily/weekly new-stock updates & margin-safe referral discounts drive repeat store visits.',
+        objective: 'Turn buyers into repeat members & referrers.',
+        action: 'Daily/weekly stock drops & margin-safe referral perks bring customers back repeatedly.',
         w: 2.65,
         bg: COLORS.gold,
-        txt: COLORS.navy,
-        badge: COLORS.navy,
+        txt: COLORS.obsidian,
       },
     ];
 
-    // Left Column: Geometric 5-Stage Funnel Visual + Right Column: Stage Detail Rows
-    const funnelCenterX = MARGIN_X + 2.65;
+    const funnelCenterX = MARGIN_X + 2.60;
     stages.forEach((st, i) => {
       const sy = 1.60 + i * 1.02;
       const sh = 0.88;
-
-      // Trapezoid / Tapered bar centered on funnelCenterX
       const fx = funnelCenterX - st.w / 2;
+
       s.addShape('roundRect', {
         x: fx,
         y: sy,
@@ -1606,31 +1348,30 @@ async function buildPresentation() {
       });
 
       s.addText(`${st.num}   ${st.name}`, {
-        x: fx + 0.15,
+        x: fx + 0.14,
         y: sy + 0.14,
-        w: st.w - 0.30,
+        w: st.w - 0.28,
         h: 0.34,
-        fontFace: FONTS.heading,
-        fontSize: 12.5,
+        fontFace: FONTS.ui,
+        fontSize: 12.2,
         bold: true,
-        color: i === 4 ? COLORS.navy : COLORS.gold,
+        color: i === 4 ? COLORS.obsidian : COLORS.gold,
         align: 'center',
         margin: 0,
       });
 
       s.addText(st.channel, {
-        x: fx + 0.15,
+        x: fx + 0.14,
         y: sy + 0.48,
-        w: st.w - 0.30,
+        w: st.w - 0.28,
         h: 0.26,
-        fontFace: FONTS.body,
-        fontSize: 10,
+        fontFace: FONTS.ui,
+        fontSize: 9.8,
         color: st.txt,
         align: 'center',
         margin: 0,
       });
 
-      // Connector arrow down between stages
       if (i < stages.length - 1) {
         s.addShape('line', {
           x: funnelCenterX,
@@ -1641,9 +1382,8 @@ async function buildPresentation() {
         });
       }
 
-      // Horizontal bridge line to Detail Card
-      const dx = MARGIN_X + 5.60;
-      const dw = CONTENT_W - 5.60; // 6.433
+      const dx = MARGIN_X + 5.55;
+      const dw = CONTENT_W - 5.55;
       s.addShape('line', {
         x: fx + st.w + 0.08,
         y: sy + sh / 2,
@@ -1656,7 +1396,7 @@ async function buildPresentation() {
         fill: COLORS.ivoryCard,
         border: COLORS.borderLight,
         accentLeft: true,
-        accentColor: i === 4 ? COLORS.navy : COLORS.gold,
+        accentColor: i === 4 ? COLORS.obsidian : COLORS.gold,
       });
 
       s.addText(st.objective, {
@@ -1664,10 +1404,10 @@ async function buildPresentation() {
         y: sy + 0.12,
         w: dw - 0.38,
         h: 0.28,
-        fontFace: FONTS.heading,
-        fontSize: 12.5,
+        fontFace: FONTS.ui,
+        fontSize: 12.2,
         bold: true,
-        color: COLORS.navy,
+        color: COLORS.obsidian,
         margin: 0,
       });
 
@@ -1675,43 +1415,41 @@ async function buildPresentation() {
         x: dx + 0.22,
         y: sy + 0.44,
         w: dw - 0.38,
-        h: 0.34,
-        fontFace: FONTS.body,
+        h: 0.36,
+        fontFace: FONTS.ui,
         fontSize: 11,
-        color: COLORS.slate,
+        color: COLORS.stone,
         margin: 0,
       });
     });
-
-    // Bottom Bridge Callout strip inside whitespace? Actually 5 rows take up 1.60 to 6.56 — crisp and well-balanced!
   }
 
   // =========================================================================
-  // SLIDE 09 – VIDEO-VIEW REMARKETING & POSITIONING (Deep Midnight Navy)
+  // SLIDE 08 – STEP 07: VIDEO-VIEW REMARKETING ENGINE (Obsidian Black)
   // =========================================================================
   {
     const s = pptx.addSlide();
     addSlideChrome(s, {
-      theme: 'navy',
-      kicker: 'Remarketing & Positioning Architecture',
-      title: 'Turn Video Viewers Into High-Intent Store Visitors.',
-      slideNum: 9,
+      theme: 'obsidian',
+      step: 'Step 07',
+      kicker: 'Video-View Remarketing Strategy',
+      title: 'Educate Video Viewers Into High-Intent Store Visitors.',
+      slideNum: 8,
     });
 
-    // Core Thesis Highlight Banner
-    addCard(s, MARGIN_X, 1.50, CONTENT_W, 0.86, {
-      fill: COLORS.charcoal,
+    addCard(s, MARGIN_X, 1.52, CONTENT_W, 0.84, {
+      fill: COLORS.velvet,
       border: COLORS.gold,
       accentLeft: true,
       accentColor: COLORS.gold,
     });
 
-    s.addText('CORE REMARKETING STRATEGY', {
+    s.addText('STRATEGIC PRINCIPLE', {
       x: MARGIN_X + 0.24,
-      y: 1.59,
-      w: 4.5,
-      h: 0.22,
-      fontFace: FONTS.body,
+      y: 1.60,
+      w: 3.8,
+      h: 0.20,
+      fontFace: FONTS.ui,
       fontSize: 9,
       bold: true,
       color: COLORS.gold,
@@ -1720,13 +1458,13 @@ async function buildPresentation() {
     });
 
     s.addText(
-      'Anyone who watches our Reels or YouTube video ads enters a custom Remarketing Audience — educated sequentially to build brand positioning and drive high-intent walk-ins to our LB Nagar store.',
+      'Anyone watching 50%+ of our Reels or YouTube ads becomes our custom Remarketing Audience — educated step-by-step on quality and positioning until they visit our LB Nagar store.',
       {
         x: MARGIN_X + 0.24,
         y: 1.84,
         w: CONTENT_W - 0.48,
         h: 0.44,
-        fontFace: FONTS.body,
+        fontFace: FONTS.ui,
         fontSize: 11.5,
         color: COLORS.ivory,
         lineSpacingMultiple: 1.18,
@@ -1734,61 +1472,58 @@ async function buildPresentation() {
       }
     );
 
-    // 4 Sequential Step Cards with connecting gold chevrons/arrows
     const rSteps = [
       {
         num: '01',
-        tag: 'AUDIENCE CAPTURE',
+        tag: 'CAPTURE AUDIENCE',
         title: 'Build Video-View\nRemarketing Pool',
         highlight: '50%+ Video Watchers',
-        body: 'Launch style-led Instagram Reels, Facebook Video & YouTube Ads locally. Engaged viewers (50%+ watch time) automatically build a warm custom audience.',
+        body: 'Style-led Instagram Reels, Facebook Video & YouTube Ads reach local men. Engaged viewers automatically enter a warm custom audience.',
         goal: 'Signal: Real Interest',
-        fill: COLORS.navyCard,
+        fill: COLORS.obsidianCard,
         accent: COLORS.gold,
       },
       {
         num: '02',
-        tag: 'CUSTOMER EDUCATION',
-        tagColor: COLORS.gold,
-        title: 'Educate on Fit,\nFabric & Quality',
-        highlight: 'Show Value Before Price',
-        body: 'Retarget warm viewers with close-up fabric weaves, collar structure & 5-category outfit pairings — proving why ₹2,000+ garments hold sharper drape.',
+        tag: 'EDUCATE BUYERS',
+        title: 'Show Fabric, Fit\n& Styling Value',
+        highlight: 'Educate Before Selling',
+        body: 'Sequential remarketing explains fabric breathability, collar precision & complete outfits—justifying ₹2,000+ craftsmanship.',
         goal: 'Outcome: Educated Buyer',
-        fill: COLORS.navyCard,
+        fill: COLORS.obsidianCard,
         accent: COLORS.gold,
       },
       {
         num: '03',
-        tag: 'BRAND POSITIONING',
-        title: 'Build Distinct Store\nPositioning',
-        highlight: 'Men-Only Style Authority',
-        body: 'Consistent Meta & Display creative positions Jontys Hub as B.N. Reddy Nagar’s specialist men’s destination — eliminating bargain-shopper perception.',
+        tag: 'CREATE POSITIONING',
+        title: 'Establish Luxury\nStore Authority',
+        highlight: 'Men-Only Style Hub',
+        body: 'Consistent Meta & Display creative positions Jontys Hub as B.N. Reddy Nagar’s specialist menswear destination.',
         goal: 'Outcome: Brand Preference',
-        fill: COLORS.navyCard,
+        fill: COLORS.obsidianCard,
         accent: COLORS.bronze,
       },
       {
         num: '04',
-        tag: 'ULTIMATE GOAL',
-        title: 'Convert High-Intent\nStore Visits',
+        tag: 'HIGH-INTENT GOAL',
+        title: 'Drive Qualified\nStore Visits',
         highlight: 'In-Store Trial & ₹5,000+ Bills',
-        body: 'Serve high-intent viewers Google Maps directions, fresh-stock previews & WhatsApp sizing checks — turning pre-sold locals into walk-in buyers.',
+        body: 'Deliver Maps pins, sizing checks & fresh-stock drops exclusively to warm viewers—converting high-intent store walk-ins.',
         goal: 'Goal: Visit the Store',
-        fill: COLORS.charcoal,
+        fill: COLORS.velvet,
         accent: COLORS.gold,
         isGoal: true,
       },
     ];
 
     const gap = 0.30;
-    const sw = (CONTENT_W - gap * 3) / 4; // 2.783
+    const sw = (CONTENT_W - gap * 3) / 4; // 2.768
     const sy = 2.54;
     const sh = 3.24;
 
     rSteps.forEach((st, idx) => {
       const sx = MARGIN_X + idx * (sw + gap);
 
-      // Connecting arrow between columns
       if (idx < rSteps.length - 1) {
         s.addShape('rightArrow', {
           x: sx + sw + 0.05,
@@ -1802,7 +1537,7 @@ async function buildPresentation() {
 
       addCard(s, sx, sy, sw, sh, {
         fill: st.fill,
-        border: st.isGoal ? COLORS.gold : COLORS.borderDark,
+        border: st.isGoal ? COLORS.gold : COLORS.borderObsidian,
         accentTop: true,
         accentColor: st.accent,
       });
@@ -1811,8 +1546,8 @@ async function buildPresentation() {
         x: sx + 0.18,
         y: sy + 0.16,
         w: sw - 0.36,
-        h: 0.22,
-        fontFace: FONTS.body,
+        h: 0.20,
+        fontFace: FONTS.ui,
         fontSize: 8.5,
         bold: true,
         color: st.accent,
@@ -1822,69 +1557,67 @@ async function buildPresentation() {
 
       s.addText(st.title, {
         x: sx + 0.18,
-        y: sy + 0.44,
+        y: sy + 0.42,
         w: sw - 0.36,
-        h: 0.56,
-        fontFace: FONTS.heading,
-        fontSize: 14,
+        h: 0.54,
+        fontFace: FONTS.editorial,
+        fontSize: 15,
         bold: true,
         color: COLORS.ivory,
         lineSpacingMultiple: 1.15,
         margin: 0,
       });
 
-      // Highlight pill inside card
       s.addShape('rect', {
         x: sx + 0.18,
-        y: sy + 1.08,
+        y: sy + 1.06,
         w: sw - 0.36,
         h: 0.32,
-        fill: { color: st.isGoal ? COLORS.gold : COLORS.navy },
+        fill: { color: st.isGoal ? COLORS.gold : COLORS.obsidian },
         line: { color: COLORS.gold, width: 0.6 },
       });
 
       s.addText(st.highlight.toUpperCase(), {
         x: sx + 0.22,
-        y: sy + 1.08,
+        y: sy + 1.06,
         w: sw - 0.44,
         h: 0.32,
-        fontFace: FONTS.body,
+        fontFace: FONTS.ui,
         fontSize: 8.5,
         bold: true,
-        color: st.isGoal ? COLORS.navy : COLORS.gold,
+        color: st.isGoal ? COLORS.obsidian : COLORS.gold,
         align: 'center',
         valign: 'middle',
-        charSpacing: 0.6,
+        charSpacing: 0.5,
         margin: 0,
       });
 
       s.addText(st.body, {
         x: sx + 0.18,
-        y: sy + 1.52,
+        y: sy + 1.50,
         w: sw - 0.36,
-        h: 1.18,
-        fontFace: FONTS.body,
+        h: 1.16,
+        fontFace: FONTS.ui,
         fontSize: 10.6,
         color: COLORS.lightText,
         lineSpacingMultiple: 1.24,
         margin: 0,
       });
 
-      // Footer tag
       s.addShape('line', {
         x: sx + 0.18,
-        y: sy + 2.80,
+        y: sy + 2.78,
         w: sw - 0.36,
         h: 0,
-        line: { color: COLORS.borderDark, width: 0.6 },
+        line: { color: COLORS.borderObsidian, width: 0.6 },
       });
 
       s.addText(st.goal, {
         x: sx + 0.18,
-        y: sy + 2.88,
+        y: sy + 2.86,
         w: sw - 0.36,
         h: 0.26,
-        fontFace: FONTS.heading,
+        fontFace: FONTS.ui,
         fontSize: 10.5,
         bold: true,
         color: st.isGoal ? COLORS.gold : COLORS.lightMuted,
@@ -1892,10 +1625,9 @@ async function buildPresentation() {
       });
     });
 
-    // Bottom Strategic Impact Bar
-    addCard(s, MARGIN_X, 5.96, CONTENT_W, 0.84, {
-      fill: COLORS.navyCard,
-      border: COLORS.borderDark,
+    addCard(s, MARGIN_X, 5.96, CONTENT_W, 0.82, {
+      fill: COLORS.obsidianCard,
+      border: COLORS.borderObsidian,
       accentLeft: true,
       accentColor: COLORS.bronze,
     });
@@ -1904,8 +1636,8 @@ async function buildPresentation() {
       x: MARGIN_X + 0.24,
       y: 6.06,
       w: 3.8,
-      h: 0.22,
-      fontFace: FONTS.body,
+      h: 0.20,
+      fontFace: FONTS.ui,
       fontSize: 9,
       bold: true,
       color: COLORS.gold,
@@ -1914,14 +1646,14 @@ async function buildPresentation() {
     });
 
     s.addText(
-      'We avoid wasting store-visit budget on uninterested cold scrollers. Broad video reaches locals cheaply; remarketing budget concentrates purely on educated, high-intent men ready to visit B.N. Reddy Nagar.',
+      'Instead of burning budget chasing cold clicks, video ads educate locals affordably — focusing store-visit spend strictly on pre-sold, high-intent shoppers.',
       {
         x: MARGIN_X + 0.24,
-        y: 6.32,
+        y: 6.30,
         w: CONTENT_W - 0.48,
-        h: 0.40,
-        fontFace: FONTS.body,
-        fontSize: 11,
+        h: 0.38,
+        fontFace: FONTS.ui,
+        fontSize: 11.2,
         color: COLORS.lightText,
         margin: 0,
       }
@@ -1929,77 +1661,73 @@ async function buildPresentation() {
   }
 
   // =========================================================================
-  // SLIDE 10 – PERFORMANCE MARKETING ECOSYSTEM (Charcoal Black)
+  // SLIDE 09 – STEP 08: OMNICHANNEL ECOSYSTEM (Midnight Velvet)
   // =========================================================================
   {
     const s = pptx.addSlide();
     addSlideChrome(s, {
-      theme: 'charcoal',
+      theme: 'velvet',
+      step: 'Step 08',
       kicker: 'Channel Architecture',
-      title: 'A Connected Digital Growth Strategy.',
-      slideNum: 10,
+      title: 'Six Connected Channels Driving High-Intent Walk-Ins.',
+      slideNum: 9,
     });
 
-    // Central Hub: JONTYS HUB STOREFRONT & ATTRIBUTION CORE
     const hubW = 3.10;
     const hubH = 2.00;
     const hubX = W / 2 - hubW / 2;
     const hubY = 4.20 - hubH / 2;
 
-    // Channels positioned symmetrically around the hub (3 Left, 3 Right)
     const nodes = [
-      // Left 3
       {
         side: 'left',
         row: 0,
         name: 'Instagram Ads',
         role: 'VIDEO DISCOVERY & POOL',
-        desc: 'Style reels that capture 50%+ video viewers for warm remarketing & local positioning.',
+        desc: 'Luxury reels capturing 50%+ video viewers for warm remarketing.',
       },
       {
         side: 'left',
         row: 1,
         name: 'Facebook Ads',
-        role: 'LOCAL REMARKETING',
-        desc: 'Educate warm video viewers across LB Nagar on fabric, fit & complete outfit pairings.',
+        role: 'EDUCATIONAL REMARKETING',
+        desc: 'Retarget warm LB Nagar viewers with fabric, fit & outfit education.',
       },
       {
         side: 'left',
         row: 2,
         name: 'YouTube Ads',
-        role: 'EDUCATION & STORYTELLING',
-        desc: 'Shorts & in-stream videos building brand authority and feeding high-intent remarketing.',
+        role: 'POSITIONING STORYTELLING',
+        desc: 'Shorts & in-stream videos building luxury authority & buyer intent.',
       },
-      // Right 3
       {
         side: 'right',
         row: 0,
         name: 'Google Display Ads',
-        role: 'SEQUENTIAL RECALL',
-        desc: 'Keep Jontys Hub top-of-mind with educated local viewers until they visit the store.',
+        role: 'VISUAL RECALL',
+        desc: 'Maintain polished brand recall across apps until prospects visit.',
       },
       {
         side: 'right',
         row: 1,
         name: 'Google Business Profile',
         role: 'GOAL: STORE VISIT',
-        desc: 'Maps pins, photos & reviews converting high-intent prospects into store walk-ins.',
+        desc: 'Maps pins, store visuals & reviews turning intent into walk-ins.',
       },
       {
         side: 'right',
         row: 2,
         name: 'WhatsApp Community',
         role: 'STOCK DROPS & REFERRALS',
-        desc: 'Daily/weekly new stock alerts & margin-safe referral perks driving repeat bills.',
+        desc: 'Daily/weekly new-stock updates & referral perks for repeat visits.',
       },
     ];
 
-    const nw = 3.65;
+    const nw = 3.62;
     const nh = 1.48;
     const leftX = MARGIN_X;
     const rightX = W - MARGIN_X - nw;
 
-    // Draw connector lines FIRST so they sit cleanly behind cards
     nodes.forEach((n) => {
       const ny = 1.62 + n.row * 1.76;
       const startX = n.side === 'left' ? leftX + nw : rightX;
@@ -2013,22 +1741,17 @@ async function buildPresentation() {
         w: Math.abs(endX - startX),
         h: Math.abs(endY - startY),
         flipV: (startX - endX) * (startY - endY) < 0,
-        line: {
-          color: COLORS.gold,
-          width: 1.0,
-          dashType: 'dash',
-        },
+        line: { color: COLORS.gold, width: 1.0, dashType: 'dash' },
       });
     });
 
-    // Draw Central Hub
     s.addShape('roundRect', {
       x: hubX,
       y: hubY,
       w: hubW,
       h: hubH,
       rectRadius: 0.12,
-      fill: { color: COLORS.navy },
+      fill: { color: COLORS.obsidian },
       line: { color: COLORS.gold, width: 2.0 },
     });
 
@@ -2037,7 +1760,7 @@ async function buildPresentation() {
       y: hubY + 0.24,
       w: hubW - 0.40,
       h: 0.24,
-      fontFace: FONTS.body,
+      fontFace: FONTS.ui,
       fontSize: 9,
       bold: true,
       color: COLORS.gold,
@@ -2051,7 +1774,7 @@ async function buildPresentation() {
       y: hubY + 0.56,
       w: hubW - 0.40,
       h: 0.72,
-      fontFace: FONTS.heading,
+      fontFace: FONTS.editorial,
       fontSize: 19,
       bold: true,
       color: COLORS.ivory,
@@ -2065,21 +1788,20 @@ async function buildPresentation() {
       y: hubY + 1.42,
       w: hubW - 0.30,
       h: 0.34,
-      fontFace: FONTS.body,
+      fontFace: FONTS.ui,
       fontSize: 9.5,
       color: COLORS.lightText,
       align: 'center',
       margin: 0,
     });
 
-    // Draw 6 Channel Cards
     nodes.forEach((n) => {
       const nx = n.side === 'left' ? leftX : rightX;
       const ny = 1.62 + n.row * 1.76;
 
       addCard(s, nx, ny, nw, nh, {
-        fill: COLORS.charcoalCard,
-        border: COLORS.borderCharcoal,
+        fill: COLORS.velvetCard,
+        border: COLORS.borderDark,
         accentTop: true,
         accentColor: COLORS.gold,
       });
@@ -2089,11 +1811,11 @@ async function buildPresentation() {
         y: ny + 0.14,
         w: nw - 0.40,
         h: 0.20,
-        fontFace: FONTS.body,
-        fontSize: 9,
+        fontFace: FONTS.ui,
+        fontSize: 8.8,
         bold: true,
         color: COLORS.gold,
-        charSpacing: 1.3,
+        charSpacing: 1.2,
         margin: 0,
       });
 
@@ -2102,7 +1824,7 @@ async function buildPresentation() {
         y: ny + 0.36,
         w: nw - 0.40,
         h: 0.34,
-        fontFace: FONTS.heading,
+        fontFace: FONTS.editorial,
         fontSize: 16,
         bold: true,
         color: COLORS.ivory,
@@ -2113,26 +1835,25 @@ async function buildPresentation() {
         x: nx + 0.20,
         y: ny + 0.74,
         w: nw - 0.40,
-        h: 0.62,
-        fontFace: FONTS.body,
+        h: 0.60,
+        fontFace: FONTS.ui,
         fontSize: 11,
         color: COLORS.lightText,
-        lineSpacingMultiple: 1.22,
+        lineSpacingMultiple: 1.24,
         margin: 0,
       });
     });
 
-    // Top-center & Bottom-center ecosystem notes
     addCard(s, hubX, 1.62, hubW, 1.30, {
-      fill: COLORS.charcoalCard,
-      border: COLORS.borderCharcoal,
+      fill: COLORS.velvetCard,
+      border: COLORS.borderDark,
     });
-    s.addText('OMNICHANNEL LOOP', {
+    s.addText('VIDEO TO STORE LOOP', {
       x: hubX + 0.20,
       y: 1.76,
       w: hubW - 0.40,
       h: 0.22,
-      fontFace: FONTS.body,
+      fontFace: FONTS.ui,
       fontSize: 9,
       bold: true,
       color: COLORS.gold,
@@ -2140,13 +1861,13 @@ async function buildPresentation() {
       charSpacing: 1.3,
       margin: 0,
     });
-    s.addText('Every Meta, YouTube & Display impression feeds store visits or the WhatsApp community.', {
+    s.addText('Video ads warm local shoppers; education & Maps convert them into store walk-ins.', {
       x: hubX + 0.20,
       y: 2.04,
       w: hubW - 0.40,
-      h: 0.72,
-      fontFace: FONTS.body,
-      fontSize: 11.5,
+      h: 0.70,
+      fontFace: FONTS.ui,
+      fontSize: 11.2,
       color: COLORS.lightText,
       align: 'center',
       lineSpacingMultiple: 1.25,
@@ -2154,15 +1875,15 @@ async function buildPresentation() {
     });
 
     addCard(s, hubX, 5.44, hubW, 1.18, {
-      fill: COLORS.charcoalCard,
-      border: COLORS.borderCharcoal,
+      fill: COLORS.velvetCard,
+      border: COLORS.borderDark,
     });
-    s.addText('MARGIN DISCIPLINE', {
+    s.addText('REPEAT ENGINE', {
       x: hubX + 0.20,
       y: 5.56,
       w: hubW - 0.40,
       h: 0.22,
-      fontFace: FONTS.body,
+      fontFace: FONTS.ui,
       fontSize: 9,
       bold: true,
       color: COLORS.bronze,
@@ -2170,12 +1891,12 @@ async function buildPresentation() {
       charSpacing: 1.3,
       margin: 0,
     });
-    s.addText('Paid ads build our WhatsApp community, lowering future CAC via stock drops & referrals.', {
+    s.addText('Buyers join WhatsApp Community, driving repeat visits & referrals at near-zero CAC.', {
       x: hubX + 0.20,
       y: 5.84,
       w: hubW - 0.40,
-      h: 0.66,
-      fontFace: FONTS.body,
+      h: 0.64,
+      fontFace: FONTS.ui,
       fontSize: 11,
       color: COLORS.lightText,
       align: 'center',
@@ -2185,53 +1906,54 @@ async function buildPresentation() {
   }
 
   // =========================================================================
-  // SLIDE 11 – PREMIUM CONTENT STRATEGY (Warm Ivory)
+  // SLIDE 10 – STEP 09: LUXURY CREATIVE DIRECTION (Warm Atelier Ivory)
   // =========================================================================
   {
     const s = pptx.addSlide();
     addSlideChrome(s, {
       theme: 'light',
-      kicker: 'Creative & Merchandising Direction',
-      title: 'Make Every Product Worth Discovering.',
-      slideNum: 11,
+      step: 'Step 09',
+      kicker: 'Merchandising & Lookbook Direction',
+      title: 'Luxury Visual Stories That Educate Before They Visit.',
+      slideNum: 10,
     });
 
     const products = [
       {
         img: 'cat1_casual_shirts.jpg',
         cat: 'CASUAL SHIRTS',
-        tagline: 'Upgrade Your Everyday Style.',
-        concept: 'Weekend transition reels pairing textured cottons with rolled cuffs & effortless fits.',
+        tagline: 'Effortless Refined Style.',
+        concept: 'Weekend transition reels showcasing breathable cotton weaves & sharp rolled-cuff silhouettes.',
       },
       {
         img: 'cat2_formal_shirts.jpg',
         cat: 'FORMAL SHIRTS',
-        tagline: 'Premium Style. Everyday Confidence.',
-        concept: 'Sharp collar, cuff & fabric close-ups built for office leaders and formal occasions.',
+        tagline: 'Boardroom & Evening Polish.',
+        concept: 'Macro fabric, collar & cuff close-ups educating buyers on structure and precision tailoring.',
       },
       {
         img: 'cat3_tshirts.jpg',
         cat: 'T-SHIRTS',
-        tagline: 'Dress Better. Feel Better.',
-        concept: 'Minimalist studio lookbooks highlighting heavyweight drape, neckline hold & clean tones.',
+        tagline: 'Elevated Everyday Minimal.',
+        concept: 'Clean studio lookbooks highlighting heavyweight drape, colour depth & collar hold.',
       },
       {
         img: 'cat4_jeans.jpg',
         cat: 'JEANS',
-        tagline: 'Find Your Perfect Fit.',
-        concept: '360-degree fit-check videos demonstrating tapered leg cuts, wash depth & all-day comfort.',
+        tagline: 'Tailored Denim Comfort.',
+        concept: '360-degree fit-check videos proving tapered cuts, luxury washes & day-to-night ease.',
       },
       {
         img: 'cat5_trousers.jpg',
         cat: 'TROUSERS',
-        tagline: 'Redefine Your Wardrobe.',
-        concept: 'Full-outfit styling showing how tailored trousers elevate both casual & formal shirts.',
+        tagline: 'Complete Outfit Authority.',
+        concept: 'Full-outfit pairing reels elevating both casual & formal shirts into ₹5,000+ looks.',
       },
     ];
 
-    const cw = (CONTENT_W - 0.20 * 4) / 5; // 2.246
+    const cw = (CONTENT_W - 0.20 * 4) / 5; // 2.235
     const imgW = cw;
-    const imgH = +(cw / 0.747).toFixed(3); // 3.007" exact 3:4 aspect ratio!
+    const imgH = +(cw / 0.747).toFixed(3); // 2.992
 
     products.forEach((p, i) => {
       const px = MARGIN_X + i * (cw + 0.20);
@@ -2243,7 +1965,6 @@ async function buildPresentation() {
         border: COLORS.borderLight,
       });
 
-      // Full-width 3:4 Editorial Photo
       s.addImage({
         path: img(p.img),
         x: px,
@@ -2252,12 +1973,11 @@ async function buildPresentation() {
         h: imgH,
       });
 
-      // Gold accent bar below photo
       s.addShape('rect', {
         x: px,
         y: py + imgH,
         w: cw,
-        h: 0.045,
+        h: 0.04,
         fill: { color: COLORS.gold },
         line: { type: 'none' },
       });
@@ -2267,35 +1987,35 @@ async function buildPresentation() {
         y: py + imgH + 0.14,
         w: cw - 0.28,
         h: 0.22,
-        fontFace: FONTS.body,
-        fontSize: 9,
+        fontFace: FONTS.ui,
+        fontSize: 8.8,
         bold: true,
         color: COLORS.bronze,
         charSpacing: 1.2,
         margin: 0,
       });
 
-      s.addText(`"${p.tagline}"`, {
-        x: px + 0.12,
+      s.addText(p.tagline, {
+        x: px + 0.14,
         y: py + imgH + 0.40,
-        w: cw - 0.24,
-        h: 0.52,
-        fontFace: FONTS.heading,
-        fontSize: 11.5,
+        w: cw - 0.28,
+        h: 0.50,
+        fontFace: FONTS.editorial,
+        fontSize: 13,
         bold: true,
-        color: COLORS.navy,
-        lineSpacingMultiple: 1.18,
+        color: COLORS.obsidian,
+        lineSpacingMultiple: 1.15,
         margin: 0,
       });
 
       s.addText(p.concept, {
-        x: px + 0.12,
-        y: py + imgH + 0.98,
-        w: cw - 0.24,
-        h: 1.08,
-        fontFace: FONTS.body,
+        x: px + 0.14,
+        y: py + imgH + 0.96,
+        w: cw - 0.28,
+        h: 1.10,
+        fontFace: FONTS.ui,
         fontSize: 10.2,
-        color: COLORS.slate,
+        color: COLORS.stone,
         lineSpacingMultiple: 1.25,
         margin: 0,
       });
@@ -2303,19 +2023,19 @@ async function buildPresentation() {
   }
 
   // =========================================================================
-  // SLIDE 12 – REVENUE AND PROFITABILITY (Deep Midnight Navy)
+  // SLIDE 11 – STEP 10: MARGIN-SAFE BASKET GROWTH (Obsidian Black)
   // =========================================================================
   {
     const s = pptx.addSlide();
     addSlideChrome(s, {
-      theme: 'navy',
-      kicker: 'Commercial & Unit-Economics Discipline',
-      title: 'Grow Sales Without Compromising Margins.',
-      slideNum: 12,
+      theme: 'obsidian',
+      step: 'Step 10',
+      kicker: 'Commercial & Margin Discipline',
+      title: 'Scale Store Sales Without Compromising < 25% Margin.',
+      slideNum: 11,
     });
 
-    // Top Left 3 Verified Baseline Cards
-    const kpiW = 1.92;
+    const kpiW = 1.90;
     const baselines = [
       { label: 'AVG PRODUCT PRICE', val: '₹2,000' },
       { label: 'AVG CUSTOMER BILL', val: '₹5,000' },
@@ -2323,8 +2043,8 @@ async function buildPresentation() {
     ];
     baselines.forEach((b, i) => {
       const bx = MARGIN_X + i * (kpiW + 0.14);
-      addCard(s, bx, 1.56, kpiW, 1.10, {
-        fill: COLORS.navyCard,
+      addCard(s, bx, 1.56, kpiW, 1.08, {
+        fill: COLORS.obsidianCard,
         border: COLORS.gold,
         accentTop: true,
       });
@@ -2332,20 +2052,20 @@ async function buildPresentation() {
         x: bx + 0.12,
         y: 1.70,
         w: kpiW - 0.24,
-        h: 0.24,
-        fontFace: FONTS.body,
-        fontSize: 8.5,
+        h: 0.22,
+        fontFace: FONTS.ui,
+        fontSize: 8.2,
         bold: true,
         color: COLORS.lightMuted,
-        charSpacing: 0.9,
+        charSpacing: 0.8,
         margin: 0,
       });
       s.addText(b.val, {
         x: bx + 0.12,
-        y: 1.98,
+        y: 1.96,
         w: kpiW - 0.24,
-        h: 0.52,
-        fontFace: FONTS.heading,
+        h: 0.50,
+        fontFace: FONTS.editorial,
         fontSize: 22,
         bold: true,
         color: COLORS.gold,
@@ -2353,18 +2073,17 @@ async function buildPresentation() {
       });
     });
 
-    // Left Bottom Native Editable Chart: Illustrative Basket Value Comparison
-    addCard(s, MARGIN_X, 2.82, 6.04, 3.96, {
-      fill: COLORS.navyCard,
-      border: COLORS.borderDark,
+    addCard(s, MARGIN_X, 2.80, 5.98, 3.98, {
+      fill: COLORS.obsidianCard,
+      border: COLORS.borderObsidian,
     });
 
-    s.addText('ILLUSTRATIVE BASKET SCENARIOS (₹)  —  FOR PLANNING ONLY', {
+    s.addText('BASKET VALUE PROGRESSION (₹)', {
       x: MARGIN_X + 0.20,
-      y: 2.96,
-      w: 5.64,
+      y: 2.94,
+      w: 5.58,
       h: 0.24,
-      fontFace: FONTS.body,
+      fontFace: FONTS.ui,
       fontSize: 9.5,
       bold: true,
       color: COLORS.gold,
@@ -2372,12 +2091,12 @@ async function buildPresentation() {
       margin: 0,
     });
 
-    s.addText('Complete outfit styling multiplies gross profit headroom per ad click compared to single-item sales.', {
+    s.addText('Curated outfit styling unlocks higher gross-profit headroom per store visit.', {
       x: MARGIN_X + 0.20,
-      y: 3.22,
-      w: 5.64,
-      h: 0.38,
-      fontFace: FONTS.body,
+      y: 3.20,
+      w: 5.58,
+      h: 0.34,
+      fontFace: FONTS.ui,
       fontSize: 10.5,
       color: COLORS.lightText,
       margin: 0,
@@ -2388,15 +2107,15 @@ async function buildPresentation() {
       [
         {
           name: 'Order Value (₹)',
-          labels: ['Single Item\n(Baseline ₹2,000)', 'Current Avg Bill\n(2.5 Items)', 'Outfit Pairing*\n(Illustrative)'],
+          labels: ['Single Item\n(₹2,000 Base)', 'Current Avg Bill\n(2.5 Items)', 'Complete Outfit*\n(3-Item Styling)'],
           values: [2000, 5000, 7000],
         },
       ],
       {
         x: MARGIN_X + 0.22,
-        y: 3.66,
-        w: 5.60,
-        h: 2.66,
+        y: 3.62,
+        w: 5.54,
+        h: 2.70,
         barDir: 'col',
         chartColors: [COLORS.gold],
         showLegend: false,
@@ -2410,101 +2129,96 @@ async function buildPresentation() {
         catAxisLabelColor: COLORS.ivory,
         catAxisLabelFontSize: 9.5,
         catGridLine: { style: 'none' },
-        valGridLine: { color: COLORS.borderDark, size: 0.5 },
+        valGridLine: { color: COLORS.borderObsidian, size: 0.5 },
         dataLabelColor: COLORS.ivory,
         dataLabelFontSize: 10.5,
         dataLabelFontBold: true,
         showValue: true,
         dataLabelFormatCode: '₹#,##0',
-        plotArea: { fill: { color: COLORS.navyCard } },
+        plotArea: { fill: { color: COLORS.obsidianCard } },
       }
     );
 
-    s.addText('*Illustrative 3-item outfit scenario (e.g. Shirt + Trouser/Jeans + T-Shirt). Not a revenue forecast.', {
+    s.addText('*Illustrative 3-piece outfit pairing (e.g. Shirt + Trouser/Jeans + Tee).', {
       x: MARGIN_X + 0.20,
-      y: 6.42,
-      w: 5.64,
-      h: 0.26,
-      fontFace: FONTS.body,
+      y: 6.44,
+      w: 5.58,
+      h: 0.24,
+      fontFace: FONTS.ui,
       fontSize: 8.5,
       italic: true,
       color: COLORS.lightMuted,
       margin: 0,
     });
 
-    // Right Column: 5 Profitability Principles
-    const rx = MARGIN_X + 6.30;
-    const rw = CONTENT_W - 6.30; // 5.733
+    const rx = MARGIN_X + 6.26;
+    const rw = CONTENT_W - 6.26;
 
     const principles = [
       {
-        title: 'Revenue Is Not Equal to Profit',
-        desc: 'With < 25% gross margin, scaling clicks without high buyer intent erodes net store cash.',
+        title: 'Filter High-Intent Viewers First',
+        desc: 'With < 25% gross margin, focus conversion budget strictly on warm 50%+ video viewers ready to visit.',
       },
       {
-        title: 'Remarket Educated Video Viewers',
-        desc: 'Focus conversion spend on warm 50%+ video viewers who already understand our quality & fit.',
+        title: 'Lead With Complete Outfit Styling',
+        desc: 'Educate buyers on Shirt + Trouser/Jeans pairings so walk-ins average ₹5,000+ baskets over single items.',
       },
       {
-        title: 'Complete Outfit Recommendations',
-        desc: 'Pair Shirts + Jeans/Trousers so each store visit converts at ₹5,000+ rather than ₹2,000.',
+        title: 'Zero Blanket Storewide Discounts',
+        desc: 'Protect luxury brand positioning—never train local buyers to wait for clearance sales.',
       },
       {
-        title: 'Structured Referrals Over Blanket Discounts',
-        desc: 'Protect positioning—use referral perks only on verified repeat/referred bills, never storewide cuts.',
-      },
-      {
-        title: 'WhatsApp Community & Repeat Growth',
-        desc: 'Daily/weekly stock drops bring high-intent community members back at near-zero CAC.',
+        title: 'WhatsApp Community & Referral Perks',
+        desc: 'Weekly new-stock updates & member-only referral rewards drive repeat visits at near-zero ad cost.',
       },
     ];
 
     principles.forEach((pr, i) => {
-      const py = 1.56 + i * 1.06;
-      addCard(s, rx, py, rw, 0.94, {
-        fill: COLORS.charcoal,
+      const py = 1.56 + i * 1.32;
+      addCard(s, rx, py, rw, 1.18, {
+        fill: COLORS.velvet,
         border: COLORS.borderDark,
         accentLeft: true,
-        accentColor: i === 0 || i === 3 ? COLORS.bronze : COLORS.gold,
+        accentColor: i === 2 ? COLORS.bronze : COLORS.gold,
       });
       s.addText(pr.title, {
         x: rx + 0.22,
-        y: py + 0.12,
-        w: rw - 0.36,
-        h: 0.26,
-        fontFace: FONTS.heading,
-        fontSize: 13.5,
+        y: py + 0.16,
+        w: rw - 0.38,
+        h: 0.28,
+        fontFace: FONTS.editorial,
+        fontSize: 15,
         bold: true,
         color: COLORS.gold,
         margin: 0,
       });
       s.addText(pr.desc, {
         x: rx + 0.22,
-        y: py + 0.42,
-        w: rw - 0.36,
-        h: 0.44,
-        fontFace: FONTS.body,
-        fontSize: 11,
+        y: py + 0.50,
+        w: rw - 0.38,
+        h: 0.56,
+        fontFace: FONTS.ui,
+        fontSize: 11.5,
         color: COLORS.lightText,
-        lineSpacingMultiple: 1.2,
+        lineSpacingMultiple: 1.24,
         margin: 0,
       });
     });
   }
 
   // =========================================================================
-  // SLIDE 13 – 90-DAY EXECUTION ROADMAP (Warm Ivory)
+  // SLIDE 12 – STEP 11: 90-DAY STEP-BY-STEP EXECUTION (Warm Atelier Ivory)
   // =========================================================================
   {
     const s = pptx.addSlide();
     addSlideChrome(s, {
       theme: 'light',
-      kicker: 'Implementation Plan',
-      title: 'From Strategy to Measurable Growth.',
-      slideNum: 13,
+      step: 'Step 11',
+      kicker: '90-Day Rollout Plan',
+      title: 'Step-by-Step Execution From Launch to Scale.',
+      slideNum: 12,
     });
 
-    // Horizontal timeline spine
     s.addShape('line', {
       x: MARGIN_X + 0.4,
       y: 2.02,
@@ -2516,63 +2230,58 @@ async function buildPresentation() {
     const phases = [
       {
         days: 'DAYS 01 – 15',
-        title: 'Foundation & Positioning',
-        themeBg: COLORS.navy,
+        title: 'Positioning & Video Shoot',
+        themeBg: COLORS.obsidian,
         themeTxt: COLORS.ivory,
         activities: [
-          'Audit Instagram, Facebook & Google Business Profile',
-          'Set custom Video-View Remarketing audiences & Meta Pixel',
-          'Define <25% margin guardrails & referral reward caps',
-          'Film fabric, fit & styling videos across 5 categories',
+          'Refresh Instagram, Facebook & Google Business Profile aesthetics',
+          'Set up Meta Pixel & custom Video-View Remarketing audiences',
+          'Shoot fabric, fit & complete outfit reels across 5 categories',
         ],
-        milestone: 'Positioning, tracking & video assets ready',
+        milestone: 'Luxury assets & tracking ready',
       },
       {
         days: 'DAYS 16 – 30',
         title: 'Video Capture & Education',
         themeBg: COLORS.ivoryCard,
-        themeTxt: COLORS.navy,
+        themeTxt: COLORS.obsidian,
         activities: [
           'Launch local Instagram Reels, Facebook & YouTube video ads',
-          'Pool 50%+ video viewers into warm remarketing lists',
-          'Run fabric & fit education ads via Meta & Display',
-          'Start weekly WhatsApp new-stock update broadcasts',
+          'Pool 50%+ video viewers and serve fabric/fit education ads',
+          'Begin weekly WhatsApp Community new-stock drop alerts',
         ],
-        milestone: 'Warm video-view remarketing audience built',
+        milestone: 'Warm educated audience live',
       },
       {
         days: 'DAYS 31 – 60',
         title: 'High-Intent Store Visits',
         themeBg: COLORS.ivoryCard,
-        themeTxt: COLORS.navy,
+        themeTxt: COLORS.obsidian,
         activities: [
-          'Retarget educated viewers with Maps & Store-Visit CTAs',
-          'Filter high-intent buyers across 4 male shopper personas',
-          'Onboard store walk-ins into the WhatsApp Community',
-          'Verify in-store bills from remarketing & stock alerts',
+          'Retarget educated viewers with Maps pins & store-visit hooks',
+          'Onboard walk-in buyers into the WhatsApp VIP Community',
+          'Track in-store bills back to remarketing & stock alerts',
         ],
-        milestone: 'High-intent walk-ins & validated visit cost',
+        milestone: 'High-intent walk-ins flowing',
       },
       {
         days: 'DAYS 61 – 90',
-        title: 'Scale & Referral Loops',
-        themeBg: COLORS.charcoal,
+        title: 'Community & Referral Scale',
+        themeBg: COLORS.velvet,
         themeTxt: COLORS.ivory,
         activities: [
-          'Shift spend to top store-visit & gross-profit creatives',
-          'Expand winning remarketing into LB Nagar & Kothapet',
-          'Activate WhatsApp customer referral perks & daily drops',
-          'Deliver 90-day gross profit vs. ad spend review',
+          'Scale top store-visit & margin-performing video creatives',
+          'Launch structured customer referral rewards via WhatsApp',
+          'Expand winning pools into Secondary & Kothapet zones',
         ],
-        milestone: 'Repeatable, community-led B2C growth',
+        milestone: 'Self-compounding B2C engine',
       },
     ];
 
-    const pw = (CONTENT_W - 0.22 * 3) / 4; // 2.843
+    const pw = (CONTENT_W - 0.22 * 3) / 4; // 2.828
     phases.forEach((ph, i) => {
       const px = MARGIN_X + i * (pw + 0.22);
 
-      // Timeline node circle
       s.addShape('ellipse', {
         x: px + pw / 2 - 0.16,
         y: 1.86,
@@ -2587,16 +2296,15 @@ async function buildPresentation() {
         y: 1.86,
         w: 0.32,
         h: 0.32,
-        fontFace: FONTS.heading,
+        fontFace: FONTS.ui,
         fontSize: 9.5,
         bold: true,
-        color: COLORS.navy,
+        color: COLORS.obsidian,
         align: 'center',
         valign: 'middle',
         margin: 0,
       });
 
-      // Phase Card
       const py = 2.38;
       const phH = 4.40;
       addCard(s, px, py, pw, phH, {
@@ -2608,10 +2316,10 @@ async function buildPresentation() {
 
       s.addText(ph.days, {
         x: px + 0.18,
-        y: py + 0.14,
+        y: py + 0.16,
         w: pw - 0.36,
         h: 0.22,
-        fontFace: FONTS.body,
+        fontFace: FONTS.ui,
         fontSize: 9,
         bold: true,
         color: COLORS.gold,
@@ -2621,11 +2329,11 @@ async function buildPresentation() {
 
       s.addText(ph.title, {
         x: px + 0.18,
-        y: py + 0.38,
+        y: py + 0.40,
         w: pw - 0.36,
         h: 0.44,
-        fontFace: FONTS.heading,
-        fontSize: 14,
+        fontFace: FONTS.editorial,
+        fontSize: 15,
         bold: true,
         color: ph.themeTxt,
         valign: 'middle',
@@ -2634,7 +2342,7 @@ async function buildPresentation() {
 
       s.addShape('line', {
         x: px + 0.18,
-        y: py + 0.86,
+        y: py + 0.90,
         w: pw - 0.36,
         h: 0,
         line: { color: ph.themeBg === COLORS.ivoryCard ? COLORS.borderLight : COLORS.borderDark, width: 0.6 },
@@ -2647,34 +2355,33 @@ async function buildPresentation() {
 
       s.addText(actBullets, {
         x: px + 0.18,
-        y: py + 0.96,
+        y: py + 1.04,
         w: pw - 0.36,
-        h: 2.52,
-        fontFace: FONTS.body,
-        fontSize: 9.8,
-        color: ph.themeBg === COLORS.ivoryCard ? COLORS.slate : COLORS.lightText,
-        lineSpacingMultiple: 1.16,
-        paraSpaceAfter: 4,
+        h: 2.38,
+        fontFace: FONTS.ui,
+        fontSize: 10.6,
+        color: ph.themeBg === COLORS.ivoryCard ? COLORS.stone : COLORS.lightText,
+        lineSpacingMultiple: 1.22,
+        paraSpaceAfter: 8,
         valign: 'top',
         margin: 0,
       });
 
-      // Milestone footer strip inside card
       s.addShape('rect', {
         x: px + 0.16,
         y: py + 3.56,
         w: pw - 0.32,
         h: 0.68,
-        fill: { color: ph.themeBg === COLORS.ivoryCard ? COLORS.ivorySoft : '1F2937' },
+        fill: { color: ph.themeBg === COLORS.ivoryCard ? COLORS.ivorySoft : '1D2330' },
         line: { color: COLORS.gold, width: 0.6 },
       });
 
-      s.addText('EXPECTED MILESTONE', {
+      s.addText('MILESTONE', {
         x: px + 0.26,
         y: py + 3.63,
         w: pw - 0.52,
         h: 0.18,
-        fontFace: FONTS.body,
+        fontFace: FONTS.ui,
         fontSize: 7.5,
         bold: true,
         color: COLORS.bronze,
@@ -2684,44 +2391,44 @@ async function buildPresentation() {
 
       s.addText(ph.milestone, {
         x: px + 0.26,
-        y: py + 3.82,
+        y: py + 3.83,
         w: pw - 0.52,
-        h: 0.36,
-        fontFace: FONTS.heading,
-        fontSize: 10,
+        h: 0.34,
+        fontFace: FONTS.ui,
+        fontSize: 10.5,
         bold: true,
-        color: ph.themeBg === COLORS.ivoryCard ? COLORS.navy : COLORS.ivory,
+        color: ph.themeBg === COLORS.ivoryCard ? COLORS.obsidian : COLORS.ivory,
         margin: 0,
       });
     });
   }
 
   // =========================================================================
-  // SLIDE 14 – PERFORMANCE MEASUREMENT (Charcoal Black)
+  // SLIDE 13 – STEP 12: MEASUREMENT LOOP (Midnight Velvet)
   // =========================================================================
   {
     const s = pptx.addSlide();
     addSlideChrome(s, {
-      theme: 'charcoal',
-      kicker: 'Executive BI Dashboard Framework',
-      title: 'Measuring What Actually Matters.',
-      slideNum: 14,
+      theme: 'velvet',
+      step: 'Step 12',
+      kicker: 'Performance Measurement',
+      title: 'Measuring What Grows Store Gross Profit.',
+      slideNum: 13,
     });
 
-    // North Star Highlight Banner
     addCard(s, MARGIN_X, 1.54, CONTENT_W, 1.04, {
-      fill: COLORS.navy,
+      fill: COLORS.obsidian,
       border: COLORS.gold,
       accentLeft: true,
       accentColor: COLORS.gold,
     });
 
-    s.addText('NORTH STAR PROFITABILITY METRIC  •  TRACKED WEEKLY', {
+    s.addText('NORTH STAR METRIC  •  TRACKED WEEKLY', {
       x: MARGIN_X + 0.26,
-      y: 1.66,
+      y: 1.68,
       w: 6.5,
-      h: 0.24,
-      fontFace: FONTS.body,
+      h: 0.22,
+      fontFace: FONTS.ui,
       fontSize: 9.5,
       bold: true,
       color: COLORS.gold,
@@ -2729,128 +2436,110 @@ async function buildPresentation() {
       margin: 0,
     });
 
-    s.addText('FRAMEWORK ONLY — NO INVENTED CAMPAIGN RESULTS', {
-      x: W - MARGIN_X - 4.4,
-      y: 1.66,
-      w: 4.15,
-      h: 0.24,
-      fontFace: FONTS.body,
-      fontSize: 8.5,
-      bold: true,
-      color: COLORS.gold,
-      align: 'right',
-      valign: 'middle',
-      margin: 0,
-    });
-
-    s.addText('Marketing-Generated Gross Profit Versus Advertising Spend', {
+    s.addText('Marketing-Generated Gross Profit vs. Total Advertising Spend', {
       x: MARGIN_X + 0.26,
       y: 1.98,
       w: CONTENT_W - 0.52,
       h: 0.44,
-      fontFace: FONTS.heading,
-      fontSize: 19.5,
+      fontFace: FONTS.editorial,
+      fontSize: 20.5,
       bold: true,
       color: COLORS.ivory,
       margin: 0,
     });
 
-    // 3 Columns of Dashboard Metrics (Covering all 10 required KPIs cleanly)
-    const colW = (CONTENT_W - 0.26 * 2) / 3; // 3.837
+    const colW = (CONTENT_W - 0.26 * 2) / 3; // 3.817
     const groups = [
       {
         stage: 'STAGE 01  •  VIDEO & REMARKETING POOL',
-        color: COLORS.slate,
+        color: COLORS.stone,
         metrics: [
-          { name: 'Local Video Reach', desc: 'Unique men reached in LB Nagar radius.' },
-          { name: 'Video Viewers (50%+)', desc: 'Warm audience captured for sequential education.' },
-          { name: 'High-Intent Enquiries', desc: 'WhatsApp & DM sizing/stock questions.' },
+          { name: 'Video Viewers (50%+)', desc: 'Local men entering the warm educational remarketing audience.' },
+          { name: 'High-Intent Enquiries', desc: 'WhatsApp & Instagram DMs requesting fit, sizing, or fresh arrivals.' },
         ],
       },
       {
-        stage: 'STAGE 02  •  GOAL: HIGH-INTENT WALK-INS',
+        stage: 'STAGE 02  •  HIGH-INTENT STORE VISITS',
         color: COLORS.bronze,
         metrics: [
-          { name: 'Store Directions', desc: 'Google Maps & remarketing route taps to store.' },
-          { name: 'Educated Store Visits', desc: 'Walk-in shoppers pre-sold via video positioning.' },
-          { name: 'Verified Purchases', desc: 'In-store bills attributed to remarketing & drops.' },
+          { name: 'Maps & Store Directions', desc: 'Route taps driven by educated remarketing & Google Business Profile.' },
+          { name: 'Educated Store Walk-Ins', desc: 'Pre-sold local buyers visiting to try complete outfits in store.' },
         ],
       },
       {
         stage: 'STAGE 03  •  COMMERCIAL PROFITABILITY',
         color: COLORS.gold,
         metrics: [
-          { name: 'Average Bill Value', desc: 'Tracked against ₹5,000 store benchmark.' },
-          { name: 'Marketing-Attributed Revenue', desc: 'Total sales verified from tracked visitors.' },
-          { name: 'Gross Profit Contribution', desc: 'Net gross profit earned after product cost.' },
-          { name: 'Repeat & Referral Purchases', desc: 'Repeat visits & referred bills from WhatsApp community.' },
+          { name: 'Average Bill & Gross Profit', desc: 'Bills tracked against ₹5,000 benchmark and < 25% margin health.' },
+          { name: 'Repeat & Referral Purchases', desc: 'Zero-CAC repeat bills from WhatsApp stock drops & member referrals.' },
         ],
       },
     ];
 
     groups.forEach((g, colIdx) => {
       const gx = MARGIN_X + colIdx * (colW + 0.26);
-      const gy = 2.80;
-      const gh = 3.98;
+      const gy = 2.82;
+      const gh = 3.94;
 
       addCard(s, gx, gy, colW, gh, {
-        fill: COLORS.charcoalCard,
-        border: COLORS.borderCharcoal,
+        fill: COLORS.velvetCard,
+        border: COLORS.borderDark,
         accentTop: true,
-        accentColor: g.color,
+        accentColor: g.color === COLORS.stone ? COLORS.lightMuted : g.color,
       });
 
       s.addText(g.stage, {
-        x: gx + 0.20,
-        y: gy + 0.18,
-        w: colW - 0.40,
+        x: gx + 0.22,
+        y: gy + 0.20,
+        w: colW - 0.44,
         h: 0.26,
-        fontFace: FONTS.body,
+        fontFace: FONTS.ui,
         fontSize: 8.8,
         bold: true,
-        color: g.color === COLORS.slate ? COLORS.lightMuted : g.color,
+        color: g.color === COLORS.stone ? COLORS.lightMuted : g.color,
         charSpacing: 0.9,
         margin: 0,
       });
 
-      const slotH = g.metrics.length === 4 ? 0.82 : 1.06;
+      const slotH = 1.54;
       g.metrics.forEach((m, mIdx) => {
-        const my = gy + 0.56 + mIdx * slotH;
+        const my = gy + 0.62 + mIdx * (slotH + 0.14);
         s.addShape('rect', {
-          x: gx + 0.20,
+          x: gx + 0.22,
           y: my,
-          w: colW - 0.40,
-          h: slotH - 0.12,
-          fill: { color: COLORS.charcoal },
-          line: { color: COLORS.borderCharcoal, width: 0.6 },
+          w: colW - 0.44,
+          h: slotH,
+          fill: { color: COLORS.obsidian },
+          line: { color: COLORS.borderObsidian, width: 0.65 },
         });
         s.addShape('rect', {
-          x: gx + 0.20,
+          x: gx + 0.22,
           y: my,
           w: 0.05,
-          h: slotH - 0.12,
-          fill: { color: g.color },
+          h: slotH,
+          fill: { color: g.color === COLORS.stone ? COLORS.lightMuted : g.color },
           line: { type: 'none' },
         });
         s.addText(m.name, {
-          x: gx + 0.36,
-          y: my + 0.08,
-          w: colW - 0.66,
-          h: 0.26,
-          fontFace: FONTS.heading,
-          fontSize: 13,
+          x: gx + 0.40,
+          y: my + 0.22,
+          w: colW - 0.76,
+          h: 0.34,
+          fontFace: FONTS.editorial,
+          fontSize: 15,
           bold: true,
           color: COLORS.ivory,
           margin: 0,
         });
         s.addText(m.desc, {
-          x: gx + 0.36,
-          y: my + 0.36,
-          w: colW - 0.66,
-          h: slotH - 0.52,
-          fontFace: FONTS.body,
-          fontSize: 10,
+          x: gx + 0.40,
+          y: my + 0.64,
+          w: colW - 0.76,
+          h: 0.72,
+          fontFace: FONTS.ui,
+          fontSize: 11.2,
           color: COLORS.lightMuted,
+          lineSpacingMultiple: 1.28,
           margin: 0,
         });
       });
@@ -2858,13 +2547,12 @@ async function buildPresentation() {
   }
 
   // =========================================================================
-  // SLIDE 15 – CLOSING (Deep Midnight Navy)
+  // SLIDE 14 – CLOSING (Obsidian Black)
   // =========================================================================
   {
     const s = pptx.addSlide();
-    s.background = { color: COLORS.navy };
+    s.background = { color: COLORS.obsidian };
 
-    // Right striking full-height editorial portrait (exact 3:4 -> 5.60 x 7.50)
     s.addImage({
       path: img('slide14_closing.jpg'),
       x: 7.733,
@@ -2875,80 +2563,78 @@ async function buildPresentation() {
 
     s.addShape('line', {
       x: 7.733,
-      y: 0.65,
+      y: 0.60,
       w: 0,
-      h: 6.2,
-      line: { color: COLORS.gold, width: 1.0 },
+      h: 6.30,
+      line: { color: COLORS.gold, width: 0.9 },
     });
 
-    // Left content column
     s.addShape('rect', {
-      x: 0.75,
-      y: 0.72,
+      x: 0.78,
+      y: 0.74,
       w: 0.45,
-      h: 0.04,
+      h: 0.035,
       fill: { color: COLORS.gold },
       line: { type: 'none' },
     });
 
-    s.addText('PARTNERSHIP ROADMAP', {
-      x: 1.32,
-      y: 0.61,
+    s.addText('PARTNERSHIP NEXT STEPS', {
+      x: 1.34,
+      y: 0.63,
       w: 4.5,
       h: 0.26,
-      fontFace: FONTS.body,
-      fontSize: 10,
+      fontFace: FONTS.ui,
+      fontSize: 9.8,
       bold: true,
       color: COLORS.gold,
       charSpacing: 2.0,
       margin: 0,
     });
 
-    s.addText("LET'S BUILD THE NEXT GROWTH\nCHAPTER OF JONTYS HUB.", {
-      x: 0.75,
-      y: 1.06,
-      w: 6.55,
-      h: 1.25,
-      fontFace: FONTS.heading,
-      fontSize: 24.5,
+    s.addText("Let's Build Jontys Hub's\nNext Luxury Chapter.", {
+      x: 0.78,
+      y: 1.10,
+      w: 6.50,
+      h: 1.20,
+      fontFace: FONTS.editorial,
+      fontSize: 28,
       bold: true,
       color: COLORS.ivory,
-      lineSpacingMultiple: 1.20,
+      lineSpacingMultiple: 1.2,
       margin: 0,
     });
 
-    // 3 Partnership Stages: UNDERSTAND, BUILD, GROW
     const stages = [
       {
         label: 'UNDERSTAND',
-        desc: 'Understand the business, margin structure and local male shoppers.',
+        desc: 'Align on store margins, category priorities & local male buyers.',
       },
       {
         label: 'BUILD',
-        desc: 'Develop the digital marketing, visual content and tracking foundation.',
+        desc: 'Launch video-view remarketing, educational lookbooks & WhatsApp tracking.',
       },
       {
         label: 'GROW',
-        desc: 'Optimise profitable customer acquisition, store visits and repeat retention.',
+        desc: 'Convert high-intent walk-ins into ₹5,000+ outfits & repeat referrals.',
       },
     ];
 
     stages.forEach((st, i) => {
-      const sy = 2.74 + i * 0.96;
-      addCard(s, 0.75, sy, 6.40, 0.82, {
-        fill: COLORS.navyCard,
-        border: COLORS.borderDark,
+      const sy = 2.76 + i * 0.96;
+      addCard(s, 0.78, sy, 6.35, 0.82, {
+        fill: COLORS.obsidianCard,
+        border: COLORS.borderObsidian,
         accentLeft: true,
         accentColor: COLORS.gold,
       });
 
       s.addText(`0${i + 1}`, {
-        x: 0.96,
+        x: 0.98,
         y: sy + 0.18,
-        w: 0.42,
+        w: 0.44,
         h: 0.44,
-        fontFace: FONTS.heading,
-        fontSize: 16,
+        fontFace: FONTS.editorial,
+        fontSize: 18,
         bold: true,
         color: COLORS.gold,
         valign: 'middle',
@@ -2956,73 +2642,72 @@ async function buildPresentation() {
       });
 
       s.addText(st.label, {
-        x: 1.46,
+        x: 1.50,
         y: sy + 0.10,
-        w: 5.45,
+        w: 5.40,
         h: 0.26,
-        fontFace: FONTS.heading,
-        fontSize: 13.5,
+        fontFace: FONTS.ui,
+        fontSize: 13,
         bold: true,
         color: COLORS.ivory,
-        charSpacing: 1.0,
+        charSpacing: 1.2,
         margin: 0,
       });
 
       s.addText(st.desc, {
-        x: 1.46,
+        x: 1.50,
         y: sy + 0.38,
-        w: 5.45,
+        w: 5.40,
         h: 0.34,
-        fontFace: FONTS.body,
-        fontSize: 11.5,
+        fontFace: FONTS.ui,
+        fontSize: 11.2,
         color: COLORS.lightText,
         margin: 0,
       });
     });
 
-    // Closing statement box
     s.addShape('line', {
-      x: 0.75,
-      y: 5.74,
-      w: 6.40,
+      x: 0.78,
+      y: 5.76,
+      w: 6.35,
       h: 0,
       line: { color: COLORS.gold, width: 0.8 },
     });
 
     s.addText(
-      "Our objective is to help Jontys Hub reach the right customers, attract more shoppers and build a stronger premium men's fashion business through measurable performance marketing.",
+      '"Our goal is clear: educate local men through compelling video, position Jontys Hub as LB Nagar’s luxury destination, and turn high intent into store visits."',
       {
-        x: 0.75,
-        y: 5.88,
-        w: 6.40,
-        h: 0.90,
-        fontFace: FONTS.body,
+        x: 0.78,
+        y: 5.92,
+        w: 6.35,
+        h: 0.88,
+        fontFace: FONTS.editorial,
         fontSize: 12.5,
         italic: true,
         color: COLORS.ivory,
-        lineSpacingMultiple: 1.28,
+        lineSpacingMultiple: 1.3,
         margin: 0,
       }
     );
 
     s.addText('Jontys Hub  •  B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079', {
-      x: 0.75,
+      x: 0.78,
       y: 7.00,
       w: 5.2,
       h: 0.26,
-      fontFace: FONTS.body,
-      fontSize: 9.5,
+      fontFace: FONTS.ui,
+      fontSize: 9,
       color: COLORS.lightMuted,
       margin: 0,
     });
 
-    s.addText('15  /  15', {
+    s.addText('14  /  14', {
       x: 6.15,
       y: 7.00,
-      w: 1.0,
+      w: 0.98,
       h: 0.26,
-      fontFace: FONTS.heading,
-      fontSize: 10,
+      fontFace: FONTS.ui,
+      fontSize: 9.5,
       bold: true,
       color: COLORS.gold,
       align: 'right',
