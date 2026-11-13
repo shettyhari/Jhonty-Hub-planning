@@ -56,7 +56,7 @@ function addSlideChrome(slide, opts) {
     kicker = '',
     title = '',
     slideNum = 2,
-    totalSlides = 14,
+    totalSlides = 15,
   } = opts;
 
   const isDark = theme !== 'light';
@@ -110,10 +110,19 @@ function addSlideChrome(slide, opts) {
     margin: 0,
   });
 
+  // Client Brand Logo in Header
+  slide.addImage({
+    path: img('jh_logo.png'),
+    x: W - MARGIN_X - 4.45,
+    y: 0.32,
+    w: 0.22,
+    h: 0.28,
+  });
+
   slide.addText('JONTYS HUB  |  MENSWEAR ATELIER', {
-    x: W - MARGIN_X - 4.2,
+    x: W - MARGIN_X - 4.15,
     y: 0.36,
-    w: 4.2,
+    w: 4.15,
     h: 0.25,
     fontFace: FONTS.ui,
     fontSize: 9,
@@ -255,9 +264,17 @@ async function buildPresentation() {
       line: { color: COLORS.gold, width: 0.9 },
     });
 
+    s.addImage({
+      path: img('jh_logo.png'),
+      x: 0.78,
+      y: 0.42,
+      w: 0.48,
+      h: 0.60,
+    });
+
     s.addShape('rect', {
       x: 0.78,
-      y: 0.88,
+      y: 1.12,
       w: 0.55,
       h: 0.035,
       fill: { color: COLORS.gold },
@@ -266,7 +283,7 @@ async function buildPresentation() {
 
     s.addText("LUXURY MEN'S FASHION • B2C GROWTH BLUEPRINT", {
       x: 0.78,
-      y: 1.06,
+      y: 1.28,
       w: 6.5,
       h: 0.28,
       fontFace: FONTS.ui,
@@ -279,7 +296,7 @@ async function buildPresentation() {
 
     s.addText('JONTYS HUB', {
       x: 0.78,
-      y: 1.85,
+      y: 1.95,
       w: 6.5,
       h: 0.95,
       fontFace: FONTS.editorial,
@@ -358,7 +375,7 @@ async function buildPresentation() {
       margin: 0,
     });
 
-    s.addText('01  /  14', {
+    s.addText('01  /  15', {
       x: 0.78,
       y: 7.04,
       w: 1.5,
@@ -1761,13 +1778,21 @@ async function buildPresentation() {
       line: { color: COLORS.gold, width: 2.0 },
     });
 
+    s.addImage({
+      path: img('jh_logo.png'),
+      x: hubX + hubW / 2 - 0.22,
+      y: hubY + 0.15,
+      w: 0.44,
+      h: 0.55,
+    });
+
     s.addText('CENTRAL GROWTH ENGINE', {
       x: hubX + 0.20,
-      y: hubY + 0.24,
+      y: hubY + 0.74,
       w: hubW - 0.40,
-      h: 0.24,
+      h: 0.20,
       fontFace: FONTS.ui,
-      fontSize: 9,
+      fontSize: 8.5,
       bold: true,
       color: COLORS.gold,
       align: 'center',
@@ -1777,11 +1802,11 @@ async function buildPresentation() {
 
     s.addText('JONTYS HUB\nB2C COMMUNITY', {
       x: hubX + 0.20,
-      y: hubY + 0.56,
+      y: hubY + 0.96,
       w: hubW - 0.40,
-      h: 0.72,
+      h: 0.56,
       fontFace: FONTS.editorial,
-      fontSize: 19,
+      fontSize: 16.5,
       bold: true,
       color: COLORS.ivory,
       align: 'center',
@@ -1791,11 +1816,11 @@ async function buildPresentation() {
 
     s.addText('Store Visits • Stock Drops • Referrals', {
       x: hubX + 0.15,
-      y: hubY + 1.42,
+      y: hubY + 1.56,
       w: hubW - 0.30,
-      h: 0.34,
+      h: 0.28,
       fontFace: FONTS.ui,
-      fontSize: 9.5,
+      fontSize: 8.8,
       color: COLORS.lightText,
       align: 'center',
       margin: 0,
@@ -2561,7 +2586,321 @@ async function buildPresentation() {
   }
 
   // =========================================================================
-  // SLIDE 14 – CLOSING (Obsidian Black)
+  // SLIDE 14 – STEP 13: COMMERCIAL INVESTMENT & PACKAGE SCOPE (Obsidian Black)
+  // =========================================================================
+  {
+    const s = pptx.addSlide();
+    addSlideChrome(s, {
+      theme: 'obsidian',
+      step: 'Step 13',
+      kicker: 'Commercial Investment & Package Scope',
+      title: 'All-Inclusive Growth Retainer & Scope of Deliverables.',
+      slideNum: 14,
+      totalSlides: 15,
+    });
+
+    const colW = (CONTENT_W - 0.35) / 2; // 5.811
+    const leftX = MARGIN_X;
+    const rightX = MARGIN_X + colW + 0.35;
+    const topY = 1.56;
+
+    // LEFT COLUMN: Retainer Pricing Banner + 5 Core Services Included
+    addCard(s, leftX, topY, colW, 1.05, {
+      fill: COLORS.velvet,
+      border: COLORS.gold,
+      accentLeft: true,
+      accentColor: COLORS.gold,
+    });
+
+    s.addText('ALL-INCLUSIVE GROWTH RETAINER', {
+      x: leftX + 0.25,
+      y: topY + 0.14,
+      w: 3.5,
+      h: 0.22,
+      fontFace: FONTS.ui,
+      fontSize: 8.5,
+      bold: true,
+      color: COLORS.gold,
+      charSpacing: 1.2,
+      margin: 0,
+    });
+
+    s.addText('Monthly Performance & Creative Management', {
+      x: leftX + 0.25,
+      y: topY + 0.38,
+      w: 3.5,
+      h: 0.48,
+      fontFace: FONTS.editorial,
+      fontSize: 16.5,
+      bold: true,
+      color: COLORS.ivory,
+      margin: 0,
+    });
+
+    s.addText('₹35,000', {
+      x: leftX + colW - 2.1,
+      y: topY + 0.16,
+      w: 1.85,
+      h: 0.50,
+      fontFace: FONTS.editorial,
+      fontSize: 27,
+      bold: true,
+      color: COLORS.gold,
+      align: 'right',
+      margin: 0,
+    });
+
+    s.addText('PER MONTH', {
+      x: leftX + colW - 2.1,
+      y: topY + 0.66,
+      w: 1.85,
+      h: 0.22,
+      fontFace: FONTS.ui,
+      fontSize: 8.8,
+      bold: true,
+      color: COLORS.lightMuted,
+      align: 'right',
+      charSpacing: 1.0,
+      margin: 0,
+    });
+
+    // 5 Included Services Card
+    const cardY = topY + 1.20;
+    const cardH = 4.10;
+    addCard(s, leftX, cardY, colW, cardH, {
+      fill: COLORS.obsidianCard,
+      border: COLORS.borderObsidian,
+    });
+
+    s.addText('FIVE CORE SERVICES INCLUDED IN THIS PACKAGE', {
+      x: leftX + 0.22,
+      y: cardY + 0.14,
+      w: colW - 0.44,
+      h: 0.22,
+      fontFace: FONTS.ui,
+      fontSize: 8.5,
+      bold: true,
+      color: COLORS.bronze,
+      charSpacing: 1.2,
+      margin: 0,
+    });
+
+    const deliverables = [
+      {
+        num: '01',
+        title: 'In-Store Video Production & Lookbooks',
+        desc: 'Bi-weekly 9:16 vertical video shoots in-store, creative scripting, luxury color grading & captions across all 5 menswear categories.',
+      },
+      {
+        num: '02',
+        title: 'Meta & YouTube Video-View Remarketing',
+        desc: 'Audience pooling of 50%+ video watchers, hyper-local Zone 1 radius targeting & sequential education ads driving store visits.',
+      },
+      {
+        num: '03',
+        title: 'Google Maps & Display Retargeting',
+        desc: 'Google Business Profile optimization, weekly fresh arrival posts, Maps pin directions & display retargeting banners.',
+      },
+      {
+        num: '04',
+        title: 'WhatsApp VIP Community Management',
+        desc: 'Weekly Tuesday stock drops, Friday outfit styling guides, billing counter onboarding script & margin-safe referral incentives.',
+      },
+      {
+        num: '05',
+        title: 'Commercial Analytics & Margin Guardrail',
+        desc: 'Weekly scorecards tracking 50%+ video viewers, store direction taps & Marketing-Generated Gross Profit vs. Ad Spend.',
+      },
+    ];
+
+    const delItemH = 0.68;
+    deliverables.forEach((item, idx) => {
+      const iy = cardY + 0.42 + idx * delItemH;
+      if (idx > 0) {
+        s.addShape('line', {
+          x: leftX + 0.22,
+          y: iy - 0.05,
+          w: colW - 0.44,
+          h: 0,
+          line: { color: COLORS.borderObsidian, width: 0.5 },
+        });
+      }
+
+      s.addText(item.num, {
+        x: leftX + 0.22,
+        y: iy,
+        w: 0.35,
+        h: 0.26,
+        fontFace: FONTS.editorial,
+        fontSize: 14,
+        bold: true,
+        color: COLORS.gold,
+        margin: 0,
+      });
+
+      s.addText(
+        [
+          { text: item.title + ': ', options: { bold: true, color: COLORS.ivory } },
+          { text: item.desc, options: { color: COLORS.lightText } },
+        ],
+        {
+          x: leftX + 0.60,
+          y: iy,
+          w: colW - 0.82,
+          h: 0.58,
+          fontFace: FONTS.ui,
+          fontSize: 9.8,
+          lineSpacingMultiple: 1.25,
+          margin: 0,
+        }
+      );
+    });
+
+    // RIGHT COLUMN: Commercial Transparency & Chargeable Items + ROI Break-even Card
+    const rightH = 5.30;
+    addCard(s, rightX, topY, colW, rightH, {
+      fill: COLORS.velvet,
+      border: COLORS.borderDark,
+      accentTop: true,
+      accentColor: COLORS.bronze,
+    });
+
+    s.addText('COMMERCIAL TRANSPARENCY', {
+      x: rightX + 0.25,
+      y: topY + 0.16,
+      w: colW - 0.50,
+      h: 0.20,
+      fontFace: FONTS.ui,
+      fontSize: 8.5,
+      bold: true,
+      color: COLORS.gold,
+      charSpacing: 1.2,
+      margin: 0,
+    });
+
+    s.addText('Note on Chargeable & External Services', {
+      x: rightX + 0.25,
+      y: topY + 0.38,
+      w: colW - 0.50,
+      h: 0.34,
+      fontFace: FONTS.editorial,
+      fontSize: 16.5,
+      bold: true,
+      color: COLORS.ivory,
+      margin: 0,
+    });
+
+    const chargeable = [
+      {
+        num: '1',
+        title: 'Paid Ad Spend (Paid at Actuals)',
+        color: COLORS.gold,
+        desc: 'Platform ad budgets for Meta (Instagram/Facebook) and Google/YouTube are paid directly by the client to ad networks at actuals. (Recommended test budget: ₹15,000 – ₹25,000/mo).',
+      },
+      {
+        num: '2',
+        title: 'Physical Print Materials',
+        color: COLORS.bronze,
+        desc: 'In-store physical QR counter standees, printed tent-cards, and promotional flyers are billed separately at vendor print costs.',
+      },
+      {
+        num: '3',
+        title: 'Third-Party Software / WhatsApp API',
+        color: COLORS.stone,
+        desc: 'If high broadcast volume requires an automated WhatsApp Business API gateway (e.g. Wati/Interakt), subscription fees are paid directly to the service provider.',
+      },
+      {
+        num: '4',
+        title: 'External Talent & Off-Site Shoots',
+        color: COLORS.stone,
+        desc: 'Hired professional models or off-site outdoor location shoots outside the B.N. Reddy Nagar store premises are optional and charged separately upon client approval.',
+      },
+    ];
+
+    const cItemH = 0.82;
+    chargeable.forEach((c, cIdx) => {
+      const cy = topY + 0.80 + cIdx * (cItemH + 0.10);
+      s.addShape('rect', {
+        x: rightX + 0.22,
+        y: cy,
+        w: colW - 0.44,
+        h: cItemH,
+        fill: { color: COLORS.obsidian },
+        line: { color: COLORS.borderObsidian, width: 0.65 },
+      });
+      s.addShape('rect', {
+        x: rightX + 0.22,
+        y: cy,
+        w: 0.045,
+        h: cItemH,
+        fill: { color: c.color },
+        line: { type: 'none' },
+      });
+
+      s.addText(
+        [
+          { text: `${c.num}. ${c.title}\n`, options: { bold: true, color: c.color, fontSize: 10 } },
+          { text: c.desc, options: { color: COLORS.lightText, fontSize: 9 } },
+        ],
+        {
+          x: rightX + 0.35,
+          y: cy + 0.08,
+          w: colW - 0.65,
+          h: cItemH - 0.14,
+          fontFace: FONTS.ui,
+          lineSpacingMultiple: 1.25,
+          margin: 0,
+        }
+      );
+    });
+
+    // ROI Break-even box at bottom of right column
+    const roiY = topY + 4.54;
+    const roiH = 0.64;
+    s.addShape('rect', {
+      x: rightX + 0.22,
+      y: roiY,
+      w: colW - 0.44,
+      h: roiH,
+      fill: { color: COLORS.obsidianCard },
+      line: { color: COLORS.gold, width: 0.8 },
+    });
+
+    s.addText('ROI BREAK-EVEN BENCHMARK', {
+      x: rightX + 0.34,
+      y: roiY + 0.08,
+      w: colW - 1.2,
+      h: 0.18,
+      fontFace: FONTS.ui,
+      fontSize: 8.0,
+      bold: true,
+      color: COLORS.gold,
+      charSpacing: 1.0,
+      margin: 0,
+    });
+
+    s.addText('At ₹5,000 average customer bill, just 7 additional walk-in customers per month fully covers this growth retainer.', {
+      x: rightX + 0.34,
+      y: roiY + 0.28,
+      w: colW - 1.2,
+      h: 0.30,
+      fontFace: FONTS.ui,
+      fontSize: 9.0,
+      color: COLORS.ivory,
+      margin: 0,
+    });
+
+    s.addImage({
+      path: img('jh_logo.png'),
+      x: rightX + colW - 0.76,
+      y: roiY + 0.10,
+      w: 0.36,
+      h: 0.45,
+    });
+  }
+
+  // =========================================================================
+  // SLIDE 15 – CLOSING (Obsidian Black)
   // =========================================================================
   {
     const s = pptx.addSlide();
@@ -2583,9 +2922,17 @@ async function buildPresentation() {
       line: { color: COLORS.gold, width: 0.9 },
     });
 
+    s.addImage({
+      path: img('jh_logo.png'),
+      x: 0.78,
+      y: 0.44,
+      w: 0.48,
+      h: 0.60,
+    });
+
     s.addShape('rect', {
       x: 0.78,
-      y: 0.74,
+      y: 1.14,
       w: 0.45,
       h: 0.035,
       fill: { color: COLORS.gold },
@@ -2594,7 +2941,7 @@ async function buildPresentation() {
 
     s.addText('PARTNERSHIP NEXT STEPS', {
       x: 1.34,
-      y: 0.63,
+      y: 1.03,
       w: 4.5,
       h: 0.26,
       fontFace: FONTS.ui,
@@ -2607,11 +2954,11 @@ async function buildPresentation() {
 
     s.addText("Let's Build Jontys Hub's\nNext Luxury Chapter.", {
       x: 0.78,
-      y: 1.10,
+      y: 1.40,
       w: 6.50,
-      h: 1.20,
+      h: 1.15,
       fontFace: FONTS.editorial,
-      fontSize: 28,
+      fontSize: 27,
       bold: true,
       color: COLORS.ivory,
       lineSpacingMultiple: 1.2,
@@ -2715,7 +3062,7 @@ async function buildPresentation() {
       margin: 0,
     });
 
-    s.addText('14  /  14', {
+    s.addText('15  /  15', {
       x: 6.15,
       y: 7.00,
       w: 0.98,
