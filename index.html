@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jontys Hub – Luxury Men's Fashion Growth Blueprint</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --obsidian: #0F1115;
+      --obsidian-card: #171A21;
+      --velvet: #141923;
+      --velvet-card: #1C2230;
+      --ivory: #F6F2EA;
+      --ivory-card: #FFFFFF;
+      --ivory-soft: #EDE7DB;
+      --gold: #C9A96E;
+      --bronze: #9E7F4B;
+      --stone: #5E6573;
+      --light-muted: #9CA3AF;
+      --light-text: #E5E7EB;
+      --border-light: #DFD8CA;
+      --border-dark: #293040;
+      --border-obsidian: #262A34;
+      --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+      --font-editorial: 'Cormorant Garamond', Georgia, serif;
+      --font-ui: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #07080B;
+      font-family: var(--font-ui);
+      color: var(--ivory);
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+    }
+
+    .stage-wrapper {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 42%, #181D29 0%, #07080B 100%);
+    }
+
+    .deck-stage {
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      transform-origin: center center;
+      box-shadow: 0 36px 96px rgba(0, 0, 0, 0.78), 0 0 0 1px rgba(201, 169, 110, 0.25);
+      overflow: hidden;
+      background: var(--obsidian);
+    }
+
+    /* Luxury Gold Progress Bar */
+    .progress-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2.5px;
+      background: rgba(255, 255, 255, 0.08);
+      z-index: 40;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--bronze), var(--gold), #EAD3A5);
+      width: 7.14%;
+      transition: width 0.6s var(--ease-luxury);
+    }
+
+    /* Slide Base */
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 28px 64px 44px;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(34px) scale(0.99);
+      transition:
+        opacity 0.55s var(--ease-luxury),
+        transform 0.65s var(--ease-luxury),
+        visibility 0.55s;
+      pointer-events: none;
+    }
+    .slide.is-active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+      z-index: 5;
+    }
+    .slide.is-prev {
+      opacity: 0;
+      transform: translateX(-34px) scale(0.99);
+    }
+
+    .theme-light { background: var(--ivory); color: var(--obsidian); }
+    .theme-obsidian { background: var(--obsidian); color: var(--ivory); }
+    .theme-velvet { background: var(--velvet); color: var(--ivory); }
+
+    /* Slide Chrome */
+    .slide-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .kicker-wrap { display: flex; align-items: center; gap: 12px; }
+    .step-badge {
+      padding: 3px 10px;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201, 169, 110, 0.55);
+      background: rgba(201, 169, 110, 0.08);
+    }
+    .kicker {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: var(--light-muted);
+    }
+    .theme-light .kicker { color: var(--bronze); }
+    .brand-mark {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.62;
+    }
+    .slide-title {
+      font-family: var(--font-editorial);
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.2px;
+      margin-bottom: 12px;
+    }
+    .theme-light .slide-title { color: var(--obsidian); }
+    .slide-rule { height: 1px; width: 100%; margin-bottom: 18px; }
+    .theme-light .slide-rule { background: var(--border-light); }
+    .theme-obsidian .slide-rule { background: var(--border-obsidian); }
+    .theme-velvet .slide-rule { background: var(--border-dark); }
+
+    .slide-body { flex: 1; min-height: 0; position: relative; }
+
+    .slide-footer {
+      position: absolute;
+      left: 64px;
+      right: 64px;
+      bottom: 12px;
+      padding-top: 8px;
+      border-top: 1px solid;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10px;
+    }
+    .theme-light .slide-footer { border-color: var(--border-light); color: var(--stone); }
+    .theme-obsidian .slide-footer { border-color: var(--border-obsidian); color: var(--light-muted); }
+    .theme-velvet .slide-footer { border-color: var(--border-dark); color: var(--light-muted); }
+    .slide-num { font-weight: 700; color: var(--gold); letter-spacing: 1px; }
+
+    /* Cards & Photography Luxury Finish */
+    .card {
+      border: 1px solid;
+      position: relative;
+      transition: transform 0.35s var(--ease-luxury), box-shadow 0.35s var(--ease-luxury), border-color 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    }
+    .theme-light .card { background: var(--ivory-card); border-color: var(--border-light); }
+    .theme-obsidian .card { background: var(--obsidian-card); border-color: var(--border-obsidian); }
+    .theme-velvet .card { background: var(--velvet-card); border-color: var(--border-dark); }
+
+    .accent-left { border-left: 3.5px solid var(--gold) !important; }
+    .accent-left-obsidian { border-left: 3.5px solid var(--obsidian) !important; }
+    .accent-top { border-top: 3px solid var(--gold) !important; }
+    .accent-top-bronze { border-top: 3px solid var(--bronze) !important; }
+
+    .lux-img {
+      filter: contrast(1.04) saturate(0.95);
+      transition: transform 0.7s var(--ease-luxury);
+    }
+
+    /* Stagger Animations */
+    .anim, .anim-left, .anim-right, .anim-scale {
+      opacity: 0;
+      transition: opacity 0.65s var(--ease-luxury), transform 0.75s var(--ease-luxury);
+    }
+    .anim { transform: translateY(20px); }
+    .anim-left { transform: translateX(-24px); }
+    .anim-right { transform: translateX(24px); }
+    .anim-scale { transform: scale(0.95); }
+
+    .slide.is-active .anim,
+    .slide.is-active .anim-left,
+    .slide.is-active .anim-right,
+    .slide.is-active .anim-scale {
+      opacity: 1;
+      transform: none;
+    }
+    .d1 { transition-delay: 0.06s; }
+    .d2 { transition-delay: 0.14s; }
+    .d3 { transition-delay: 0.22s; }
+    .d4 { transition-delay: 0.30s; }
+    .d5 { transition-delay: 0.38s; }
+    .d6 { transition-delay: 0.46s; }
+
+    @keyframes kenBurns {
+      0% { transform: scale(1.0); }
+      100% { transform: scale(1.06); }
+    }
+    .slide.is-active .hero-photo img { animation: kenBurns 15s ease-out forwards; }
+
+    @keyframes pulseRing {
+      0%, 100% { transform: scale(1); opacity: 0.65; }
+      50% { transform: scale(1.16); opacity: 0.2; }
+    }
+    .pulse-ring { transform-origin: center; animation: pulseRing 2.8s ease-in-out infinite; }
+
+    @keyframes dashFlow { to { stroke-dashoffset: -28; } }
+    .dash-flow { stroke-dasharray: 6 5; animation: dashFlow 1.6s linear infinite; }
+
+    /* Split Full Cover & Closing */
+    .split-full {
+      padding: 0 !important;
+      display: grid !important;
+      grid-template-columns: 1fr 535px;
+    }
+    .split-left {
+      padding: 58px 64px 46px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hero-photo {
+      position: relative;
+      overflow: hidden;
+      border-left: 1px solid rgba(201, 169, 110, 0.55);
+    }
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(15, 17, 21, 0.32) 0%, transparent 25%);
+      pointer-events: none;
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* Slide Grids */
+    .s2-grid { display: grid; grid-template-columns: 1.12fr 0.96fr; gap: 24px; height: 100%; }
+    .s2-photo { height: 336px; overflow: hidden; border: 1px solid var(--border-light); }
+    .s2-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .kpi-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px; }
+    .kpi-box { background: var(--obsidian); border-top: 3px solid var(--gold); padding: 14px; color: var(--ivory); }
+    .kpi-label { font-size: 8.5px; font-weight: 700; letter-spacing: 1px; color: var(--light-muted); }
+    .kpi-val { font-family: var(--font-editorial); font-size: 30px; font-weight: 700; color: var(--gold); margin: 4px 0; }
+    .kpi-sub { font-size: 10px; color: var(--light-text); }
+
+    .s3-grid { display: grid; grid-template-columns: 1.32fr 1fr; gap: 24px; height: 100%; }
+    .shift-list { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+    .shift-card { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; }
+
+    .s4-grid { display: grid; grid-template-columns: 430px 1fr; gap: 24px; height: 100%; }
+    .s4-left { background: var(--obsidian); color: var(--ivory); border-top: 3px solid var(--gold); padding: 24px 26px; display: flex; flex-direction: column; justify-content: space-between; }
+
+    .persona-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; height: 100%; }
+    .persona-card { padding: 12px 14px 14px; display: flex; flex-direction: column; justify-content: space-between; }
+    .persona-photo { position: relative; width: 100%; height: 300px; overflow: hidden; }
+    .persona-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .persona-card:hover .persona-photo img { transform: scale(1.04); }
+    .age-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(15, 17, 21, 0.88);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 9px;
+      font-weight: 700;
+      padding: 4px 8px;
+      letter-spacing: 0.8px;
+    }
+
+    .s6-grid { display: grid; grid-template-columns: 1.52fr 1fr; gap: 24px; height: 100%; }
+    .map-box { background: #0B0E14; border: 1px solid var(--border-dark); padding: 14px 18px; display: flex; flex-direction: column; justify-content: space-between; }
+
+    .funnel-grid { display: flex; flex-direction: column; gap: 12px; height: 100%; justify-content: center; }
+    .funnel-row { display: grid; grid-template-columns: 495px 1fr; gap: 24px; align-items: center; }
+    .funnel-bar {
+      margin: 0 auto;
+      height: 82px;
+      border-radius: 7px;
+      border: 1px solid var(--gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8px 14px;
+      transition: transform 0.3s ease;
+    }
+    .funnel-bar:hover { transform: scale(1.025); }
+
+    .rm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 14px 0; height: 314px; }
+    .rm-card { padding: 16px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+    .rm-card:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -17px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .rm-pill {
+      background: var(--obsidian);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-align: center;
+      padding: 7px 8px;
+      margin: 10px 0;
+      text-transform: uppercase;
+    }
+    .rm-goal .rm-pill { background: var(--gold); color: var(--obsidian); }
+
+    .eco-grid { display: grid; grid-template-columns: 1fr 300px 1fr; gap: 28px; height: 100%; position: relative; align-items: center; }
+    .eco-col { display: flex; flex-direction: column; gap: 16px; z-index: 2; }
+    .eco-center { display: flex; flex-direction: column; gap: 16px; z-index: 2; }
+    .eco-hub {
+      background: var(--obsidian);
+      border: 2px solid var(--gold);
+      border-radius: 10px;
+      padding: 22px 18px;
+      text-align: center;
+      box-shadow: 0 0 42px rgba(201, 169, 110, 0.16);
+    }
+
+    .cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; height: 100%; }
+    .cat-card { display: flex; flex-direction: column; overflow: hidden; }
+    .cat-img-wrap { height: 288px; overflow: hidden; border-bottom: 3px solid var(--gold); }
+    .cat-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cat-card:hover .cat-img-wrap img { transform: scale(1.04); }
+    .cat-body { padding: 12px 13px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+
+    .s11-grid { display: grid; grid-template-columns: 1.02fr 1fr; gap: 24px; height: 100%; }
+    .chart-box { padding: 16px 20px; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+    .bars-wrap { display: flex; align-items: flex-end; justify-content: space-around; height: 210px; border-bottom: 1px solid var(--border-obsidian); padding-top: 20px; }
+    .bar-col { display: flex; flex-direction: column; align-items: center; width: 112px; }
+    .bar-val { font-size: 13px; font-weight: 700; color: var(--ivory); margin-bottom: 6px; }
+    .bar-rect { width: 64px; background: linear-gradient(180deg, #E2C692, var(--gold)); border-radius: 2px 2px 0 0; height: 0; transition: height 1s var(--ease-luxury) 0.25s; }
+    .slide.is-active .bar-rect[data-h="52"] { height: 52px; }
+    .slide.is-active .bar-rect[data-h="125"] { height: 125px; }
+    .slide.is-active .bar-rect[data-h="172"] { height: 172px; }
+
+    .roadmap-spine { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; height: 100%; padding-top: 52px; }
+    .spine-line { position: absolute; top: 18px; left: 10%; right: 10%; height: 2px; background: var(--gold); }
+    .phase-col { position: relative; display: flex; flex-direction: column; height: 100%; }
+    .phase-dot {
+      position: absolute; top: -49px; left: 50%; transform: translateX(-50%);
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--gold); border: 3px solid var(--ivory);
+      color: var(--obsidian); font-size: 11px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; z-index: 2;
+    }
+    .phase-card { flex: 1; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; }
+
+    .kpi-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 16px; height: calc(100% - 108px); }
+    .kpi-stage-col { padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; }
+    .metric-pill {
+      background: var(--obsidian);
+      border: 1px solid var(--border-obsidian);
+      padding: 18px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Presenter HUD */
+    .hud {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 17, 21, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201, 169, 110, 0.38);
+      border-radius: 999px;
+      padding: 7px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 100;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+    .hud button {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: var(--ivory);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .hud button:hover:not(:disabled) { background: var(--gold); color: var(--obsidian); border-color: var(--gold); }
+    .hud button:disabled { opacity: 0.35; cursor: not-allowed; }
+    .hud-counter { font-size: 12px; font-weight: 700; color: var(--gold); min-width: 58px; text-align: center; }
+
+    .overview-modal {
+      position: fixed; inset: 0; background: rgba(7, 8, 11, 0.95);
+      backdrop-filter: blur(10px); z-index: 200; padding: 36px 48px; overflow-y: auto; display: none;
+    }
+    .overview-modal.open { display: block; }
+    .overview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; margin-top: 20px; }
+    .ov-item { background: var(--obsidian-card); border: 1px solid var(--border-obsidian); padding: 16px; cursor: pointer; border-radius: 4px; transition: border-color 0.2s ease, transform 0.2s ease; }
+    .ov-item:hover, .ov-item.current { border-color: var(--gold); transform: translateY(-2px); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage-wrapper">
+    <main class="deck-stage" id="deckStage">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+      <!-- SLIDE 01: COVER -->
+      <section class="slide theme-obsidian split-full is-active" data-title="Cover: Jontys Hub Luxury Blueprint">
+        <div class="split-left">
+          <div>
+            <div class="anim d1" style="width:48px;height:2.5px;background:var(--gold);margin-bottom:14px;"></div>
+            <div class="anim d1" style="font-size:10px;font-weight:700;letter-spacing:2.4px;color:var(--gold);">LUXURY MEN'S FASHION &nbsp;•&nbsp; B2C GROWTH BLUEPRINT</div>
+            <h1 class="anim d2" style="font-family:var(--font-editorial);font-size:60px;font-weight:700;letter-spacing:2px;margin:24px 0 14px;">JONTYS HUB</h1>
+            <div class="anim d2" style="width:110px;height:3px;background:var(--gold);margin-bottom:26px;"></div>
+            <h2 class="anim d3" style="font-family:var(--font-editorial);font-size:29px;font-weight:700;line-height:1.22;max-width:560px;">
+              Elevating a Dedicated Men's Fashion Store Into a High-Intent Luxury Brand.
+            </h2>
+            <p class="anim d4" style="margin-top:20px;font-size:14px;line-height:1.65;color:var(--light-muted);max-width:520px;">
+              A step-by-step growth roadmap combining video discovery, customer education, remarketing positioning, and WhatsApp community retention.
+            </p>
+          </div>
+          <div class="anim d5" style="border-top:1px solid var(--border-obsidian);padding-top:16px;">
+            <div style="font-size:14px;font-weight:700;color:var(--gold);">LB Nagar Menswear Store &nbsp;|&nbsp; Hyderabad</div>
+            <div style="font-size:11px;color:var(--light-muted);margin-top:4px;">Beside B.D. Reddy Gardens, B.N. Reddy Nagar, Hyderabad – 500079</div>
+            <div style="font-size:10.5px;font-weight:700;color:var(--bronze);margin-top:12px;">01 &nbsp;/&nbsp; 14</div>
+          </div>
+        </div>
+        <div class="hero-photo"><img class="lux-img" src="assets/slide01_cover.jpg" alt="Jontys Hub Luxury Menswear" /></div>
+      </section>
+
+      <!-- SLIDE 02: STEP 01 BRAND FOUNDATION -->
+      <section class="slide theme-light" data-title="Step 01 · Brand Foundation">
+        <div class="slide-top">
+          <div class="kicker-wrap"><span class="step-badge">Step 01</span><span class="kicker">Brand Foundation</span></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; MENSWEAR ATELIER</div>
+        </div>
+        <h2 class="slide-title anim d1">A Dedicated Luxury Menswear Destination.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="s2-grid">
+            <div style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div class="s2-photo anim-scale d2"><img class="lux-img" src="assets/slide02_store_display.jpg" alt="Jontys Hub Store Interior" /></div>
+              <div class="card accent-left anim d3" style="padding:14px 18px;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.5px;color:var(--bronze);">ATELIER POSITIONING</div>
+                <div style="font-size:12.5px;font-weight:600;color:var(--obsidian);margin:6px 0;line-height:1.4;">
+                  Exclusively curated for discerning men in LB Nagar — built around elevated fit, fabric drape, and complete wardrobing rather than discounting.
+                </div>
+                <div style="font-size:10.5px;color:var(--stone);">B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;">
+              <div class="kpi-trio anim d2">
+                <div class="kpi-box"><div class="kpi-label">AVG PRODUCT PRICE</div><div class="kpi-val">₹2,000</div><div class="kpi-sub">Premium quality tier</div></div>
+                <div class="kpi-box"><div class="kpi-label">AVG CUSTOMER BILL</div><div class="kpi-val">₹5,000</div><div class="kpi-sub">Multi-item outfit basket</div></div>
+                <div class="kpi-box"><div class="kpi-label">GROSS MARGIN</div><div class="kpi-val">&lt; 25%</div><div class="kpi-sub">Protected via high intent</div></div>
+              </div>
+              <div class="card anim d3" style="padding:16px 20px;flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+                <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--bronze);">FIVE CORE MENSWEAR PILLARS</div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;align-items:center;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--border-light);"><span style="font-family:var(--font-editorial);font-size:17px;font-weight:700;color:var(--gold);min-width:26px;">01</span><strong style="width:128px;font-size:13px;">Casual Shirts</strong><span style="font-size:11.5px;color:var(--stone);">Textured cottons, smart-casual &amp; weekend weaves</span></div>
+                  <div style="display:flex;align-items:center;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--border-light);"><span style="font-family:var(--font-editorial);font-size:17px;font-weight:700;color:var(--gold);min-width:26px;">02</span><strong style="width:128px;font-size:13px;">Formal Shirts</strong><span style="font-size:11.5px;color:var(--stone);">Tailored office polish &amp; evening collar precision</span></div>
+                  <div style="display:flex;align-items:center;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--border-light);"><span style="font-family:var(--font-editorial);font-size:17px;font-weight:700;color:var(--gold);min-width:26px;">03</span><strong style="width:128px;font-size:13px;">T-Shirts</strong><span style="font-size:11.5px;color:var(--stone);">Heavyweight crew-necks &amp; structured minimalism</span></div>
+                  <div style="display:flex;align-items:center;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--border-light);"><span style="font-family:var(--font-editorial);font-size:17px;font-weight:700;color:var(--gold);min-width:26px;">04</span><strong style="width:128px;font-size:13px;">Jeans</strong><span style="font-size:11.5px;color:var(--stone);">Clean luxury washes, modern tapered &amp; stretch fits</span></div>
+                  <div style="display:flex;align-items:center;gap:12px;"><span style="font-family:var(--font-editorial);font-size:17px;font-weight:700;color:var(--gold);min-width:26px;">05</span><strong style="width:128px;font-size:13px;">Trousers</strong><span style="font-size:11.5px;color:var(--stone);">Tailored dress trousers &amp; refined daily chinos</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">02 &nbsp;/&nbsp; 14</span></div>
+      </section>
+
+      <!-- SLIDE 03: STEP 02 MARKET SHIFT -->
+      <section class="slide theme-velvet" data-title="Step 02 · Consumer Buying Shift">
+        <div class="slide-top">
+          <div class="kicker-wrap"><span class="step-badge">Step 02</span><span class="kicker">Consumer Buying Shift</span></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; MENSWEAR ATELIER</div>
+        </div>
+        <h2 class="slide-title anim d1">Why Luxury Men Choose Video Discovery &amp; Store Trust.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="s3-grid">
+            <div class="shift-list">
+              <div class="card accent-left shift-card anim d1"><div style="font-family:var(--font-editorial);font-size:24px;font-weight:700;color:var(--gold);">01</div><div><div style="font-size:15.5px;font-weight:700;">Video-First Inspiration</div><div style="font-size:12.5px;color:var(--light-text);margin-top:4px;line-height:1.4;">Style reels on Instagram and YouTube shape outfit desire long before shoppers leave home.</div></div></div>
+              <div class="card accent-left shift-card anim d2"><div style="font-family:var(--font-editorial);font-size:24px;font-weight:700;color:var(--gold);">02</div><div><div style="font-size:15.5px;font-weight:700;">Education Beats Discounting</div><div style="font-size:12.5px;color:var(--light-text);margin-top:4px;line-height:1.4;">Showing fabric drape, collar finish, and fit builds ₹2,000+ perceived value without price cuts.</div></div></div>
+              <div class="card accent-left shift-card anim d3"><div style="font-family:var(--font-editorial);font-size:24px;font-weight:700;color:var(--gold);">03</div><div><div style="font-size:15.5px;font-weight:700;">Specialist Store Preference</div><div style="font-size:12.5px;color:var(--light-text);margin-top:4px;line-height:1.4;">Discerning men trust a focused menswear boutique over crowded general stores for fit assurance.</div></div></div>
+              <div class="card accent-left shift-card anim d4"><div style="font-family:var(--font-editorial);font-size:24px;font-weight:700;color:var(--gold);">04</div><div><div style="font-size:15.5px;font-weight:700;">Community-Driven Loyalty</div><div style="font-size:12.5px;color:var(--light-text);margin-top:4px;line-height:1.4;">Exclusive WhatsApp new-stock drops &amp; referral perks turn first-time buyers into repeat patrons.</div></div></div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div class="anim-scale d2" style="height:352px;overflow:hidden;border:1px solid var(--border-dark);">
+                <img class="lux-img" src="assets/slide03_shopping.jpg" alt="Menswear Shopping Experience" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              </div>
+              <div class="card accent-top anim d3" style="background:var(--obsidian);border-color:var(--gold);padding:16px 20px;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:1.6px;color:var(--gold);margin-bottom:6px;">LUXURY INSIGHT</div>
+                <div style="font-size:12.5px;color:var(--ivory);line-height:1.45;">
+                  When digital storytelling proves quality first, customers visit ready to experience complete outfits—not hunt for bargains.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">03 &nbsp;/&nbsp; 14</span></div>
+      </section>
+
+      <!-- SLIDE 04: STEP 03 STRATEGIC POSITION -->
+      <section class="slide theme-light" data-title="Step 03 · Strategic Position">
+        <div class="slide-top">
+          <div class="kicker-wrap"><span class="step-badge">Step 03</span><span class="kicker">Strategic Position</span></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; MENSWEAR ATELIER</div>
+        </div>
+        <h2 class="slide-title anim d1">Where We Stand Today &amp; What We Unlock Next.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="s4-grid">
+            <div class="s4-left anim-left d2">
+              <div style="font-size:10px;font-weight:700;letter-spacing:1.6px;color:var(--gold);">CORE FOUNDATION TODAY</div>
+              <div>
+                <div style="padding:14px 0;border-bottom:1px solid var(--border-obsidian);"><strong style="font-size:14px;">Focused Menswear Brand</strong><div style="font-size:11.5px;color:var(--light-muted);margin-top:4px;">100% men-only specialty store building authority across 5 categories.</div></div>
+                <div style="padding:14px 0;border-bottom:1px solid var(--border-obsidian);"><strong style="font-size:14px;">High Basket Value</strong><div style="font-size:11.5px;color:var(--light-muted);margin-top:4px;">₹5,000 average customer bill shows strong multi-piece styling potential.</div></div>
+                <div style="padding:14px 0;border-bottom:1px solid var(--border-obsidian);"><strong style="font-size:14px;">Prime LB Nagar Anchor</strong><div style="font-size:11.5px;color:var(--light-muted);margin-top:4px;">Accessible physical boutique in B.N. Reddy Nagar built for personal trial.</div></div>
+                <div style="padding-top:14px;"><strong style="font-size:14px;">Margin Guardrail (&lt; 25%)</strong><div style="font-size:11.5px;color:var(--light-muted);margin-top:4px;">Requires high-intent buyers &amp; remarketing discipline instead of broad discounts.</div></div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div class="card accent-left anim d2" style="padding:18px 22px;display:flex;gap:18px;align-items:flex-start;"><span style="font-family:var(--font-editorial);font-size:24px;font-weight:700;color:var(--gold);">01</span><div><strong style="font-size:15.5px;">Build Luxury Brand Positioning</strong><div style="font-size:12.5px;color:var(--stone);margin-top:4px;">Elevate Instagram, Facebook &amp; Google Maps to reflect a refined, trusted menswear atelier.</div></div></div>
+              <div class="card accent-left anim d3" style="padding:18px 22px;display:flex;gap:18px;align-items:flex-start;"><span style="font-family:var(--font-editorial);font-size:24px;font-weight:700;color:var(--gold);">02</span><div><strong style="font-size:15.5px;">Educate With Video-View Remarketing</strong><div style="font-size:12.5px;color:var(--stone);margin-top:4px;">Pool 50%+ video ad viewers and serve sequential fabric, fit &amp; styling ads.</div></div></div>
+              <div class="card accent-left-obsidian anim d4" style="padding:18px 22px;display:flex;gap:18px;align-items:flex-start;"><span style="font-family:var(--font-editorial);font-size:24px;font-weight:700;color:var(--gold);">03</span><div><strong style="font-size:15.5px;">Attract High-Intent Store Visitors</strong><div style="font-size:12.5px;color:var(--stone);margin-top:4px;">Target warm, educated buyers with Maps pins, sizing checks &amp; fresh-stock store hooks.</div></div></div>
+              <div class="card accent-left anim d5" style="padding:18px 22px;display:flex;gap:18px;align-items:flex-start;"><span style="font-family:var(--font-editorial);font-size:24px;font-weight:700;color:var(--gold);">04</span><div><strong style="font-size:15.5px;">Retention via WhatsApp Community</strong><div style="font-size:12.5px;color:var(--stone);margin-top:4px;">Share daily/weekly new-stock drops &amp; structured referral discounts to grow repeat bills.</div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">04 &nbsp;/&nbsp; 14</span></div>
+      </section>
+
+      <!-- SLIDE 05: STEP 04 BUYER PROFILES -->
+      <section class="slide theme-obsidian" data-title="Step 04 · Buyer Profiles">
+        <div class="slide-top">
+          <div class="kicker-wrap"><span class="step-badge">Step 04</span><span class="kicker">Target Audience Architecture</span></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; MENSWEAR ATELIER</div>
+        </div>
+        <h2 class="slide-title anim d1">Four High-Value Men We Attract to Store.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="persona-grid">
+            <div class="card accent-top persona-card anim d1">
+              <div class="persona-photo"><img class="lux-img" src="assets/icp1_young_fashion.jpg" alt="Young Style Leaders" /><span class="age-tag">20 – 30 YRS</span></div>
+              <div>
+                <h3 style="font-family:var(--font-editorial);font-size:19px;font-weight:700;padding-bottom:6px;border-bottom:1px solid var(--border-obsidian);">Young Style Leaders</h3>
+                <div style="margin-top:8px;font-size:11px;line-height:1.38;"><div style="font-size:8.5px;font-weight:700;color:var(--gold);letter-spacing:0.9px;">STAPLE FOCUS</div>Casual Shirts, T-Shirts &amp; Slim Jeans<div style="font-size:8.5px;font-weight:700;color:var(--bronze);letter-spacing:0.9px;margin-top:6px;">VIDEO HOOK</div><span style="color:var(--light-muted);">Trendy Reels &amp; fresh weekly stock alerts.</span></div>
+              </div>
+            </div>
+            <div class="card accent-top persona-card anim d2">
+              <div class="persona-photo"><img class="lux-img" src="assets/icp2_working_pro.jpg" alt="Working Professionals" /><span class="age-tag">25 – 40 YRS</span></div>
+              <div>
+                <h3 style="font-family:var(--font-editorial);font-size:19px;font-weight:700;padding-bottom:6px;border-bottom:1px solid var(--border-obsidian);">Working Professionals</h3>
+                <div style="margin-top:8px;font-size:11px;line-height:1.38;"><div style="font-size:8.5px;font-weight:700;color:var(--gold);letter-spacing:0.9px;">STAPLE FOCUS</div>Formal Shirts &amp; Tailored Trousers<div style="font-size:8.5px;font-weight:700;color:var(--bronze);letter-spacing:0.9px;margin-top:6px;">VIDEO HOOK</div><span style="color:var(--light-muted);">Fabric quality &amp; all-day office comfort videos.</span></div>
+              </div>
+            </div>
+            <div class="card accent-top persona-card anim d3">
+              <div class="persona-photo"><img class="lux-img" src="assets/icp3_aspirational.jpg" alt="Wardrobe Upgraders" /><span class="age-tag">25 – 40 YRS</span></div>
+              <div>
+                <h3 style="font-family:var(--font-editorial);font-size:19px;font-weight:700;padding-bottom:6px;border-bottom:1px solid var(--border-obsidian);">Wardrobe Upgraders</h3>
+                <div style="margin-top:8px;font-size:11px;line-height:1.38;"><div style="font-size:8.5px;font-weight:700;color:var(--gold);letter-spacing:0.9px;">STAPLE FOCUS</div>Layered Casuals, Tees &amp; Trousers<div style="font-size:8.5px;font-weight:700;color:var(--bronze);letter-spacing:0.9px;margin-top:6px;">VIDEO HOOK</div><span style="color:var(--light-muted);">Complete outfit pairing &amp; styling education.</span></div>
+              </div>
+            </div>
+            <div class="card accent-top persona-card anim d4">
+              <div class="persona-photo"><img class="lux-img" src="assets/icp4_occasion.jpg" alt="Occasion Shoppers" /><span class="age-tag">23 – 45 YRS</span></div>
+              <div>
+                <h3 style="font-family:var(--font-editorial);font-size:19px;font-weight:700;padding-bottom:6px;border-bottom:1px solid var(--border-obsidian);">Occasion Shoppers</h3>
+                <div style="margin-top:8px;font-size:11px;line-height:1.38;"><div style="font-size:8.5px;font-weight:700;color:var(--gold);letter-spacing:0.9px;">STAPLE FOCUS</div>Evening Formals &amp; Curated Outfits<div style="font-size:8.5px;font-weight:700;color:var(--bronze);letter-spacing:0.9px;margin-top:6px;">VIDEO HOOK</div><span style="color:var(--light-muted);">VIP in-store trial &amp; peer referral privileges.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">05 &nbsp;/&nbsp; 14</span></div>
+      </section>
+
+      <!-- SLIDE 06: STEP 05 LOCAL CATCHMENT -->
+      <section class="slide theme-velvet" data-title="Step 05 · Local Catchment Focus">
+        <div class="slide-top">
+          <div class="kicker-wrap"><span class="step-badge">Step 05</span><span class="kicker">Hyper-Local Catchment Focus</span></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; MENSWEAR ATELIER</div>
+        </div>
+        <h2 class="slide-title anim d1">Step-by-Step Radius Expansion Around LB Nagar.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="s6-grid">
+            <div class="map-box anim-scale d2">
+              <div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">SOUTH-EAST HYDERABAD RETAIL CATCHMENT</div>
+              <svg viewBox="0 0 680 410" style="width:100%;height:390px;">
+                <ellipse cx="325" cy="240" rx="260" ry="185" fill="#131A29" fill-opacity="0.65" stroke="#5E6573" stroke-width="1.2" stroke-dasharray="6 5" />
+                <ellipse cx="325" cy="240" rx="185" ry="132" fill="#182236" fill-opacity="0.7" stroke="#9E7F4B" stroke-width="1.6" />
+                <ellipse cx="325" cy="240" rx="108" ry="78" fill="#C9A96E" fill-opacity="0.16" stroke="#C9A96E" stroke-width="2" />
+                <ellipse cx="325" cy="240" rx="54" ry="42" fill="none" stroke="#C9A96E" stroke-width="1.5" class="pulse-ring" />
+                <line x1="265" y1="30" x2="320" y2="380" stroke="#2B3648" stroke-width="2.2" />
+                <line x1="55" y1="145" x2="620" y2="95" stroke="#2B3648" stroke-width="2.2" />
+                <text x="470" y="90" fill="#9CA3AF" font-size="11" font-family="Montserrat">NH 65 / Vijayawada Hwy</text>
+                <text x="120" y="340" fill="#9CA3AF" font-size="11" font-family="Montserrat">Nagarjuna Sagar Rd</text>
+                <circle cx="325" cy="240" r="11" fill="#C9A96E" stroke="#F6F2EA" stroke-width="2.5" />
+                <text x="325" y="268" fill="#C9A96E" font-size="12" font-weight="800" text-anchor="middle">JONTYS HUB</text>
+                <text x="325" y="283" fill="#C9A96E" font-size="10.5" font-weight="700" text-anchor="middle">B.N. Reddy Nagar</text>
+                <circle cx="408" cy="212" r="7" fill="#C9A96E" stroke="#F6F2EA" stroke-width="1.5" />
+                <text x="408" y="198" fill="#F6F2EA" font-size="11.5" font-weight="700" text-anchor="middle">Vanasthalipuram</text>
+                <circle cx="248" cy="278" r="7" fill="#C9A96E" stroke="#F6F2EA" stroke-width="1.5" />
+                <text x="248" y="300" fill="#F6F2EA" font-size="11.5" font-weight="700" text-anchor="middle">Hastinapuram</text>
+                <circle cx="315" cy="122" r="7" fill="#9E7F4B" stroke="#F6F2EA" stroke-width="1.5" />
+                <text x="315" y="108" fill="#F6F2EA" font-size="11.5" font-weight="700" text-anchor="middle">LB Nagar</text>
+                <circle cx="470" cy="155" r="7" fill="#9E7F4B" stroke="#F6F2EA" stroke-width="1.5" />
+                <text x="470" y="142" fill="#F6F2EA" font-size="11.5" font-weight="700" text-anchor="middle">Chintalkunta</text>
+                <circle cx="178" cy="72" r="7" fill="#9CA3AF" stroke="#F6F2EA" stroke-width="1.5" />
+                <text x="178" y="58" fill="#E5E7EB" font-size="11.5" font-weight="700" text-anchor="middle">Kothapet</text>
+              </svg>
+              <div style="background:var(--velvet);border:1px solid var(--border-dark);padding:8px 14px;display:flex;justify-content:space-between;font-size:10.5px;">
+                <span><strong style="color:var(--gold);">●</strong> Store Anchor</span>
+                <span><strong style="color:var(--gold);">●</strong> Zone 01 Primary</span>
+                <span><strong style="color:var(--bronze);">●</strong> Zone 02 Secondary</span>
+                <span><strong style="color:var(--light-muted);">●</strong> Zone 03 Expand</span>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:space-between;gap:12px;">
+              <div class="card accent-left anim d2" style="padding:14px 18px;"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">ZONE 01 &nbsp;•&nbsp; PRIMARY RADIUS</div><div style="font-size:14.5px;font-weight:700;margin:4px 0;">B.N. Reddy Nagar, Vanasthalipuram, Hastinapuram</div><div style="font-size:11.5px;color:var(--light-text);line-height:1.35;">High-frequency video ads, Google Maps visibility &amp; local store-visit remarketing.</div></div>
+              <div class="card anim d3" style="padding:14px 18px;border-left:3.5px solid var(--bronze);"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--bronze);">ZONE 02 &nbsp;•&nbsp; SECONDARY RADIUS</div><div style="font-size:14.5px;font-weight:700;margin:4px 0;">LB Nagar &amp; Chintalkunta</div><div style="font-size:11.5px;color:var(--light-text);line-height:1.35;">Educated lookbooks &amp; Instagram/YouTube retargeting for nearby style buyers.</div></div>
+              <div class="card anim d4" style="padding:14px 18px;border-left:3.5px solid var(--stone);"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--light-muted);">ZONE 03 &nbsp;•&nbsp; EXPANSION TEST</div><div style="font-size:14.5px;font-weight:700;margin:4px 0;">Kothapet</div><div style="font-size:11.5px;color:var(--light-text);line-height:1.35;">Selective budget expansion once Primary store-visit payback is verified.</div></div>
+              <div class="card anim d5" style="background:var(--obsidian);border-color:var(--gold);padding:14px 18px;"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">FLAGSHIP STORE ADDRESS</div><div style="font-size:12px;font-weight:500;margin-top:6px;line-height:1.4;">Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">06 &nbsp;/&nbsp; 14</span></div>
+      </section>
+
+      <!-- SLIDE 07: STEP 06 ACQUISITION FUNNEL -->
+      <section class="slide theme-light" data-title="Step 06 · 5-Stage Acquisition Funnel">
+        <div class="slide-top">
+          <div class="kicker-wrap"><span class="step-badge">Step 06</span><span class="kicker">Conversion Architecture</span></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; MENSWEAR ATELIER</div>
+        </div>
+        <h2 class="slide-title anim d1">Step-by-Step Journey From Scroll to Store Purchase.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="funnel-grid">
+            <div class="funnel-row anim d1"><div class="funnel-bar" style="width:490px;background:var(--obsidian);color:var(--ivory);"><div style="font-size:13.5px;font-weight:800;color:var(--gold);">01 &nbsp; VIDEO DISCOVERY</div><div style="font-size:10.5px;margin-top:3px;">Instagram Reels • Facebook Video • YouTube</div></div><div class="card accent-left" style="padding:14px 20px;"><div style="font-size:13.5px;font-weight:700;">Capture local attention &amp; pool engaged video viewers.</div><div style="font-size:11.5px;color:var(--stone);margin-top:4px;">Style-led video ads reach LB Nagar men; 50%+ video viewers enter the warm remarketing audience.</div></div></div>
+            <div class="funnel-row anim d2"><div class="funnel-bar" style="width:435px;background:#181D27;color:var(--ivory);"><div style="font-size:13.5px;font-weight:800;color:var(--gold);">02 &nbsp; EDUCATE &amp; POSITION</div><div style="font-size:10.5px;margin-top:3px;">Video-View Remarketing • Meta &amp; Display</div></div><div class="card accent-left" style="padding:14px 20px;"><div style="font-size:13.5px;font-weight:700;">Educate buyers &amp; build luxury brand positioning.</div><div style="font-size:11.5px;color:var(--stone);margin-top:4px;">Sequential ads highlight fabric drape, collar finish &amp; styling—proving value before store entry.</div></div></div>
+            <div class="funnel-row anim d3"><div class="funnel-bar" style="width:380px;background:#232A38;color:var(--ivory);"><div style="font-size:13.5px;font-weight:800;color:var(--gold);">03 &nbsp; HIGH-INTENT FILTER</div><div style="font-size:10.5px;margin-top:3px;">WhatsApp Community • Google Business Profile</div></div><div class="card accent-left" style="padding:14px 20px;"><div style="font-size:13.5px;font-weight:700;">Identify serious buyers ready to visit in person.</div><div style="font-size:11.5px;color:var(--stone);margin-top:4px;">Maps directions, sizing checks &amp; fresh-stock previews isolate genuine local shoppers.</div></div></div>
+            <div class="funnel-row anim d4"><div class="funnel-bar" style="width:325px;background:#2D3340;color:var(--ivory);"><div style="font-size:13.5px;font-weight:800;color:var(--gold);">04 &nbsp; GOAL: STORE VISIT</div><div style="font-size:10.5px;margin-top:3px;">In-Store Trial • Outfit Styling</div></div><div class="card accent-left" style="padding:14px 20px;"><div style="font-size:13.5px;font-weight:700;">Convert high-intent walk-ins into ₹5,000+ bills.</div><div style="font-size:11.5px;color:var(--stone);margin-top:4px;">Educated guests arrive pre-sold on quality—staff guide complete multi-item outfit trials.</div></div></div>
+            <div class="funnel-row anim d5"><div class="funnel-bar" style="width:270px;background:var(--gold);color:var(--obsidian);border-color:var(--bronze);"><div style="font-size:13.5px;font-weight:800;color:var(--obsidian);">05 &nbsp; RETENTION</div><div style="font-size:10.5px;margin-top:3px;">WhatsApp Drops • Referrals</div></div><div class="card accent-left-obsidian" style="padding:14px 20px;"><div style="font-size:13.5px;font-weight:700;">Turn buyers into repeat members &amp; referrers.</div><div style="font-size:11.5px;color:var(--stone);margin-top:4px;">Daily/weekly stock drops &amp; margin-safe referral perks bring customers back repeatedly.</div></div></div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">07 &nbsp;/&nbsp; 14</span></div>
+      </section>
+
+      <!-- SLIDE 08: STEP 07 VIDEO-VIEW REMARKETING -->
+      <section class="slide theme-obsidian" data-title="Step 07 · Video-View Remarketing Engine">
+        <div class="slide-top">
+          <div class="kicker-wrap"><span class="step-badge">Step 07</span><span class="kicker">Video-View Remarketing Strategy</span></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; MENSWEAR ATELIER</div>
+        </div>
+        <h2 class="slide-title anim d1">Educate Video Viewers Into High-Intent Store Visitors.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body" style="display:flex;flex-direction:column;justify-content:space-between;">
+          <div class="card accent-left anim d1" style="background:var(--velvet);border-color:var(--gold);padding:12px 20px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:1.4px;color:var(--gold);">STRATEGIC PRINCIPLE</div>
+            <div style="font-size:12.5px;color:var(--ivory);margin-top:4px;line-height:1.4;">Anyone watching 50%+ of our Reels or YouTube ads becomes our custom <strong>Remarketing Audience</strong> — educated step-by-step on quality and positioning until they visit our LB Nagar store.</div>
+          </div>
+          <div class="rm-grid">
+            <div class="card accent-top rm-card anim d2"><div><div style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--gold);">01 &nbsp;•&nbsp; CAPTURE AUDIENCE</div><h3 style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin-top:6px;line-height:1.18;">Build Video-View<br>Remarketing Pool</h3><div class="rm-pill">50%+ VIDEO WATCHERS</div><p style="font-size:11.5px;color:var(--light-text);line-height:1.42;">Style-led Instagram Reels, Facebook Video &amp; YouTube Ads reach local men. Engaged viewers automatically enter a warm custom audience.</p></div><div style="border-top:1px solid var(--border-obsidian);padding-top:8px;font-size:11px;font-weight:700;color:var(--light-muted);">Signal: Real Interest</div></div>
+            <div class="card accent-top rm-card anim d3"><div><div style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--gold);">02 &nbsp;•&nbsp; EDUCATE BUYERS</div><h3 style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin-top:6px;line-height:1.18;">Show Fabric, Fit<br>&amp; Styling Value</h3><div class="rm-pill">EDUCATE BEFORE SELLING</div><p style="font-size:11.5px;color:var(--light-text);line-height:1.42;">Sequential remarketing explains fabric breathability, collar precision &amp; complete outfits—justifying ₹2,000+ craftsmanship.</p></div><div style="border-top:1px solid var(--border-obsidian);padding-top:8px;font-size:11px;font-weight:700;color:var(--light-muted);">Outcome: Educated Buyer</div></div>
+            <div class="card accent-top-bronze rm-card anim d4"><div><div style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--bronze);">03 &nbsp;•&nbsp; CREATE POSITIONING</div><h3 style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin-top:6px;line-height:1.18;">Establish Luxury<br>Store Authority</h3><div class="rm-pill">MEN-ONLY STYLE HUB</div><p style="font-size:11.5px;color:var(--light-text);line-height:1.42;">Consistent Meta &amp; Display creative positions Jontys Hub as B.N. Reddy Nagar’s specialist menswear destination.</p></div><div style="border-top:1px solid var(--border-obsidian);padding-top:8px;font-size:11px;font-weight:700;color:var(--light-muted);">Outcome: Brand Preference</div></div>
+            <div class="card accent-top rm-card rm-goal anim d5" style="background:var(--velvet);border-color:var(--gold);"><div><div style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--gold);">04 &nbsp;•&nbsp; HIGH-INTENT GOAL</div><h3 style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin-top:6px;line-height:1.18;">Drive Qualified<br>Store Visits</h3><div class="rm-pill">IN-STORE TRIAL &amp; ₹5,000+ BILLS</div><p style="font-size:11.5px;color:var(--light-text);line-height:1.42;">Deliver Maps pins, sizing checks &amp; fresh-stock drops exclusively to warm viewers—converting high-intent store walk-ins.</p></div><div style="border-top:1px solid var(--border-obsidian);padding-top:8px;font-size:11.5px;font-weight:700;color:var(--gold);">Goal: Visit the Store</div></div>
+          </div>
+          <div class="card anim d6" style="padding:12px 20px;border-left:3.5px solid var(--bronze);">
+            <div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">WHY THIS PROTECTS OUR &lt; 25% MARGIN</div>
+            <div style="font-size:11.5px;color:var(--light-text);margin-top:3px;">Instead of burning budget chasing cold clicks, video ads educate locals affordably — focusing store-visit spend strictly on pre-sold, high-intent shoppers.</div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">08 &nbsp;/&nbsp; 14</span></div>
+      </section>
+
+      <!-- SLIDE 09: STEP 08 OMNICHANNEL ECOSYSTEM -->
+      <section class="slide theme-velvet" data-title="Step 08 · B2C Omnichannel Ecosystem">
+        <div class="slide-top">
+          <div class="kicker-wrap"><span class="step-badge">Step 08</span><span class="kicker">Channel Architecture</span></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; MENSWEAR ATELIER</div>
+        </div>
+        <h2 class="slide-title anim d1">Six Connected Channels Driving High-Intent Walk-Ins.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <svg viewBox="0 0 1152 510" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;">
+            <line x1="390" y1="80" x2="430" y2="255" stroke="#C9A96E" stroke-width="1.4" class="dash-flow" />
+            <line x1="390" y1="255" x2="430" y2="255" stroke="#C9A96E" stroke-width="1.4" class="dash-flow" />
+            <line x1="390" y1="430" x2="430" y2="255" stroke="#C9A96E" stroke-width="1.4" class="dash-flow" />
+            <line x1="762" y1="80" x2="722" y2="255" stroke="#C9A96E" stroke-width="1.4" class="dash-flow" />
+            <line x1="762" y1="255" x2="722" y2="255" stroke="#C9A96E" stroke-width="1.4" class="dash-flow" />
+            <line x1="762" y1="430" x2="722" y2="255" stroke="#C9A96E" stroke-width="1.4" class="dash-flow" />
+          </svg>
+          <div class="eco-grid">
+            <div class="eco-col">
+              <div class="card accent-top anim-left d1" style="padding:16px 20px;"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">VIDEO DISCOVERY &amp; POOL</div><div style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin:3px 0 5px;">Instagram Ads</div><div style="font-size:11.5px;color:var(--light-text);line-height:1.4;">Luxury reels capturing 50%+ video viewers for warm remarketing.</div></div>
+              <div class="card accent-top anim-left d2" style="padding:16px 20px;"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">EDUCATIONAL REMARKETING</div><div style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin:3px 0 5px;">Facebook Ads</div><div style="font-size:11.5px;color:var(--light-text);line-height:1.4;">Retarget warm LB Nagar viewers with fabric, fit &amp; outfit education.</div></div>
+              <div class="card accent-top anim-left d3" style="padding:16px 20px;"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">POSITIONING STORYTELLING</div><div style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin:3px 0 5px;">YouTube Ads</div><div style="font-size:11.5px;color:var(--light-text);line-height:1.4;">Shorts &amp; in-stream videos building luxury authority &amp; buyer intent.</div></div>
+            </div>
+            <div class="eco-center">
+              <div class="card anim d2" style="padding:14px 18px;text-align:center;"><div style="font-size:9px;font-weight:700;letter-spacing:1.3px;color:var(--gold);">VIDEO TO STORE LOOP</div><div style="font-size:11.5px;color:var(--light-text);margin-top:6px;line-height:1.4;">Video ads warm local shoppers; education &amp; Maps convert them into walk-ins.</div></div>
+              <div class="eco-hub anim-scale d3"><div style="font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--gold);">CENTRAL GROWTH ENGINE</div><div style="font-family:var(--font-editorial);font-size:24px;font-weight:700;margin:10px 0;line-height:1.2;">JONTYS HUB<br>B2C COMMUNITY</div><div style="font-size:10px;color:var(--light-text);">Store Visits &nbsp;•&nbsp; Stock Drops &nbsp;•&nbsp; Referrals</div></div>
+              <div class="card anim d4" style="padding:14px 18px;text-align:center;"><div style="font-size:9px;font-weight:700;letter-spacing:1.3px;color:var(--bronze);">REPEAT ENGINE</div><div style="font-size:11.5px;color:var(--light-text);margin-top:6px;line-height:1.4;">Buyers join WhatsApp Community, driving repeat visits &amp; referrals at near-zero CAC.</div></div>
+            </div>
+            <div class="eco-col">
+              <div class="card accent-top anim-right d1" style="padding:16px 20px;"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">VISUAL RECALL</div><div style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin:3px 0 5px;">Google Display Ads</div><div style="font-size:11.5px;color:var(--light-text);line-height:1.4;">Maintain polished brand recall across apps until prospects visit.</div></div>
+              <div class="card accent-top anim-right d2" style="padding:16px 20px;"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">GOAL: STORE VISIT</div><div style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin:3px 0 5px;">Google Business Profile</div><div style="font-size:11.5px;color:var(--light-text);line-height:1.4;">Maps pins, store visuals &amp; reviews turning intent into walk-ins.</div></div>
+              <div class="card accent-top anim-right d3" style="padding:16px 20px;"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">STOCK DROPS &amp; REFERRALS</div><div style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin:3px 0 5px;">WhatsApp Community</div><div style="font-size:11.5px;color:var(--light-text);line-height:1.4;">Daily/weekly new-stock updates &amp; referral perks for repeat visits.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">09 &nbsp;/&nbsp; 14</span></div>
+      </section>
+
+      <!-- SLIDE 10: STEP 09 MERCHANDISING -->
+      <section class="slide theme-light" data-title="Step 09 · Lookbook & Creative Direction">
+        <div class="slide-top">
+          <div class="kicker-wrap"><span class="step-badge">Step 09</span><span class="kicker">Merchandising &amp; Lookbook Direction</span></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; MENSWEAR ATELIER</div>
+        </div>
+        <h2 class="slide-title anim d1">Luxury Visual Stories That Educate Before They Visit.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="cat-grid">
+            <div class="card cat-card anim d1"><div class="cat-img-wrap"><img class="lux-img" src="assets/cat1_casual_shirts.jpg" alt="Casual Shirts" /></div><div class="cat-body"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--bronze);">CASUAL SHIRTS</div><div style="font-family:var(--font-editorial);font-size:17px;font-weight:700;">Effortless Refined Style.</div><div style="font-size:11px;color:var(--stone);line-height:1.4;">Weekend transition reels showcasing breathable cotton weaves &amp; sharp rolled-cuff silhouettes.</div></div></div>
+            <div class="card cat-card anim d2"><div class="cat-img-wrap"><img class="lux-img" src="assets/cat2_formal_shirts.jpg" alt="Formal Shirts" /></div><div class="cat-body"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--bronze);">FORMAL SHIRTS</div><div style="font-family:var(--font-editorial);font-size:17px;font-weight:700;">Boardroom &amp; Evening Polish.</div><div style="font-size:11px;color:var(--stone);line-height:1.4;">Macro fabric, collar &amp; cuff close-ups educating buyers on structure and precision tailoring.</div></div></div>
+            <div class="card cat-card anim d3"><div class="cat-img-wrap"><img class="lux-img" src="assets/cat3_tshirts.jpg" alt="T-Shirts" /></div><div class="cat-body"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--bronze);">T-SHIRTS</div><div style="font-family:var(--font-editorial);font-size:17px;font-weight:700;">Elevated Everyday Minimal.</div><div style="font-size:11px;color:var(--stone);line-height:1.4;">Clean studio lookbooks highlighting heavyweight drape, colour depth &amp; collar hold.</div></div></div>
+            <div class="card cat-card anim d4"><div class="cat-img-wrap"><img class="lux-img" src="assets/cat4_jeans.jpg" alt="Jeans" /></div><div class="cat-body"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--bronze);">JEANS</div><div style="font-family:var(--font-editorial);font-size:17px;font-weight:700;">Tailored Denim Comfort.</div><div style="font-size:11px;color:var(--stone);line-height:1.4;">360-degree fit-check videos proving tapered cuts, luxury washes &amp; day-to-night ease.</div></div></div>
+            <div class="card cat-card anim d5"><div class="cat-img-wrap"><img class="lux-img" src="assets/cat5_trousers.jpg" alt="Trousers" /></div><div class="cat-body"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--bronze);">TROUSERS</div><div style="font-family:var(--font-editorial);font-size:17px;font-weight:700;">Complete Outfit Authority.</div><div style="font-size:11px;color:var(--stone);line-height:1.4;">Full-outfit pairing reels elevating both casual &amp; formal shirts into ₹5,000+ looks.</div></div></div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">10 &nbsp;/&nbsp; 14</span></div>
+      </section>
+
+      <!-- SLIDE 11: STEP 10 MARGIN DISCIPLINE -->
+      <section class="slide theme-obsidian" data-title="Step 10 · Margin-Safe Basket Growth">
+        <div class="slide-top">
+          <div class="kicker-wrap"><span class="step-badge">Step 10</span><span class="kicker">Commercial &amp; Margin Discipline</span></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; MENSWEAR ATELIER</div>
+        </div>
+        <h2 class="slide-title anim d1">Scale Store Sales Without Compromising &lt; 25% Margin.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="s11-grid">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div class="kpi-trio anim d1" style="margin-bottom:0;">
+                <div class="kpi-box" style="border:1px solid var(--gold);border-top:3px solid var(--gold);background:var(--obsidian-card);"><div class="kpi-label">AVG PRODUCT PRICE</div><div class="kpi-val" style="margin-bottom:0;">₹2,000</div></div>
+                <div class="kpi-box" style="border:1px solid var(--gold);border-top:3px solid var(--gold);background:var(--obsidian-card);"><div class="kpi-label">AVG CUSTOMER BILL</div><div class="kpi-val" style="margin-bottom:0;">₹5,000</div></div>
+                <div class="kpi-box" style="border:1px solid var(--gold);border-top:3px solid var(--gold);background:var(--obsidian-card);"><div class="kpi-label">GROSS MARGIN</div><div class="kpi-val" style="margin-bottom:0;">&lt; 25%</div></div>
+              </div>
+              <div class="card chart-box anim d2">
+                <div><div style="font-size:9.5px;font-weight:700;letter-spacing:1.1px;color:var(--gold);">BASKET VALUE PROGRESSION (₹)</div><div style="font-size:11.5px;color:var(--light-text);margin-top:4px;">Curated outfit styling unlocks higher gross-profit headroom per store visit.</div></div>
+                <div class="bars-wrap">
+                  <div class="bar-col"><div class="bar-val">₹2,000</div><div class="bar-rect" data-h="52"></div><div style="font-size:10.5px;text-align:center;margin-top:8px;">Single Item<br><span style="color:var(--light-muted);font-size:9.5px;">(₹2,000 Base)</span></div></div>
+                  <div class="bar-col"><div class="bar-val">₹5,000</div><div class="bar-rect" data-h="125"></div><div style="font-size:10.5px;text-align:center;margin-top:8px;">Current Avg Bill<br><span style="color:var(--light-muted);font-size:9.5px;">(2.5 Items)</span></div></div>
+                  <div class="bar-col"><div class="bar-val">₹7,000</div><div class="bar-rect" data-h="172"></div><div style="font-size:10.5px;text-align:center;margin-top:8px;">Complete Outfit*<br><span style="color:var(--light-muted);font-size:9.5px;">(3-Item Styling)</span></div></div>
+                </div>
+                <div style="font-size:9.5px;font-style:italic;color:var(--light-muted);">*Illustrative 3-piece outfit pairing (e.g. Shirt + Trouser/Jeans + Tee).</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div class="card accent-left anim d2" style="background:var(--velvet);padding:16px 20px;"><div style="font-family:var(--font-editorial);font-size:18px;font-weight:700;color:var(--gold);">Filter High-Intent Viewers First</div><div style="font-size:12px;color:var(--light-text);margin-top:5px;line-height:1.4;">With &lt; 25% gross margin, focus conversion budget strictly on warm 50%+ video viewers ready to visit.</div></div>
+              <div class="card accent-left anim d3" style="background:var(--velvet);padding:16px 20px;"><div style="font-family:var(--font-editorial);font-size:18px;font-weight:700;color:var(--gold);">Lead With Complete Outfit Styling</div><div style="font-size:12px;color:var(--light-text);margin-top:5px;line-height:1.4;">Educate buyers on Shirt + Trouser/Jeans pairings so walk-ins average ₹5,000+ baskets over single items.</div></div>
+              <div class="card anim d4" style="background:var(--velvet);padding:16px 20px;border-left:3.5px solid var(--bronze);"><div style="font-family:var(--font-editorial);font-size:18px;font-weight:700;color:var(--gold);">Zero Blanket Storewide Discounts</div><div style="font-size:12px;color:var(--light-text);margin-top:5px;line-height:1.4;">Protect luxury brand positioning—never train local buyers to wait for clearance sales.</div></div>
+              <div class="card accent-left anim d5" style="background:var(--velvet);padding:16px 20px;"><div style="font-family:var(--font-editorial);font-size:18px;font-weight:700;color:var(--gold);">WhatsApp Community &amp; Referral Perks</div><div style="font-size:12px;color:var(--light-text);margin-top:5px;line-height:1.4;">Weekly new-stock updates &amp; member-only referral rewards drive repeat visits at near-zero ad cost.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">11 &nbsp;/&nbsp; 14</span></div>
+      </section>
+
+      <!-- SLIDE 12: STEP 11 90-DAY EXECUTION -->
+      <section class="slide theme-light" data-title="Step 11 · 90-Day Execution Plan">
+        <div class="slide-top">
+          <div class="kicker-wrap"><span class="step-badge">Step 11</span><span class="kicker">90-Day Rollout Plan</span></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; MENSWEAR ATELIER</div>
+        </div>
+        <h2 class="slide-title anim d1">Step-by-Step Execution From Launch to Scale.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="roadmap-spine">
+            <div class="spine-line anim d1"></div>
+            <div class="phase-col anim d1"><div class="phase-dot">01</div><div class="card accent-top phase-card" style="background:var(--obsidian);color:var(--ivory);border-color:var(--obsidian);"><div><div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">DAYS 01 – 15</div><h3 style="font-family:var(--font-editorial);font-size:20px;font-weight:700;margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--border-obsidian);">Positioning &amp; Video Shoot</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:11px;font-size:11.5px;color:var(--light-text);line-height:1.4;"><li>▪ Refresh Instagram, Facebook &amp; Maps aesthetics</li><li>▪ Set up Meta Pixel &amp; Video Remarketing pools</li><li>▪ Shoot fabric, fit &amp; outfit reels across 5 lines</li></ul></div><div style="background:#1D2330;border:1px solid var(--gold);padding:10px 12px;"><div style="font-size:8px;font-weight:700;letter-spacing:1px;color:var(--bronze);">MILESTONE</div><div style="font-size:11.5px;font-weight:700;margin-top:3px;">Luxury assets &amp; tracking ready</div></div></div></div>
+            <div class="phase-col anim d2"><div class="phase-dot">02</div><div class="card accent-top phase-card"><div><div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">DAYS 16 – 30</div><h3 style="font-family:var(--font-editorial);font-size:20px;font-weight:700;margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--border-light);">Video Capture &amp; Education</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:11px;font-size:11.5px;color:var(--stone);line-height:1.4;"><li>▪ Launch local Reels, Facebook &amp; YouTube ads</li><li>▪ Pool 50%+ viewers &amp; run fit education ads</li><li>▪ Start weekly WhatsApp new-stock updates</li></ul></div><div style="background:var(--ivory-soft);border:1px solid var(--gold);padding:10px 12px;"><div style="font-size:8px;font-weight:700;letter-spacing:1px;color:var(--bronze);">MILESTONE</div><div style="font-size:11.5px;font-weight:700;margin-top:3px;">Warm educated audience live</div></div></div></div>
+            <div class="phase-col anim d3"><div class="phase-dot">03</div><div class="card accent-top phase-card"><div><div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">DAYS 31 – 60</div><h3 style="font-family:var(--font-editorial);font-size:20px;font-weight:700;margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--border-light);">High-Intent Store Visits</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:11px;font-size:11.5px;color:var(--stone);line-height:1.4;"><li>▪ Retarget warm viewers with Maps &amp; visit hooks</li><li>▪ Onboard walk-ins to WhatsApp VIP Community</li><li>▪ Track store bills back to remarketing &amp; drops</li></ul></div><div style="background:var(--ivory-soft);border:1px solid var(--gold);padding:10px 12px;"><div style="font-size:8px;font-weight:700;letter-spacing:1px;color:var(--bronze);">MILESTONE</div><div style="font-size:11.5px;font-weight:700;margin-top:3px;">High-intent walk-ins flowing</div></div></div></div>
+            <div class="phase-col anim d4"><div class="phase-dot">04</div><div class="card accent-top phase-card" style="background:var(--velvet);color:var(--ivory);border-color:var(--velvet);"><div><div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">DAYS 61 – 90</div><h3 style="font-family:var(--font-editorial);font-size:20px;font-weight:700;margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--border-dark);">Community &amp; Referral Scale</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:11px;font-size:11.5px;color:var(--light-text);line-height:1.4;"><li>▪ Scale top store-visit &amp; margin video creatives</li><li>▪ Launch customer referral rewards on WhatsApp</li><li>▪ Expand winning pools to Secondary &amp; Kothapet</li></ul></div><div style="background:#1D2330;border:1px solid var(--gold);padding:10px 12px;"><div style="font-size:8px;font-weight:700;letter-spacing:1px;color:var(--bronze);">MILESTONE</div><div style="font-size:11.5px;font-weight:700;margin-top:3px;">Self-compounding B2C engine</div></div></div></div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">12 &nbsp;/&nbsp; 14</span></div>
+      </section>
+
+      <!-- SLIDE 13: STEP 12 MEASUREMENT LOOP -->
+      <section class="slide theme-velvet" data-title="Step 12 · Measurement Loop">
+        <div class="slide-top">
+          <div class="kicker-wrap"><span class="step-badge">Step 12</span><span class="kicker">Performance Measurement</span></div>
+          <div class="brand-mark">JONTYS HUB &nbsp;|&nbsp; MENSWEAR ATELIER</div>
+        </div>
+        <h2 class="slide-title anim d1">Measuring What Grows Store Gross Profit.</h2>
+        <div class="slide-rule"></div>
+        <div class="slide-body">
+          <div class="card accent-left anim d1" style="background:var(--obsidian);border-color:var(--gold);padding:16px 24px;">
+            <div style="font-size:9.5px;font-weight:700;letter-spacing:1.5px;color:var(--gold);">NORTH STAR METRIC &nbsp;•&nbsp; TRACKED WEEKLY</div>
+            <div style="font-family:var(--font-editorial);font-size:25px;font-weight:700;margin-top:4px;">Marketing-Generated Gross Profit vs. Total Advertising Spend</div>
+          </div>
+          <div class="kpi-cols">
+            <div class="card kpi-stage-col anim d2" style="border-top:3px solid var(--light-muted);"><div style="font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--light-muted);">STAGE 01 &nbsp;•&nbsp; VIDEO &amp; REMARKETING POOL</div><div class="metric-pill" style="border-left:4px solid var(--light-muted);"><strong style="font-family:var(--font-editorial);font-size:19px;">Video Viewers (50%+)</strong><span style="font-size:11.5px;color:var(--light-muted);margin-top:6px;line-height:1.4;">Local men entering the warm educational remarketing audience.</span></div><div class="metric-pill" style="border-left:4px solid var(--light-muted);"><strong style="font-family:var(--font-editorial);font-size:19px;">High-Intent Enquiries</strong><span style="font-size:11.5px;color:var(--light-muted);margin-top:6px;line-height:1.4;">WhatsApp &amp; Instagram DMs requesting fit, sizing, or fresh arrivals.</span></div></div>
+            <div class="card kpi-stage-col anim d3" style="border-top:3px solid var(--bronze);"><div style="font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--bronze);">STAGE 02 &nbsp;•&nbsp; HIGH-INTENT STORE VISITS</div><div class="metric-pill" style="border-left:4px solid var(--bronze);"><strong style="font-family:var(--font-editorial);font-size:19px;">Maps &amp; Store Directions</strong><span style="font-size:11.5px;color:var(--light-muted);margin-top:6px;line-height:1.4;">Route taps driven by educated remarketing &amp; Google Business Profile.</span></div><div class="metric-pill" style="border-left:4px solid var(--bronze);"><strong style="font-family:var(--font-editorial);font-size:19px;">Educated Store Walk-Ins</strong><span style="font-size:11.5px;color:var(--light-muted);margin-top:6px;line-height:1.4;">Pre-sold local buyers visiting to try complete outfits in store.</span></div></div>
+            <div class="card kpi-stage-col anim d4" style="border-top:3px solid var(--gold);"><div style="font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--gold);">STAGE 03 &nbsp;•&nbsp; COMMERCIAL PROFITABILITY</div><div class="metric-pill" style="border-left:4px solid var(--gold);"><strong style="font-family:var(--font-editorial);font-size:19px;">Average Bill &amp; Gross Profit</strong><span style="font-size:11.5px;color:var(--light-muted);margin-top:6px;line-height:1.4;">Bills tracked against ₹5,000 benchmark and &lt; 25% margin health.</span></div><div class="metric-pill" style="border-left:4px solid var(--gold);"><strong style="font-family:var(--font-editorial);font-size:19px;">Repeat &amp; Referral Purchases</strong><span style="font-size:11.5px;color:var(--light-muted);margin-top:6px;line-height:1.4;">Zero-CAC repeat bills from WhatsApp stock drops &amp; member referrals.</span></div></div>
+          </div>
+        </div>
+        <div class="slide-footer"><span>Jontys Hub &nbsp;•&nbsp; Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">13 &nbsp;/&nbsp; 14</span></div>
+      </section>
+
+      <!-- SLIDE 14: CLOSING -->
+      <section class="slide theme-obsidian split-full" data-title="Closing · Partnership Next Steps">
+        <div class="split-left">
+          <div>
+            <div class="kicker-wrap anim d1" style="margin-bottom:14px;"><span style="width:36px;height:2.5px;background:var(--gold);"></span><span style="font-size:10px;font-weight:700;letter-spacing:2.2px;color:var(--gold);">PARTNERSHIP NEXT STEPS</span></div>
+            <h2 class="anim d2" style="font-family:var(--font-editorial);font-size:34px;font-weight:700;line-height:1.18;margin-bottom:24px;">
+              Let's Build Jontys Hub's<br>Next Luxury Chapter.
+            </h2>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div class="card accent-left anim d3" style="padding:14px 18px;display:flex;gap:16px;align-items:center;"><span style="font-family:var(--font-editorial);font-size:22px;font-weight:700;color:var(--gold);">01</span><div><div style="font-size:13.5px;font-weight:700;letter-spacing:1.2px;">UNDERSTAND</div><div style="font-size:12px;color:var(--light-text);margin-top:3px;">Align on store margins, category priorities &amp; local male buyers.</div></div></div>
+              <div class="card accent-left anim d4" style="padding:14px 18px;display:flex;gap:16px;align-items:center;"><span style="font-family:var(--font-editorial);font-size:22px;font-weight:700;color:var(--gold);">02</span><div><div style="font-size:13.5px;font-weight:700;letter-spacing:1.2px;">BUILD</div><div style="font-size:12px;color:var(--light-text);margin-top:3px;">Launch video-view remarketing, educational lookbooks &amp; WhatsApp tracking.</div></div></div>
+              <div class="card accent-left anim d5" style="padding:14px 18px;display:flex;gap:16px;align-items:center;"><span style="font-family:var(--font-editorial);font-size:22px;font-weight:700;color:var(--gold);">03</span><div><div style="font-size:13.5px;font-weight:700;letter-spacing:1.2px;">GROW</div><div style="font-size:12px;color:var(--light-text);margin-top:3px;">Convert high-intent walk-ins into ₹5,000+ outfits &amp; repeat referrals.</div></div></div>
+            </div>
+          </div>
+          <div>
+            <div class="anim d6" style="border-top:1px solid var(--gold);padding-top:14px;font-family:var(--font-editorial);font-size:15.5px;font-style:italic;line-height:1.4;color:var(--ivory);">
+              "Our goal is clear: educate local men through compelling video, position Jontys Hub as LB Nagar’s luxury destination, and turn high intent into store visits."
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;font-size:10px;color:var(--light-muted);">
+              <span>Jontys Hub &nbsp;•&nbsp; B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span>
+              <span class="slide-num">14 &nbsp;/&nbsp; 14</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-photo"><img class="lux-img" src="assets/slide14_closing.jpg" alt="Jontys Hub Closing Lookbook" /></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Interactive Presenter HUD -->
+  <nav class="hud" aria-label="Presentation Controls">
+    <button id="prevBtn" title="Previous Slide (Left Arrow)">← Prev</button>
+    <button id="overviewBtn" title="Slide Overview (G)">Grid</button>
+    <span class="hud-counter" id="hudCounter">01 / 14</span>
+    <button id="fsBtn" title="Fullscreen Mode (F)">Present</button>
+    <button id="nextBtn" title="Next Slide (Right Arrow / Space)">Next →</button>
+  </nav>
+
+  <!-- Slide Grid Drawer -->
+  <div class="overview-modal" id="overviewModal">
+    <div style="display:flex;justify-content:space-between;align-items:center;max-width:1280px;margin:0 auto;">
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--gold);">STEP-BY-STEP NAVIGATOR</div>
+        <h2 style="font-family:var(--font-editorial);font-size:28px;font-weight:700;margin-top:4px;">Jontys Hub — Luxury Growth Blueprint</h2>
+      </div>
+      <button id="closeOverview" style="background:var(--gold);color:var(--obsidian);border:none;padding:8px 16px;border-radius:999px;font-weight:700;cursor:pointer;">Close (Esc)</button>
+    </div>
+    <div class="overview-grid" id="overviewGrid" style="max-width:1280px;margin:20px auto 0;"></div>
+  </div>
+
+  <script>
+    (function () {
+      const stage = document.getElementById('deckStage');
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const progressFill = document.getElementById('progressFill');
+      const hudCounter = document.getElementById('hudCounter');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const fsBtn = document.getElementById('fsBtn');
+      const overviewBtn = document.getElementById('overviewBtn');
+      const overviewModal = document.getElementById('overviewModal');
+      const overviewGrid = document.getElementById('overviewGrid');
+      const closeOverview = document.getElementById('closeOverview');
+
+      let current = 0;
+
+      function fitStage() {
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const scale = Math.min(vw / 1280, vh / 720) * 0.96;
+        stage.style.transform = `scale(${scale})`;
+      }
+      window.addEventListener('resize', fitStage);
+      fitStage();
+
+      slides.forEach((s, idx) => {
+        const item = document.createElement('div');
+        item.className = 'ov-item';
+        item.innerHTML = `<div style="font-size:10.5px;font-weight:800;color:var(--gold);margin-bottom:6px;">SLIDE ${String(idx + 1).padStart(2, '0')}</div><div style="font-size:13.5px;font-weight:700;color:var(--ivory);line-height:1.3;">${s.dataset.title || 'Slide'}</div>`;
+        item.addEventListener('click', () => {
+          goTo(idx);
+          overviewModal.classList.remove('open');
+        });
+        overviewGrid.appendChild(item);
+      });
+
+      function goTo(index) {
+        if (index < 0 || index >= slides.length) return;
+        current = index;
+        slides.forEach((s, idx) => {
+          s.classList.remove('is-active', 'is-prev');
+          if (idx === current) s.classList.add('is-active');
+          else if (idx < current) s.classList.add('is-prev');
+        });
+        progressFill.style.width = `${((current + 1) / slides.length) * 100}%`;
+        hudCounter.textContent = `${String(current + 1).padStart(2, '0')} / ${slides.length}`;
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === slides.length - 1;
+        Array.from(overviewGrid.children).forEach((el, i) => el.classList.toggle('current', i === current));
+      }
+
+      prevBtn.addEventListener('click', () => goTo(current - 1));
+      nextBtn.addEventListener('click', () => goTo(current + 1));
+      overviewBtn.addEventListener('click', () => overviewModal.classList.toggle('open'));
+      closeOverview.addEventListener('click', () => overviewModal.classList.remove('open'));
+
+      fsBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen?.();
+          fsBtn.textContent = 'Exit';
+        } else {
+          document.exitFullscreen?.();
+          fsBtn.textContent = 'Present';
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (overviewModal.classList.contains('open')) {
+          if (e.key === 'Escape') overviewModal.classList.remove('open');
+          return;
+        }
+        if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); goTo(current + 1); }
+        else if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); goTo(current - 1); }
+        else if (e.key === 'Home') goTo(0);
+        else if (e.key === 'End') goTo(slides.length - 1);
+        else if (e.key.toLowerCase() === 'g') overviewModal.classList.toggle('open');
+        else if (e.key.toLowerCase() === 'f') fsBtn.click();
+      });
+
+      let touchStartX = 0;
+      document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+      document.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].screenX - touchStartX;
+        if (dx < -45) goTo(current + 1);
+        else if (dx > 45) goTo(current - 1);
+      }, { passive: true });
+
+      goTo(0);
+    })();
+  </script>
+</body>
+</html>
