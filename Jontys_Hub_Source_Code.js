@@ -56,7 +56,7 @@ function addSlideChrome(slide, opts) {
     kicker = '',
     title = '',
     slideNum = 2,
-    totalSlides = 15,
+    totalSlides = 16,
   } = opts;
 
   const isDark = theme !== 'light';
@@ -388,7 +388,7 @@ async function buildPresentation() {
       margin: 0,
     });
 
-    s.addText('01  /  15', {
+    s.addText('01  /  16', {
       x: 0.78,
       y: 7.04,
       w: 1.5,
@@ -2609,7 +2609,7 @@ async function buildPresentation() {
       kicker: 'Commercial Investment & Package Scope',
       title: 'All-Inclusive Growth Retainer & Scope of Deliverables.',
       slideNum: 14,
-      totalSlides: 15,
+      totalSlides: 16,
     });
 
     const colW = (CONTENT_W - 0.35) / 2; // 5.811
@@ -2913,7 +2913,377 @@ async function buildPresentation() {
   }
 
   // =========================================================================
-  // SLIDE 15 – CLOSING (Obsidian Black)
+  // SLIDE 15 – STEP 14: ONBOARDING & KICKOFF CHECKLIST (Midnight Velvet)
+  // =========================================================================
+  {
+    const s = pptx.addSlide();
+    addSlideChrome(s, {
+      theme: 'velvet',
+      step: 'Step 14',
+      kicker: 'Client Kickoff Requirements',
+      title: 'Required Documents, Ad Accounts & Creative Assets to Launch.',
+      slideNum: 15,
+      totalSlides: 16,
+    });
+
+    const colGap = 0.24;
+    const colW = (CONTENT_W - colGap * 2) / 3; // ~3.83
+    const topY = 1.54;
+    const cardH = 5.25;
+
+    // COL 1: Documents & Ad Accounts
+    const col1X = MARGIN_X;
+    addCard(s, col1X, topY, colW, cardH, {
+      fill: COLORS.velvetCard,
+      border: COLORS.borderDark,
+      accentTop: true,
+      accentColor: COLORS.gold,
+    });
+
+    s.addText('PILLAR 01 • OFFICIAL SETUP', {
+      x: col1X + 0.22,
+      y: topY + 0.16,
+      w: colW - 0.44,
+      h: 0.20,
+      fontFace: FONTS.ui,
+      fontSize: 8.5,
+      bold: true,
+      color: COLORS.gold,
+      charSpacing: 1.2,
+      margin: 0,
+    });
+
+    s.addText('Documents & Ad Accounts', {
+      x: col1X + 0.22,
+      y: topY + 0.38,
+      w: colW - 0.44,
+      h: 0.32,
+      fontFace: FONTS.editorial,
+      fontSize: 16.5,
+      bold: true,
+      color: COLORS.ivory,
+      margin: 0,
+    });
+
+    const col1Items = [
+      {
+        num: '1',
+        title: 'Business Verification Proofs',
+        color: COLORS.gold,
+        desc: 'GST Certificate / MSME Udyam registration & Business PAN for Meta Business Portfolio verification.',
+      },
+      {
+        num: '2',
+        title: 'Store Address & ID Proof',
+        color: COLORS.bronze,
+        desc: 'Store electricity bill / rental deed for B.N. Reddy Nagar premises + authorized proprietor ID (Aadhaar/PAN).',
+      },
+      {
+        num: '3',
+        title: 'Ad Spend Payment Method',
+        color: COLORS.stone,
+        desc: 'Business credit/debit card enabled for international / online auto-pay billing on Meta Ads & Google Ads.',
+      },
+      {
+        num: '4',
+        title: 'GSTIN for Tax Credit',
+        color: COLORS.stone,
+        desc: 'Added to ad billing profiles to claim 18% GST input tax credit (ITC) on all advertising invoices.',
+      },
+    ];
+
+    const itemH = 0.88;
+    col1Items.forEach((it, idx) => {
+      const iy = topY + 0.78 + idx * (itemH + 0.10);
+      s.addShape('rect', {
+        x: col1X + 0.20,
+        y: iy,
+        w: colW - 0.40,
+        h: itemH,
+        fill: { color: COLORS.obsidian },
+        line: { color: COLORS.borderObsidian, width: 0.65 },
+      });
+      s.addShape('rect', {
+        x: col1X + 0.20,
+        y: iy,
+        w: 0.045,
+        h: itemH,
+        fill: { color: it.color },
+        line: { type: 'none' },
+      });
+
+      s.addText(
+        [
+          { text: `${it.num}. ${it.title}\n`, options: { bold: true, color: it.color, fontSize: 9.8 } },
+          { text: it.desc, options: { color: COLORS.lightText, fontSize: 8.8 } },
+        ],
+        {
+          x: col1X + 0.32,
+          y: iy + 0.06,
+          w: colW - 0.56,
+          h: itemH - 0.10,
+          fontFace: FONTS.ui,
+          lineSpacingMultiple: 1.22,
+          margin: 0,
+        }
+      );
+    });
+
+    s.addShape('rect', {
+      x: col1X + 0.20,
+      y: topY + cardH - 0.48,
+      w: colW - 0.40,
+      h: 0.34,
+      fill: { color: COLORS.obsidian },
+      line: { color: COLORS.borderObsidian, width: 0.65 },
+    });
+    s.addText('Agency Role: We handle complete Portfolio & Account setup.', {
+      x: col1X + 0.26,
+      y: topY + cardH - 0.46,
+      w: colW - 0.52,
+      h: 0.30,
+      fontFace: FONTS.ui,
+      fontSize: 8.5,
+      color: COLORS.lightMuted,
+      margin: 0,
+    });
+
+    // COL 2: Raw Reels From Client
+    const col2X = col1X + colW + colGap;
+    addCard(s, col2X, topY, colW, cardH, {
+      fill: COLORS.obsidianCard,
+      border: COLORS.borderObsidian,
+      accentTop: true,
+      accentColor: COLORS.gold,
+    });
+
+    s.addText('PILLAR 02 • INITIAL CREATIVE BATCH', {
+      x: col2X + 0.22,
+      y: topY + 0.16,
+      w: colW - 0.44,
+      h: 0.20,
+      fontFace: FONTS.ui,
+      fontSize: 8.5,
+      bold: true,
+      color: COLORS.gold,
+      charSpacing: 1.2,
+      margin: 0,
+    });
+
+    s.addText('Raw Reels From Client', {
+      x: col2X + 0.22,
+      y: topY + 0.38,
+      w: colW - 0.44,
+      h: 0.32,
+      fontFace: FONTS.editorial,
+      fontSize: 16.5,
+      bold: true,
+      color: COLORS.ivory,
+      margin: 0,
+    });
+
+    const col2Items = [
+      {
+        num: '1',
+        title: 'Casual & Formal Shirts (4 clips)',
+        color: COLORS.gold,
+        desc: '9:16 vertical clips showing fabric weave, collar stiffness, rolled sleeves & trial drape.',
+      },
+      {
+        num: '2',
+        title: 'Jeans & Trousers (4 clips)',
+        color: COLORS.gold,
+        desc: 'Movement clips showing denim stretch, waistband quality, ankle taper & fit checks.',
+      },
+      {
+        num: '3',
+        title: 'T-Shirts & Everyday Outfits (2 clips)',
+        color: COLORS.bronze,
+        desc: 'Clean lookbook clips highlighting heavyweight cotton drop & casual pairings.',
+      },
+      {
+        num: '4',
+        title: 'Store Exterior & Walk-In Reel (1–2 clips)',
+        color: COLORS.bronze,
+        desc: 'Facade, entrance near B.D. Reddy Gardens, interior lighting & welcome experience.',
+      },
+    ];
+
+    col2Items.forEach((it, idx) => {
+      const iy = topY + 0.78 + idx * (itemH + 0.10);
+      s.addShape('rect', {
+        x: col2X + 0.20,
+        y: iy,
+        w: colW - 0.40,
+        h: itemH,
+        fill: { color: COLORS.obsidian },
+        line: { color: COLORS.borderObsidian, width: 0.65 },
+      });
+      s.addShape('rect', {
+        x: col2X + 0.20,
+        y: iy,
+        w: 0.045,
+        h: itemH,
+        fill: { color: it.color },
+        line: { type: 'none' },
+      });
+
+      s.addText(
+        [
+          { text: `${it.title}\n`, options: { bold: true, color: it.color, fontSize: 9.8 } },
+          { text: it.desc, options: { color: COLORS.lightText, fontSize: 8.8 } },
+        ],
+        {
+          x: col2X + 0.32,
+          y: iy + 0.06,
+          w: colW - 0.56,
+          h: itemH - 0.10,
+          fontFace: FONTS.ui,
+          lineSpacingMultiple: 1.22,
+          margin: 0,
+        }
+      );
+    });
+
+    s.addShape('rect', {
+      x: col2X + 0.20,
+      y: topY + cardH - 0.48,
+      w: colW - 0.40,
+      h: 0.34,
+      fill: { color: COLORS.velvet },
+      line: { color: COLORS.gold, width: 0.65 },
+    });
+    s.addText('Agency Role: Mobile filming guide, luxury grade & ad cutdowns.', {
+      x: col2X + 0.26,
+      y: topY + cardH - 0.46,
+      w: colW - 0.52,
+      h: 0.30,
+      fontFace: FONTS.ui,
+      fontSize: 8.5,
+      color: COLORS.ivory,
+      margin: 0,
+    });
+
+    // COL 3: Access & In-Store Setup
+    const col3X = col2X + colW + colGap;
+    addCard(s, col3X, topY, colW, cardH, {
+      fill: COLORS.velvetCard,
+      border: COLORS.borderDark,
+      accentTop: true,
+      accentColor: COLORS.bronze,
+    });
+
+    s.addText('PILLAR 03 • PLATFORM DELEGATION', {
+      x: col3X + 0.22,
+      y: topY + 0.16,
+      w: colW - 0.44,
+      h: 0.20,
+      fontFace: FONTS.ui,
+      fontSize: 8.5,
+      bold: true,
+      color: COLORS.bronze,
+      charSpacing: 1.2,
+      margin: 0,
+    });
+
+    s.addText('Access & In-Store Setup', {
+      x: col3X + 0.22,
+      y: topY + 0.38,
+      w: colW - 0.44,
+      h: 0.32,
+      fontFace: FONTS.editorial,
+      fontSize: 16.5,
+      bold: true,
+      color: COLORS.ivory,
+      margin: 0,
+    });
+
+    const col3Items = [
+      {
+        num: '1',
+        title: 'Meta & Instagram Admin Access',
+        color: COLORS.bronze,
+        desc: 'Invite agency email as Partner / Admin in Meta Business Portfolio and connect Instagram account.',
+      },
+      {
+        num: '2',
+        title: 'Google Business Profile (Maps)',
+        color: COLORS.gold,
+        desc: 'Grant Manager access to optimize LB Nagar store location pins, timings, photos & reviews.',
+      },
+      {
+        num: '3',
+        title: 'WhatsApp In-Store Phone/SIM',
+        color: COLORS.stone,
+        desc: 'Designate store smartphone for VIP Community broadcasts & customer enquiry management.',
+      },
+      {
+        num: '4',
+        title: 'Billing Counter Scripting',
+        color: COLORS.stone,
+        desc: 'Store cash-counter team brief on collecting customer numbers during ₹5,000+ billing.',
+      },
+    ];
+
+    col3Items.forEach((it, idx) => {
+      const iy = topY + 0.78 + idx * (itemH + 0.10);
+      s.addShape('rect', {
+        x: col3X + 0.20,
+        y: iy,
+        w: colW - 0.40,
+        h: itemH,
+        fill: { color: COLORS.obsidian },
+        line: { color: COLORS.borderObsidian, width: 0.65 },
+      });
+      s.addShape('rect', {
+        x: col3X + 0.20,
+        y: iy,
+        w: 0.045,
+        h: itemH,
+        fill: { color: it.color },
+        line: { type: 'none' },
+      });
+
+      s.addText(
+        [
+          { text: `${it.num}. ${it.title}\n`, options: { bold: true, color: it.color, fontSize: 9.8 } },
+          { text: it.desc, options: { color: COLORS.lightText, fontSize: 8.8 } },
+        ],
+        {
+          x: col3X + 0.32,
+          y: iy + 0.06,
+          w: colW - 0.56,
+          h: itemH - 0.10,
+          fontFace: FONTS.ui,
+          lineSpacingMultiple: 1.22,
+          margin: 0,
+        }
+      );
+    });
+
+    s.addShape('rect', {
+      x: col3X + 0.20,
+      y: topY + cardH - 0.48,
+      w: colW - 0.40,
+      h: 0.34,
+      fill: { color: COLORS.obsidian },
+      line: { color: COLORS.gold, width: 0.65 },
+    });
+    s.addText('Timeline: First campaigns live in 3–5 business days.', {
+      x: col3X + 0.26,
+      y: topY + cardH - 0.46,
+      w: colW - 0.52,
+      h: 0.30,
+      fontFace: FONTS.ui,
+      fontSize: 8.5,
+      bold: true,
+      color: COLORS.gold,
+      margin: 0,
+    });
+  }
+
+  // =========================================================================
+  // SLIDE 16 – CLOSING (Obsidian Black)
   // =========================================================================
   {
     const s = pptx.addSlide();
@@ -3079,7 +3449,7 @@ async function buildPresentation() {
       margin: 0,
     });
 
-    s.addText('15  /  15', {
+    s.addText('16  /  16', {
       x: 6.15,
       y: 7.00,
       w: 0.98,
