@@ -119,7 +119,7 @@ function addSlideChrome(slide, opts) {
     h: 0.28,
   });
 
-  slide.addText('JONTYS HUB  |  MENSWEAR ATELIER', {
+  slide.addText('JHONTY HUB  |  MENSWEAR ATELIER', {
     x: W - MARGIN_X - 4.15,
     y: 0.36,
     w: 4.15,
@@ -267,14 +267,40 @@ async function buildPresentation() {
     s.addImage({
       path: img('jh_logo.png'),
       x: 0.78,
-      y: 0.42,
-      w: 0.48,
-      h: 0.60,
+      y: 0.52,
+      w: 0.54,
+      h: 0.65,
+    });
+
+    s.addText('JHONTY HUB', {
+      x: 1.46,
+      y: 0.54,
+      w: 5.5,
+      h: 0.36,
+      fontFace: FONTS.editorial,
+      fontSize: 26,
+      bold: true,
+      color: COLORS.ivory,
+      charSpacing: 2.0,
+      margin: 0,
+    });
+
+    s.addText('MENSWEAR ATELIER • HYDERABAD', {
+      x: 1.48,
+      y: 0.90,
+      w: 5.5,
+      h: 0.22,
+      fontFace: FONTS.ui,
+      fontSize: 8.8,
+      bold: true,
+      color: COLORS.gold,
+      charSpacing: 2.0,
+      margin: 0,
     });
 
     s.addShape('rect', {
       x: 0.78,
-      y: 1.12,
+      y: 1.45,
       w: 0.55,
       h: 0.035,
       fill: { color: COLORS.gold },
@@ -283,63 +309,50 @@ async function buildPresentation() {
 
     s.addText("LUXURY MEN'S FASHION • B2C GROWTH BLUEPRINT", {
       x: 0.78,
-      y: 1.28,
+      y: 1.58,
       w: 6.5,
-      h: 0.28,
+      h: 0.26,
       fontFace: FONTS.ui,
-      fontSize: 9.8,
+      fontSize: 9.5,
       bold: true,
       color: COLORS.gold,
-      charSpacing: 2.2,
+      charSpacing: 2.0,
       margin: 0,
     });
 
-    s.addText('JONTYS HUB', {
+    s.addText("Elevating a Dedicated Men's Fashion Store Into a High-Intent Luxury Brand.", {
       x: 0.78,
-      y: 1.95,
-      w: 6.5,
-      h: 0.95,
+      y: 1.96,
+      w: 6.45,
+      h: 1.05,
       fontFace: FONTS.editorial,
-      fontSize: 48,
+      fontSize: 23,
       bold: true,
       color: COLORS.ivory,
-      charSpacing: 1.8,
+      lineSpacingMultiple: 1.25,
       margin: 0,
     });
 
     s.addShape('rect', {
       x: 0.78,
-      y: 2.94,
-      w: 1.25,
+      y: 3.14,
+      w: 1.10,
       h: 0.035,
       fill: { color: COLORS.gold },
       line: { type: 'none' },
     });
 
-    s.addText("Elevating a Dedicated Men's Fashion Store Into a High-Intent Luxury Brand.", {
-      x: 0.78,
-      y: 3.30,
-      w: 6.45,
-      h: 1.15,
-      fontFace: FONTS.editorial,
-      fontSize: 22,
-      bold: true,
-      color: COLORS.ivory,
-      lineSpacingMultiple: 1.28,
-      margin: 0,
-    });
-
     s.addText(
-      'A step-by-step growth roadmap combining video discovery, customer education, remarketing positioning, and WhatsApp community retention.',
+      'A disciplined growth roadmap turning client-shot in-store video into high-intent walk-ins through sequential remarketing, quality education, and VIP community retention.',
       {
         x: 0.78,
-        y: 4.70,
+        y: 3.32,
         w: 6.10,
-        h: 0.90,
+        h: 0.85,
         fontFace: FONTS.ui,
-        fontSize: 13.5,
+        fontSize: 13,
         color: COLORS.lightMuted,
-        lineSpacingMultiple: 1.4,
+        lineSpacingMultiple: 1.35,
         margin: 0,
       }
     );
@@ -1800,7 +1813,7 @@ async function buildPresentation() {
       margin: 0,
     });
 
-    s.addText('JONTYS HUB\nB2C COMMUNITY', {
+    s.addText('JHONTY HUB\nB2C COMMUNITY', {
       x: hubX + 0.20,
       y: hubY + 0.96,
       w: hubW - 0.40,
@@ -2688,8 +2701,8 @@ async function buildPresentation() {
     const deliverables = [
       {
         num: '01',
-        title: 'In-Store Video Production & Lookbooks',
-        desc: 'Bi-weekly 9:16 vertical video shoots in-store, creative scripting, luxury color grading & captions across all 5 menswear categories.',
+        title: 'Client Reel Post-Production & Ad Optimization',
+        desc: 'Raw video footage supplied by client. Agency provides weekly luxury shot-list guidelines, styling scripts, high-end color grading, captioning, trend audio pairing, and ad cutdowns across all 5 menswear categories.',
       },
       {
         num: '02',
@@ -2811,9 +2824,9 @@ async function buildPresentation() {
       },
       {
         num: '4',
-        title: 'External Talent & Off-Site Shoots',
+        title: 'Optional Agency Camera Crew / On-Site Shoots',
         color: COLORS.stone,
-        desc: 'Hired professional models or off-site outdoor location shoots outside the B.N. Reddy Nagar store premises are optional and charged separately upon client approval.',
+        desc: 'The ₹35,000 retainer operates on raw video reels supplied directly by the client. Professional on-site video shooting/camera crew by agency or external model shoots are optional add-ons charged separately upon client approval.',
       },
     ];
 
@@ -2925,36 +2938,40 @@ async function buildPresentation() {
     s.addImage({
       path: img('jh_logo.png'),
       x: 0.78,
-      y: 0.44,
+      y: 0.48,
       w: 0.48,
-      h: 0.60,
+      h: 0.58,
     });
 
-    s.addShape('rect', {
-      x: 0.78,
-      y: 1.14,
-      w: 0.45,
-      h: 0.035,
-      fill: { color: COLORS.gold },
-      line: { type: 'none' },
+    s.addText('JHONTY HUB', {
+      x: 1.36,
+      y: 0.48,
+      w: 4.5,
+      h: 0.32,
+      fontFace: FONTS.editorial,
+      fontSize: 22,
+      bold: true,
+      color: COLORS.ivory,
+      charSpacing: 2.0,
+      margin: 0,
     });
 
     s.addText('PARTNERSHIP NEXT STEPS', {
-      x: 1.34,
-      y: 1.03,
+      x: 1.38,
+      y: 0.80,
       w: 4.5,
-      h: 0.26,
+      h: 0.22,
       fontFace: FONTS.ui,
-      fontSize: 9.8,
+      fontSize: 8.8,
       bold: true,
       color: COLORS.gold,
       charSpacing: 2.0,
       margin: 0,
     });
 
-    s.addText("Let's Build Jontys Hub's\nNext Luxury Chapter.", {
+    s.addText("Let's Build Jhonty Hub's\nNext Luxury Chapter.", {
       x: 0.78,
-      y: 1.40,
+      y: 1.28,
       w: 6.50,
       h: 1.15,
       fontFace: FONTS.editorial,
@@ -2972,7 +2989,7 @@ async function buildPresentation() {
       },
       {
         label: 'BUILD',
-        desc: 'Launch video-view remarketing, educational lookbooks & WhatsApp tracking.',
+        desc: 'Provide weekly creative guidelines for client reels, launch remarketing & WhatsApp tracking.',
       },
       {
         label: 'GROW',
@@ -2981,8 +2998,8 @@ async function buildPresentation() {
     ];
 
     stages.forEach((st, i) => {
-      const sy = 2.76 + i * 0.96;
-      addCard(s, 0.78, sy, 6.35, 0.82, {
+      const sy = 2.68 + i * 0.94;
+      addCard(s, 0.78, sy, 6.35, 0.80, {
         fill: COLORS.obsidianCard,
         border: COLORS.borderObsidian,
         accentLeft: true,
@@ -3036,7 +3053,7 @@ async function buildPresentation() {
     });
 
     s.addText(
-      '"Our goal is clear: educate local men through compelling video, position Jontys Hub as LB Nagar’s luxury destination, and turn high intent into store visits."',
+      '"Our goal is clear: educate local men through compelling video, position Jhonty Hub as LB Nagar’s luxury destination, and turn high intent into store visits."',
       {
         x: 0.78,
         y: 5.92,
@@ -3051,7 +3068,7 @@ async function buildPresentation() {
       }
     );
 
-    s.addText('Jontys Hub • B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079', {
+    s.addText('Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079', {
       x: 0.78,
       y: 7.00,
       w: 5.2,

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 960" width="800" height="960" fill="none">
+  <defs>
+    <!-- Rich 3D Champagne Gold Gradient for Hexagon & Letter J -->
+    <linearGradient id="jhGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBF0D2" />
+      <stop offset="25%" stop-color="#E2C17C" />
+      <stop offset="50%" stop-color="#C29B4A" />
+      <stop offset="75%" stop-color="#9E7628" />
+      <stop offset="100%" stop-color="#E8CE95" />
+    </linearGradient>
+
+    <!-- Metallic Platinum Chrome Gradient for Letter H -->
+    <linearGradient id="jhSilverGrad" x1="20%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="30%" stop-color="#E5E9ED" />
+      <stop offset="65%" stop-color="#A5ACB5" />
+      <stop offset="100%" stop-color="#F0F3F6" />
+    </linearGradient>
+
+    <!-- Subtle Drop Shadow -->
+    <filter id="jhGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.65" />
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#C9A96E" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <g filter="url(#jhGlow)">
+    <!-- Inner Dark Obsidian Fill -->
+    <polygon points="400,98 700,272 700,688 400,862 100,688 100,272" fill="#0F1115" />
+
+    <!-- Hexagon Outer Rim -->
+    <path d="
+      M 400,48
+      L 744,248
+      L 744,712
+      L 400,912
+      L 56,712
+      L 56,248
+      Z
+      M 400,98
+      L 100,272
+      L 100,688
+      L 400,862
+      L 700,688
+      L 700,272
+      Z
+    " fill="url(#jhGoldGrad)" fill-rule="evenodd" />
+
+    <!-- Letter J (Gold) -->
+    <polygon points="
+      389,175
+      240,260
+      240,316
+      315,272
+      315,650
+      260,620
+      260,480
+      190,480
+      190,692
+      280,744
+      389,680
+    " fill="url(#jhGoldGrad)" />
+
+    <!-- Letter H (Silver / Platinum Chrome) -->
+    <polygon points="
+      407,235
+      481,278
+      481,445
+      595,445
+      595,344
+      669,387
+      669,573
+      595,616
+      595,515
+      481,515
+      481,682
+      407,725
+    " fill="url(#jhSilverGrad)" />
+  </g>
+</svg>

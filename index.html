@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jontys Hub – Luxury Men's Fashion Growth Blueprint</title>
+  <title>Jhonty Hub – Luxury Men's Fashion Growth Blueprint</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -78,11 +78,11 @@
       transition: width 0.6s var(--ease-luxury);
     }
 
-    /* Slide Base */
+    /* Slide Base - Tightened Luxury Padding */
     .slide {
       position: absolute;
       inset: 0;
-      padding: 24px 54px 34px;
+      padding: 22px 46px 26px;
       display: flex;
       flex-direction: column;
       opacity: 0;
@@ -115,44 +115,47 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
-    .kicker-wrap { display: flex; align-items: center; gap: 12px; }
+    .kicker-wrap { display: flex; align-items: center; gap: 10px; }
     .step-badge {
-      padding: 3px 10px;
-      font-size: 9.5px;
+      padding: 3px 9px;
+      font-size: 9px;
       font-weight: 700;
-      letter-spacing: 1.4px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
       color: var(--gold);
       border: 1px solid rgba(201, 169, 110, 0.55);
       background: rgba(201, 169, 110, 0.08);
     }
     .kicker {
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 700;
-      letter-spacing: 2.2px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--light-muted);
     }
     .theme-light .kicker { color: var(--bronze); }
     .brand-mark {
-      font-size: 9.5px;
+      font-size: 9px;
       font-weight: 600;
-      letter-spacing: 2px;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
-      opacity: 0.62;
+      opacity: 0.75;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     .slide-title {
       font-family: var(--font-editorial);
-      font-size: 34px;
+      font-size: 29px;
       font-weight: 700;
-      line-height: 1.08;
+      line-height: 1.12;
       letter-spacing: -0.2px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .theme-light .slide-title { color: var(--obsidian); }
-    .slide-rule { height: 1px; width: 100%; margin-bottom: 14px; }
+    .slide-rule { height: 1px; width: 100%; margin-bottom: 12px; }
     .theme-light .slide-rule { background: var(--border-light); }
     .theme-obsidian .slide-rule { background: var(--border-obsidian); }
     .theme-velvet .slide-rule { background: var(--border-dark); }
@@ -161,20 +164,59 @@
 
     .slide-footer {
       position: absolute;
-      left: 54px;
-      right: 54px;
-      bottom: 10px;
-      padding-top: 6px;
+      left: 46px;
+      right: 46px;
+      bottom: 8px;
+      padding-top: 5px;
       border-top: 1px solid;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 10px;
+      font-size: 9.5px;
     }
     .theme-light .slide-footer { border-color: var(--border-light); color: var(--stone); }
     .theme-obsidian .slide-footer { border-color: var(--border-obsidian); color: var(--light-muted); }
     .theme-velvet .slide-footer { border-color: var(--border-dark); color: var(--light-muted); }
     .slide-num { font-weight: 700; color: var(--gold); letter-spacing: 1px; }
+
+    /* Authentic Brand Crest Lockup */
+    .brand-crest-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+      padding: 7px 16px 7px 12px;
+      background: rgba(20, 25, 35, 0.75);
+      border: 1px solid rgba(201, 169, 110, 0.35);
+      border-radius: 4px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+    .brand-crest-mark {
+      height: 52px;
+      width: auto;
+      filter: drop-shadow(0 3px 12px rgba(201, 169, 110, 0.4));
+    }
+    .brand-crest-meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .brand-crest-name {
+      font-family: var(--font-editorial);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--ivory);
+      line-height: 1.05;
+    }
+    .brand-crest-sub {
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-top: 3px;
+      text-transform: uppercase;
+    }
 
     /* Cards & Photography Luxury Finish */
     .card {
@@ -246,7 +288,7 @@
       grid-template-columns: 1fr 535px;
     }
     .split-left {
-      padding: 58px 64px 46px;
+      padding: 34px 44px 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -814,41 +856,48 @@
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
 
       <!-- SLIDE 01: COVER -->
-      <section class="slide theme-obsidian split-full is-active" data-title="Cover: Jontys Hub Luxury Blueprint">
+      <section class="slide theme-obsidian split-full is-active" data-title="Cover: Jhonty Hub Luxury Blueprint">
         <div class="split-left">
           <div>
-            <img class="anim d1" src="assets/jh_logo.png" alt="Jontys Hub Logo" style="height:56px;width:auto;margin-bottom:14px;filter:drop-shadow(0 4px 14px rgba(201,169,110,0.3));" />
-            <div class="anim d1" style="font-size:10px;font-weight:700;letter-spacing:2.4px;color:var(--gold);">LUXURY MEN'S FASHION • B2C GROWTH BLUEPRINT</div>
-            <h1 class="anim d2" style="font-family:var(--font-editorial);font-size:60px;font-weight:700;letter-spacing:2px;margin:24px 0 14px;">JONTYS HUB</h1>
-            <div class="anim d2" style="width:110px;height:3px;background:var(--gold);margin-bottom:26px;"></div>
-            <h2 class="anim d3" style="font-family:var(--font-editorial);font-size:29px;font-weight:700;line-height:1.22;max-width:560px;">
+            <div class="brand-crest-lockup anim d1">
+              <img src="assets/jh_logo.svg" alt="Jhonty Hub Logo" class="brand-crest-mark" />
+              <div class="brand-crest-meta">
+                <div class="brand-crest-name">JHONTY HUB</div>
+                <div class="brand-crest-sub">MENSWEAR ATELIER • HYDERABAD</div>
+              </div>
+            </div>
+            <div class="anim d1" style="font-size:9.5px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:10px;">LUXURY MEN'S FASHION • B2C GROWTH BLUEPRINT</div>
+            <h1 class="anim d2" style="font-family:var(--font-editorial);font-size:42px;font-weight:700;letter-spacing:1px;line-height:1.12;margin-bottom:10px;">
               Elevating a Dedicated Men's Fashion Store Into a High-Intent Luxury Brand.
-            </h2>
-            <p class="anim d4" style="margin-top:20px;font-size:14px;line-height:1.65;color:var(--light-muted);max-width:520px;">
-              A step-by-step growth roadmap combining video discovery, customer education, remarketing positioning, and WhatsApp community retention.
+            </h1>
+            <div class="anim d2" style="width:70px;height:2.5px;background:var(--gold);margin-bottom:12px;"></div>
+            <p class="anim d3" style="font-size:13.5px;line-height:1.55;color:var(--light-muted);max-width:540px;margin-bottom:16px;">
+              A disciplined growth roadmap turning client-shot in-store video into high-intent walk-ins through sequential remarketing, quality education, and VIP community retention.
             </p>
           </div>
-          <div class="anim d5" style="border-top:1px solid var(--border-obsidian);padding-top:16px;">
-            <div style="font-size:14px;font-weight:700;color:var(--gold);">LB Nagar Menswear Store | Hyderabad</div>
-            <div style="font-size:11px;color:var(--light-muted);margin-top:4px;">Beside B.D. Reddy Gardens, B.N. Reddy Nagar, Hyderabad – 500079</div>
-            <div style="font-size:10.5px;font-weight:700;color:var(--bronze);margin-top:12px;">01 / 15</div>
+          <div class="anim d4" style="border-top:1px solid var(--border-obsidian);padding-top:12px;display:flex;justify-content:space-between;align-items:flex-end;">
+            <div>
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.8px;color:var(--gold);">LB Nagar Menswear Store | Hyderabad</div>
+              <div style="font-size:11px;color:var(--light-muted);margin-top:3px;">Beside B.D. Reddy Gardens, B.N. Reddy Nagar, Hyderabad – 500079</div>
+            </div>
+            <span style="font-size:10px;font-weight:700;letter-spacing:1px;color:var(--bronze);">01 / 15</span>
           </div>
         </div>
-        <div class="hero-photo"><img class="lux-img" src="assets/slide01_cover.jpg" alt="Jontys Hub Luxury Menswear" /></div>
+        <div class="hero-photo"><img class="lux-img" src="assets/slide01_cover.jpg" alt="Jhonty Hub Luxury Menswear" /></div>
       </section>
 
       <!-- SLIDE 02: STEP 01 BRAND FOUNDATION -->
       <section class="slide theme-light" data-title="Step 01 · Brand Foundation">
         <div class="slide-top">
           <div class="kicker-wrap"><span class="step-badge">Step 01</span><span class="kicker">Brand Foundation</span></div>
-          <div class="brand-mark"><img src="assets/jh_logo.png" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JONTYS HUB | MENSWEAR ATELIER</div>
+          <div class="brand-mark"><img src="assets/jh_logo.svg" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JHONTY HUB | MENSWEAR ATELIER</div>
         </div>
         <h2 class="slide-title anim d1">A Dedicated Luxury Menswear Destination.</h2>
         <div class="slide-rule"></div>
         <div class="slide-body">
           <div class="s2-grid">
             <div style="display:flex;flex-direction:column;justify-content:space-between;">
-              <div class="s2-photo anim-scale d2"><img class="lux-img" src="assets/slide02_store_display.jpg" alt="Jontys Hub Store Interior" /></div>
+              <div class="s2-photo anim-scale d2"><img class="lux-img" src="assets/slide02_store_display.jpg" alt="Jhonty Hub Store Interior" /></div>
               <div class="card accent-left anim d3" style="padding:14px 18px;">
                 <div style="font-size:9.5px;font-weight:700;letter-spacing:1.5px;color:var(--bronze);">ATELIER POSITIONING</div>
                 <div style="font-size:12.5px;font-weight:600;color:var(--obsidian);margin:6px 0;line-height:1.4;">
@@ -876,14 +925,14 @@
             </div>
           </div>
         </div>
-        <div class="slide-footer"><span>Jontys Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">02 / 15</span></div>
+        <div class="slide-footer"><span>Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">02 / 15</span></div>
       </section>
 
       <!-- SLIDE 03: STEP 02 MARKET SHIFT -->
       <section class="slide theme-velvet" data-title="Step 02 · Consumer Buying Shift">
         <div class="slide-top">
           <div class="kicker-wrap"><span class="step-badge">Step 02</span><span class="kicker">Consumer Buying Shift</span></div>
-          <div class="brand-mark"><img src="assets/jh_logo.png" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JONTYS HUB | MENSWEAR ATELIER</div>
+          <div class="brand-mark"><img src="assets/jh_logo.svg" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JHONTY HUB | MENSWEAR ATELIER</div>
         </div>
         <h2 class="slide-title anim d1">Why Luxury Men Choose Video Discovery &amp; Store Trust.</h2>
         <div class="slide-rule"></div>
@@ -908,14 +957,14 @@
             </div>
           </div>
         </div>
-        <div class="slide-footer"><span>Jontys Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">03 / 15</span></div>
+        <div class="slide-footer"><span>Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">03 / 15</span></div>
       </section>
 
       <!-- SLIDE 04: STEP 03 STRATEGIC POSITION -->
       <section class="slide theme-light" data-title="Step 03 · Strategic Position">
         <div class="slide-top">
           <div class="kicker-wrap"><span class="step-badge">Step 03</span><span class="kicker">Strategic Position</span></div>
-          <div class="brand-mark"><img src="assets/jh_logo.png" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JONTYS HUB | MENSWEAR ATELIER</div>
+          <div class="brand-mark"><img src="assets/jh_logo.svg" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JHONTY HUB | MENSWEAR ATELIER</div>
         </div>
         <h2 class="slide-title anim d1">Where We Stand Today &amp; What We Unlock Next.</h2>
         <div class="slide-rule"></div>
@@ -938,14 +987,14 @@
             </div>
           </div>
         </div>
-        <div class="slide-footer"><span>Jontys Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">04 / 15</span></div>
+        <div class="slide-footer"><span>Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">04 / 15</span></div>
       </section>
 
       <!-- SLIDE 05: STEP 04 BUYER PROFILES -->
       <section class="slide theme-obsidian" data-title="Step 04 · Buyer Profiles">
         <div class="slide-top">
           <div class="kicker-wrap"><span class="step-badge">Step 04</span><span class="kicker">Target Audience Architecture</span></div>
-          <div class="brand-mark"><img src="assets/jh_logo.png" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JONTYS HUB | MENSWEAR ATELIER</div>
+          <div class="brand-mark"><img src="assets/jh_logo.svg" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JHONTY HUB | MENSWEAR ATELIER</div>
         </div>
         <h2 class="slide-title anim d1">Four High-Value Men We Attract to Store.</h2>
         <div class="slide-rule"></div>
@@ -981,14 +1030,14 @@
             </div>
           </div>
         </div>
-        <div class="slide-footer"><span>Jontys Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">05 / 15</span></div>
+        <div class="slide-footer"><span>Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">05 / 15</span></div>
       </section>
 
       <!-- SLIDE 06: STEP 05 LOCAL CATCHMENT -->
       <section class="slide theme-velvet" data-title="Step 05 · Local Catchment Focus">
         <div class="slide-top">
           <div class="kicker-wrap"><span class="step-badge">Step 05</span><span class="kicker">Hyper-Local Catchment Focus</span></div>
-          <div class="brand-mark"><img src="assets/jh_logo.png" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JONTYS HUB | MENSWEAR ATELIER</div>
+          <div class="brand-mark"><img src="assets/jh_logo.svg" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JHONTY HUB | MENSWEAR ATELIER</div>
         </div>
         <h2 class="slide-title anim d1">Step-by-Step Radius Expansion Around LB Nagar.</h2>
         <div class="slide-rule"></div>
@@ -1006,7 +1055,7 @@
                 <text x="470" y="90" fill="#9CA3AF" font-size="11" font-family="Montserrat">NH 65 / Vijayawada Hwy</text>
                 <text x="120" y="340" fill="#9CA3AF" font-size="11" font-family="Montserrat">Nagarjuna Sagar Rd</text>
                 <circle cx="325" cy="240" r="11" fill="#C9A96E" stroke="#F6F2EA" stroke-width="2.5" />
-                <text x="325" y="268" fill="#C9A96E" font-size="12" font-weight="800" text-anchor="middle">JONTYS HUB</text>
+                <text x="325" y="268" fill="#C9A96E" font-size="12" font-weight="800" text-anchor="middle">JHONTY HUB</text>
                 <text x="325" y="283" fill="#C9A96E" font-size="10.5" font-weight="700" text-anchor="middle">B.N. Reddy Nagar</text>
                 <circle cx="408" cy="212" r="7" fill="#C9A96E" stroke="#F6F2EA" stroke-width="1.5" />
                 <text x="408" y="198" fill="#F6F2EA" font-size="11.5" font-weight="700" text-anchor="middle">Vanasthalipuram</text>
@@ -1034,14 +1083,14 @@
             </div>
           </div>
         </div>
-        <div class="slide-footer"><span>Jontys Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">06 / 15</span></div>
+        <div class="slide-footer"><span>Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">06 / 15</span></div>
       </section>
 
       <!-- SLIDE 07: STEP 06 ACQUISITION FUNNEL -->
       <section class="slide theme-light" data-title="Step 06 · 5-Stage Acquisition Funnel">
         <div class="slide-top">
           <div class="kicker-wrap"><span class="step-badge">Step 06</span><span class="kicker">Conversion Architecture</span></div>
-          <div class="brand-mark"><img src="assets/jh_logo.png" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JONTYS HUB | MENSWEAR ATELIER</div>
+          <div class="brand-mark"><img src="assets/jh_logo.svg" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JHONTY HUB | MENSWEAR ATELIER</div>
         </div>
         <h2 class="slide-title anim d1">Step-by-Step Journey From Scroll to Store Purchase.</h2>
         <div class="slide-rule"></div>
@@ -1119,14 +1168,14 @@
             </div>
           </div>
         </div>
-        <div class="slide-footer"><span>Jontys Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">07 / 15</span></div>
+        <div class="slide-footer"><span>Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">07 / 15</span></div>
       </section>
 
       <!-- SLIDE 08: STEP 07 VIDEO-VIEW REMARKETING -->
       <section class="slide theme-obsidian" data-title="Step 07 · Video-View Remarketing Engine">
         <div class="slide-top">
           <div class="kicker-wrap"><span class="step-badge">Step 07</span><span class="kicker">Video-View Remarketing Strategy</span></div>
-          <div class="brand-mark"><img src="assets/jh_logo.png" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JONTYS HUB | MENSWEAR ATELIER</div>
+          <div class="brand-mark"><img src="assets/jh_logo.svg" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JHONTY HUB | MENSWEAR ATELIER</div>
         </div>
         <h2 class="slide-title anim d1">Educate Video Viewers Into High-Intent Store Visitors.</h2>
         <div class="slide-rule"></div>
@@ -1138,7 +1187,7 @@
           <div class="rm-grid">
             <div class="card accent-top rm-card anim d2"><div><div style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--gold);">01 • CAPTURE AUDIENCE</div><h3 style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin-top:6px;line-height:1.18;">Build Video-View<br>Remarketing Pool</h3><div class="rm-pill">50%+ VIDEO WATCHERS</div><p style="font-size:11.5px;color:var(--light-text);line-height:1.42;">Style-led Instagram Reels, Facebook Video &amp; YouTube Ads reach local men. Engaged viewers automatically enter a warm custom audience.</p></div><div style="border-top:1px solid var(--border-obsidian);padding-top:8px;font-size:11px;font-weight:700;color:var(--light-muted);">Signal: Real Interest</div></div>
             <div class="card accent-top rm-card anim d3"><div><div style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--gold);">02 • EDUCATE BUYERS</div><h3 style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin-top:6px;line-height:1.18;">Show Fabric, Fit<br>&amp; Styling Value</h3><div class="rm-pill">EDUCATE BEFORE SELLING</div><p style="font-size:11.5px;color:var(--light-text);line-height:1.42;">Sequential remarketing explains fabric breathability, collar precision &amp; complete outfits—justifying ₹2,000+ craftsmanship.</p></div><div style="border-top:1px solid var(--border-obsidian);padding-top:8px;font-size:11px;font-weight:700;color:var(--light-muted);">Outcome: Educated Buyer</div></div>
-            <div class="card accent-top-bronze rm-card anim d4"><div><div style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--bronze);">03 • CREATE POSITIONING</div><h3 style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin-top:6px;line-height:1.18;">Establish Luxury<br>Store Authority</h3><div class="rm-pill">MEN-ONLY STYLE HUB</div><p style="font-size:11.5px;color:var(--light-text);line-height:1.42;">Consistent Meta &amp; Display creative positions Jontys Hub as B.N. Reddy Nagar’s specialist menswear destination.</p></div><div style="border-top:1px solid var(--border-obsidian);padding-top:8px;font-size:11px;font-weight:700;color:var(--light-muted);">Outcome: Brand Preference</div></div>
+            <div class="card accent-top-bronze rm-card anim d4"><div><div style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--bronze);">03 • CREATE POSITIONING</div><h3 style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin-top:6px;line-height:1.18;">Establish Luxury<br>Store Authority</h3><div class="rm-pill">MEN-ONLY STYLE HUB</div><p style="font-size:11.5px;color:var(--light-text);line-height:1.42;">Consistent Meta &amp; Display creative positions Jhonty Hub as B.N. Reddy Nagar’s specialist menswear destination.</p></div><div style="border-top:1px solid var(--border-obsidian);padding-top:8px;font-size:11px;font-weight:700;color:var(--light-muted);">Outcome: Brand Preference</div></div>
             <div class="card accent-top rm-card rm-goal anim d5" style="background:var(--velvet);border-color:var(--gold);"><div><div style="font-size:9px;font-weight:700;letter-spacing:1px;color:var(--gold);">04 • HIGH-INTENT GOAL</div><h3 style="font-family:var(--font-editorial);font-size:21px;font-weight:700;margin-top:6px;line-height:1.18;">Drive Qualified<br>Store Visits</h3><div class="rm-pill">IN-STORE TRIAL &amp; ₹5,000+ BILLS</div><p style="font-size:11.5px;color:var(--light-text);line-height:1.42;">Deliver Maps pins, sizing checks &amp; fresh-stock drops exclusively to warm viewers—converting high-intent store walk-ins.</p></div><div style="border-top:1px solid var(--border-obsidian);padding-top:8px;font-size:11.5px;font-weight:700;color:var(--gold);">Goal: Visit the Store</div></div>
           </div>
           <div class="card anim d6" style="padding:12px 20px;border-left:3.5px solid var(--bronze);">
@@ -1146,14 +1195,14 @@
             <div style="font-size:11.5px;color:var(--light-text);margin-top:3px;">Instead of burning budget chasing cold clicks, video ads educate locals affordably — focusing store-visit spend strictly on pre-sold, high-intent shoppers.</div>
           </div>
         </div>
-        <div class="slide-footer"><span>Jontys Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">08 / 15</span></div>
+        <div class="slide-footer"><span>Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">08 / 15</span></div>
       </section>
 
       <!-- SLIDE 09: STEP 08 OMNICHANNEL ECOSYSTEM -->
       <section class="slide theme-velvet" data-title="Step 08 · B2C Omnichannel Ecosystem">
         <div class="slide-top">
           <div class="kicker-wrap"><span class="step-badge">Step 08</span><span class="kicker">Channel Architecture</span></div>
-          <div class="brand-mark"><img src="assets/jh_logo.png" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JONTYS HUB | MENSWEAR ATELIER</div>
+          <div class="brand-mark"><img src="assets/jh_logo.svg" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JHONTY HUB | MENSWEAR ATELIER</div>
         </div>
         <h2 class="slide-title anim d1">Six Connected Channels Driving High-Intent Walk-Ins.</h2>
         <div class="slide-rule"></div>
@@ -1211,9 +1260,9 @@
                 <div style="font-size:10.8px;color:var(--light-text);margin-top:3px;line-height:1.3;">Video ads warm local shoppers; education &amp; Maps convert them into walk-ins.</div>
               </div>
               <div class="eco-hub anim-scale d3" style="padding:14px 14px;">
-                <img src="assets/jh_logo.png" alt="JH" style="height:36px;width:auto;margin-bottom:6px;filter:drop-shadow(0 3px 10px rgba(201,169,110,0.35));" />
+                <img src="assets/jh_logo.svg" alt="JH" style="height:42px;width:auto;margin-bottom:6px;filter:drop-shadow(0 3px 10px rgba(201,169,110,0.45));" />
                 <div style="font-size:8px;font-weight:700;letter-spacing:1.4px;color:var(--gold);">CENTRAL GROWTH ENGINE</div>
-                <div style="font-family:var(--font-editorial);font-size:20px;font-weight:700;margin:4px 0 6px;line-height:1.15;">JONTYS HUB<br>B2C COMMUNITY</div>
+                <div style="font-family:var(--font-editorial);font-size:20px;font-weight:700;margin:4px 0 6px;line-height:1.15;">JHONTY HUB<br>B2C COMMUNITY</div>
                 <div style="font-size:9.5px;color:var(--light-text);">Store Visits • Stock Drops • Referrals</div>
               </div>
               <div class="card anim d4" style="padding:10px 14px;text-align:center;">
@@ -1261,14 +1310,14 @@
             </div>
           </div>
         </div>
-        <div class="slide-footer"><span>Jontys Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">09 / 15</span></div>
+        <div class="slide-footer"><span>Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">09 / 15</span></div>
       </section>
 
       <!-- SLIDE 10: STEP 09 MERCHANDISING -->
       <section class="slide theme-light" data-title="Step 09 · Lookbook & Creative Direction">
         <div class="slide-top">
           <div class="kicker-wrap"><span class="step-badge">Step 09</span><span class="kicker">Merchandising &amp; Lookbook Direction</span></div>
-          <div class="brand-mark"><img src="assets/jh_logo.png" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JONTYS HUB | MENSWEAR ATELIER</div>
+          <div class="brand-mark"><img src="assets/jh_logo.svg" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JHONTY HUB | MENSWEAR ATELIER</div>
         </div>
         <h2 class="slide-title anim d1">Luxury Visual Stories That Educate Before They Visit.</h2>
         <div class="slide-rule"></div>
@@ -1281,14 +1330,14 @@
             <div class="card cat-card anim d5"><div class="cat-img-wrap"><img class="lux-img" src="assets/cat5_trousers.jpg" alt="Trousers" /></div><div class="cat-body"><div style="font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--bronze);">TROUSERS</div><div style="font-family:var(--font-editorial);font-size:17px;font-weight:700;">Complete Outfit Authority.</div><div style="font-size:11px;color:var(--stone);line-height:1.4;">Full-outfit pairing reels elevating both casual &amp; formal shirts into ₹5,000+ looks.</div></div></div>
           </div>
         </div>
-        <div class="slide-footer"><span>Jontys Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">10 / 15</span></div>
+        <div class="slide-footer"><span>Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">10 / 15</span></div>
       </section>
 
       <!-- SLIDE 11: STEP 10 MARGIN DISCIPLINE -->
       <section class="slide theme-obsidian" data-title="Step 10 · Margin-Safe Basket Growth">
         <div class="slide-top">
           <div class="kicker-wrap"><span class="step-badge">Step 10</span><span class="kicker">Commercial &amp; Margin Discipline</span></div>
-          <div class="brand-mark"><img src="assets/jh_logo.png" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JONTYS HUB | MENSWEAR ATELIER</div>
+          <div class="brand-mark"><img src="assets/jh_logo.svg" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JHONTY HUB | MENSWEAR ATELIER</div>
         </div>
         <h2 class="slide-title anim d1">Scale Store Sales Without Compromising &lt; 25% Margin.</h2>
         <div class="slide-rule"></div>
@@ -1318,34 +1367,34 @@
             </div>
           </div>
         </div>
-        <div class="slide-footer"><span>Jontys Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">11 / 15</span></div>
+        <div class="slide-footer"><span>Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">11 / 15</span></div>
       </section>
 
       <!-- SLIDE 12: STEP 11 90-DAY EXECUTION -->
       <section class="slide theme-light" data-title="Step 11 · 90-Day Execution Plan">
         <div class="slide-top">
           <div class="kicker-wrap"><span class="step-badge">Step 11</span><span class="kicker">90-Day Rollout Plan</span></div>
-          <div class="brand-mark"><img src="assets/jh_logo.png" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JONTYS HUB | MENSWEAR ATELIER</div>
+          <div class="brand-mark"><img src="assets/jh_logo.svg" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JHONTY HUB | MENSWEAR ATELIER</div>
         </div>
         <h2 class="slide-title anim d1">Step-by-Step Execution From Launch to Scale.</h2>
         <div class="slide-rule"></div>
         <div class="slide-body">
           <div class="roadmap-spine">
             <div class="spine-line anim d1"></div>
-            <div class="phase-col anim d1"><div class="phase-dot">01</div><div class="card accent-top phase-card" style="background:var(--obsidian);color:var(--ivory);border-color:var(--obsidian);"><div><div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">DAYS 01 – 15</div><h3 style="font-family:var(--font-editorial);font-size:20px;font-weight:700;margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--border-obsidian);">Positioning &amp; Video Shoot</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:11px;font-size:11.5px;color:var(--light-text);line-height:1.4;"><li>▪ Refresh Instagram, Facebook &amp; Maps aesthetics</li><li>▪ Set up Meta Pixel &amp; Video Remarketing pools</li><li>▪ Shoot fabric, fit &amp; outfit reels across 5 lines</li></ul></div><div style="background:#1D2330;border:1px solid var(--gold);padding:10px 12px;"><div style="font-size:8px;font-weight:700;letter-spacing:1px;color:var(--bronze);">MILESTONE</div><div style="font-size:11.5px;font-weight:700;margin-top:3px;">Luxury assets &amp; tracking ready</div></div></div></div>
-            <div class="phase-col anim d2"><div class="phase-dot">02</div><div class="card accent-top phase-card"><div><div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">DAYS 16 – 30</div><h3 style="font-family:var(--font-editorial);font-size:20px;font-weight:700;margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--border-light);">Video Capture &amp; Education</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:11px;font-size:11.5px;color:var(--stone);line-height:1.4;"><li>▪ Launch local Reels, Facebook &amp; YouTube ads</li><li>▪ Pool 50%+ viewers &amp; run fit education ads</li><li>▪ Start weekly WhatsApp new-stock updates</li></ul></div><div style="background:var(--ivory-soft);border:1px solid var(--gold);padding:10px 12px;"><div style="font-size:8px;font-weight:700;letter-spacing:1px;color:var(--bronze);">MILESTONE</div><div style="font-size:11.5px;font-weight:700;margin-top:3px;">Warm educated audience live</div></div></div></div>
+            <div class="phase-col anim d1"><div class="phase-dot">01</div><div class="card accent-top phase-card" style="background:var(--obsidian);color:var(--ivory);border-color:var(--obsidian);"><div><div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">DAYS 01 – 15</div><h3 style="font-family:var(--font-editorial);font-size:20px;font-weight:700;margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--border-obsidian);">Positioning &amp; Creative Setup</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:11px;font-size:11.5px;color:var(--light-text);line-height:1.4;"><li>▪ Refresh Instagram, Facebook &amp; Maps aesthetics</li><li>▪ Set up Meta Pixel &amp; Video Remarketing pools</li><li>▪ Deliver weekly luxury shot-list guidelines for client reels</li><li>▪ Edit &amp; color grade client raw footage into luxury ad-cuts</li></ul></div><div style="background:#1D2330;border:1px solid var(--gold);padding:10px 12px;"><div style="font-size:8px;font-weight:700;letter-spacing:1px;color:var(--bronze);">MILESTONE</div><div style="font-size:11.5px;font-weight:700;margin-top:3px;">Luxury assets &amp; tracking ready</div></div></div></div>
+            <div class="phase-col anim d2"><div class="phase-dot">02</div><div class="card accent-top phase-card"><div><div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">DAYS 16 – 30</div><h3 style="font-family:var(--font-editorial);font-size:20px;font-weight:700;margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--border-light);">Video Capture &amp; Education</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:11px;font-size:11.5px;color:var(--stone);line-height:1.4;"><li>▪ Launch local Reels, Facebook &amp; YouTube ads from client reels</li><li>▪ Pool 50%+ viewers &amp; run fit education ads</li><li>▪ Start weekly WhatsApp new-stock updates</li></ul></div><div style="background:var(--ivory-soft);border:1px solid var(--gold);padding:10px 12px;"><div style="font-size:8px;font-weight:700;letter-spacing:1px;color:var(--bronze);">MILESTONE</div><div style="font-size:11.5px;font-weight:700;margin-top:3px;">Warm educated audience live</div></div></div></div>
             <div class="phase-col anim d3"><div class="phase-dot">03</div><div class="card accent-top phase-card"><div><div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">DAYS 31 – 60</div><h3 style="font-family:var(--font-editorial);font-size:20px;font-weight:700;margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--border-light);">High-Intent Store Visits</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:11px;font-size:11.5px;color:var(--stone);line-height:1.4;"><li>▪ Retarget warm viewers with Maps &amp; visit hooks</li><li>▪ Onboard walk-ins to WhatsApp VIP Community</li><li>▪ Track store bills back to remarketing &amp; drops</li></ul></div><div style="background:var(--ivory-soft);border:1px solid var(--gold);padding:10px 12px;"><div style="font-size:8px;font-weight:700;letter-spacing:1px;color:var(--bronze);">MILESTONE</div><div style="font-size:11.5px;font-weight:700;margin-top:3px;">High-intent walk-ins flowing</div></div></div></div>
             <div class="phase-col anim d4"><div class="phase-dot">04</div><div class="card accent-top phase-card" style="background:var(--velvet);color:var(--ivory);border-color:var(--velvet);"><div><div style="font-size:9.5px;font-weight:700;letter-spacing:1.2px;color:var(--gold);">DAYS 61 – 90</div><h3 style="font-family:var(--font-editorial);font-size:20px;font-weight:700;margin:6px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--border-dark);">Community &amp; Referral Scale</h3><ul style="list-style:none;display:flex;flex-direction:column;gap:11px;font-size:11.5px;color:var(--light-text);line-height:1.4;"><li>▪ Scale top store-visit &amp; margin video creatives</li><li>▪ Launch customer referral rewards on WhatsApp</li><li>▪ Expand winning pools to Secondary &amp; Kothapet</li></ul></div><div style="background:#1D2330;border:1px solid var(--gold);padding:10px 12px;"><div style="font-size:8px;font-weight:700;letter-spacing:1px;color:var(--bronze);">MILESTONE</div><div style="font-size:11.5px;font-weight:700;margin-top:3px;">Self-compounding B2C engine</div></div></div></div>
           </div>
         </div>
-        <div class="slide-footer"><span>Jontys Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">12 / 15</span></div>
+        <div class="slide-footer"><span>Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">12 / 15</span></div>
       </section>
 
       <!-- SLIDE 13: STEP 12 MEASUREMENT LOOP -->
       <section class="slide theme-velvet" data-title="Step 12 · Measurement Loop">
         <div class="slide-top">
           <div class="kicker-wrap"><span class="step-badge">Step 12</span><span class="kicker">Performance Measurement</span></div>
-          <div class="brand-mark"><img src="assets/jh_logo.png" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JONTYS HUB | MENSWEAR ATELIER</div>
+          <div class="brand-mark"><img src="assets/jh_logo.svg" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JHONTY HUB | MENSWEAR ATELIER</div>
         </div>
         <h2 class="slide-title anim d1">Measuring What Grows Store Gross Profit.</h2>
         <div class="slide-rule"></div>
@@ -1360,14 +1409,14 @@
             <div class="card kpi-stage-col anim d4" style="border-top:3px solid var(--gold);"><div style="font-size:9.5px;font-weight:700;letter-spacing:1px;color:var(--gold);">STAGE 03 • COMMERCIAL PROFITABILITY</div><div class="metric-pill" style="border-left:4px solid var(--gold);"><strong style="font-family:var(--font-editorial);font-size:19px;">Average Bill &amp; Gross Profit</strong><span style="font-size:11.5px;color:var(--light-muted);margin-top:6px;line-height:1.4;">Bills tracked against ₹5,000 benchmark and &lt; 25% margin health.</span></div><div class="metric-pill" style="border-left:4px solid var(--gold);"><strong style="font-family:var(--font-editorial);font-size:19px;">Repeat &amp; Referral Purchases</strong><span style="font-size:11.5px;color:var(--light-muted);margin-top:6px;line-height:1.4;">Zero-CAC repeat bills from WhatsApp stock drops &amp; member referrals.</span></div></div>
           </div>
         </div>
-        <div class="slide-footer"><span>Jontys Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">13 / 15</span></div>
+        <div class="slide-footer"><span>Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">13 / 15</span></div>
       </section>
 
       <!-- SLIDE 14: STEP 13 PRICING & SCOPE -->
       <section class="slide theme-obsidian" data-title="Step 13 · Pricing &amp; Service Package Scope">
         <div class="slide-top">
           <div class="kicker-wrap"><span class="step-badge">Step 13</span><span class="kicker">Commercial Investment &amp; Package Scope</span></div>
-          <div class="brand-mark"><img src="assets/jh_logo.png" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JONTYS HUB | MENSWEAR ATELIER</div>
+          <div class="brand-mark"><img src="assets/jh_logo.svg" alt="JH" style="height:17px;width:auto;vertical-align:middle;margin-right:6px;" />JHONTY HUB | MENSWEAR ATELIER</div>
         </div>
         <h2 class="slide-title anim d1">All-Inclusive Growth Retainer &amp; Scope of Deliverables.</h2>
         <div class="slide-rule"></div>
@@ -1392,7 +1441,7 @@
                 <div style="display:flex;flex-direction:column;gap:8px;">
                   <div style="display:flex;gap:10px;align-items:flex-start;padding-bottom:6px;border-bottom:1px solid var(--border-obsidian);">
                     <span style="font-family:var(--font-editorial);font-size:16px;font-weight:700;color:var(--gold);min-width:20px;">01</span>
-                    <div><strong style="font-size:12.5px;color:var(--ivory);">In-Store Video Production &amp; Lookbooks:</strong><span style="font-size:11px;color:var(--light-text);margin-left:6px;">Bi-weekly 9:16 vertical video shoots in-store, creative scripting, luxury color grading &amp; captions across all 5 menswear categories.</span></div>
+                    <div><strong style="font-size:12.5px;color:var(--ivory);">Client Reel Post-Production &amp; Ad Optimization:</strong><span style="font-size:11px;color:var(--light-text);margin-left:6px;">Raw video footage supplied by client. Agency provides weekly luxury shot-list guidelines, styling scripts, high-end color grading, captioning, trend audio pairing, and ad cutdowns across all 5 menswear categories.</span></div>
                   </div>
 
                   <div style="display:flex;gap:10px;align-items:flex-start;padding-bottom:6px;border-bottom:1px solid var(--border-obsidian);">
@@ -1442,8 +1491,8 @@
                     </div>
 
                     <div style="background:rgba(15,17,21,0.5);border-left:2.5px solid var(--stone);padding:8px 10px;">
-                      <strong style="color:var(--light-muted);">4. External Talent &amp; Off-Site Shoots:</strong><br>
-                      Hired professional models or off-site outdoor location shoots outside the B.N. Reddy Nagar store premises are optional and charged separately upon client approval.
+                      <strong style="color:var(--light-muted);">4. Optional Agency Camera Crew / On-Site Shoots:</strong><br>
+                      The ₹35,000 package operates on raw video reels supplied directly by the client. Professional on-site video shooting/camera crew by agency or external model shoots are optional add-ons charged separately upon client approval.
                     </div>
                   </div>
                 </div>
@@ -1453,41 +1502,46 @@
                     <div style="font-size:8.5px;font-weight:700;color:var(--gold);letter-spacing:1px;">ROI BREAK-EVEN BENCHMARK</div>
                     <div style="font-size:10.5px;color:var(--ivory);margin-top:2px;">At ₹5,000 average customer bill, just <strong>7 additional walk-in customers per month</strong> fully covers this growth retainer.</div>
                   </div>
-                  <img src="assets/jh_logo.png" alt="JH Logo" style="height:32px;width:auto;margin-left:12px;flex-shrink:0;" />
+                  <img src="assets/jh_logo.svg" alt="JH Logo" style="height:36px;width:auto;margin-left:12px;flex-shrink:0;filter:drop-shadow(0 2px 8px rgba(201,169,110,0.3));" />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="slide-footer"><span>Jontys Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">14 / 15</span></div>
+        <div class="slide-footer"><span>Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span><span class="slide-num">14 / 15</span></div>
       </section>
 
       <!-- SLIDE 15: CLOSING -->
       <section class="slide theme-obsidian split-full" data-title="Closing · Partnership Next Steps">
         <div class="split-left">
           <div>
-            <img class="anim d1" src="assets/jh_logo.png" alt="JH" style="height:48px;width:auto;margin-bottom:12px;filter:drop-shadow(0 4px 12px rgba(201,169,110,0.3));" />
-            <div class="kicker-wrap anim d1" style="margin-bottom:14px;"><span style="width:36px;height:2.5px;background:var(--gold);"></span><span style="font-size:10px;font-weight:700;letter-spacing:2.2px;color:var(--gold);">PARTNERSHIP NEXT STEPS</span></div>
-            <h2 class="anim d2" style="font-family:var(--font-editorial);font-size:34px;font-weight:700;line-height:1.18;margin-bottom:24px;">
-              Let's Build Jontys Hub's<br>Next Luxury Chapter.
+            <div class="brand-crest-lockup anim d1" style="margin-bottom:12px;">
+              <img src="assets/jh_logo.svg" alt="Jhonty Hub Crest" class="brand-crest-mark" style="height:46px;" />
+              <div class="brand-crest-meta">
+                <div class="brand-crest-name" style="font-size:22px;">JHONTY HUB</div>
+                <div class="brand-crest-sub">PARTNERSHIP NEXT STEPS</div>
+              </div>
+            </div>
+            <h2 class="anim d2" style="font-family:var(--font-editorial);font-size:30px;font-weight:700;line-height:1.15;margin-bottom:14px;">
+              Let's Build Jhonty Hub's<br>Next Luxury Chapter.
             </h2>
-            <div style="display:flex;flex-direction:column;gap:14px;">
-              <div class="card accent-left anim d3" style="padding:14px 18px;display:flex;gap:16px;align-items:center;"><span style="font-family:var(--font-editorial);font-size:22px;font-weight:700;color:var(--gold);">01</span><div><div style="font-size:13.5px;font-weight:700;letter-spacing:1.2px;">UNDERSTAND</div><div style="font-size:12px;color:var(--light-text);margin-top:3px;">Align on store margins, category priorities &amp; local male buyers.</div></div></div>
-              <div class="card accent-left anim d4" style="padding:14px 18px;display:flex;gap:16px;align-items:center;"><span style="font-family:var(--font-editorial);font-size:22px;font-weight:700;color:var(--gold);">02</span><div><div style="font-size:13.5px;font-weight:700;letter-spacing:1.2px;">BUILD</div><div style="font-size:12px;color:var(--light-text);margin-top:3px;">Launch video-view remarketing, educational lookbooks &amp; WhatsApp tracking.</div></div></div>
-              <div class="card accent-left anim d5" style="padding:14px 18px;display:flex;gap:16px;align-items:center;"><span style="font-family:var(--font-editorial);font-size:22px;font-weight:700;color:var(--gold);">03</span><div><div style="font-size:13.5px;font-weight:700;letter-spacing:1.2px;">GROW</div><div style="font-size:12px;color:var(--light-text);margin-top:3px;">Convert high-intent walk-ins into ₹5,000+ outfits &amp; repeat referrals.</div></div></div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div class="card accent-left anim d3" style="padding:11px 16px;display:flex;gap:14px;align-items:center;"><span style="font-family:var(--font-editorial);font-size:20px;font-weight:700;color:var(--gold);">01</span><div><div style="font-size:13px;font-weight:700;letter-spacing:1px;">UNDERSTAND</div><div style="font-size:11.5px;color:var(--light-text);margin-top:2px;">Align on store margins, category priorities &amp; local male buyers.</div></div></div>
+              <div class="card accent-left anim d4" style="padding:11px 16px;display:flex;gap:14px;align-items:center;"><span style="font-family:var(--font-editorial);font-size:20px;font-weight:700;color:var(--gold);">02</span><div><div style="font-size:13px;font-weight:700;letter-spacing:1px;">BUILD</div><div style="font-size:11.5px;color:var(--light-text);margin-top:2px;">Provide weekly creative guidelines for client reels, launch remarketing &amp; WhatsApp tracking.</div></div></div>
+              <div class="card accent-left anim d5" style="padding:11px 16px;display:flex;gap:14px;align-items:center;"><span style="font-family:var(--font-editorial);font-size:20px;font-weight:700;color:var(--gold);">03</span><div><div style="font-size:13px;font-weight:700;letter-spacing:1px;">GROW</div><div style="font-size:11.5px;color:var(--light-text);margin-top:2px;">Convert high-intent walk-ins into ₹5,000+ outfits &amp; repeat referrals.</div></div></div>
             </div>
           </div>
           <div>
-            <div class="anim d6" style="border-top:1px solid var(--gold);padding-top:14px;font-family:var(--font-editorial);font-size:15.5px;font-style:italic;line-height:1.4;color:var(--ivory);">
-              "Our goal is clear: educate local men through compelling video, position Jontys Hub as LB Nagar’s luxury destination, and turn high intent into store visits."
+            <div class="anim d6" style="border-top:1px solid var(--gold);padding-top:10px;font-family:var(--font-editorial);font-size:14px;font-style:italic;line-height:1.35;color:var(--ivory);">
+              "Our goal is clear: educate local men through compelling video, position Jhonty Hub as LB Nagar’s luxury destination, and turn high intent into store visits."
             </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;font-size:10px;color:var(--light-muted);">
-              <span>Jontys Hub • B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:9.5px;color:var(--light-muted);">
+              <span>Jhonty Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079</span>
               <span class="slide-num">15 / 15</span>
             </div>
           </div>
         </div>
-        <div class="hero-photo"><img class="lux-img" src="assets/slide14_closing.jpg" alt="Jontys Hub Closing Lookbook" /></div>
+        <div class="hero-photo"><img class="lux-img" src="assets/slide14_closing.jpg" alt="Jhonty Hub Closing Lookbook" /></div>
       </section>
     </main>
   </div>
@@ -1506,7 +1560,7 @@
     <div style="display:flex;justify-content:space-between;align-items:center;max-width:1280px;margin:0 auto;">
       <div>
         <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--gold);">STEP-BY-STEP NAVIGATOR</div>
-        <h2 style="font-family:var(--font-editorial);font-size:28px;font-weight:700;margin-top:4px;">Jontys Hub — Luxury Growth Blueprint</h2>
+        <h2 style="font-family:var(--font-editorial);font-size:28px;font-weight:700;margin-top:4px;">Jhonty Hub — Luxury Growth Blueprint</h2>
       </div>
       <button id="closeOverview" style="background:var(--gold);color:var(--obsidian);border:none;padding:8px 16px;border-radius:999px;font-weight:700;cursor:pointer;">Close (Esc)</button>
     </div>
