@@ -156,7 +156,7 @@ function addSlideChrome(slide, opts) {
     line: { color: dividerColor, width: 0.6 },
   });
 
-  slide.addText('Jontys Hub  •  Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079', {
+  slide.addText('Jontys Hub • Beside B.D. Reddy Gardens, B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079', {
     x: MARGIN_X,
     y: 7.08,
     w: 9.8,
@@ -264,7 +264,7 @@ async function buildPresentation() {
       line: { type: 'none' },
     });
 
-    s.addText("LUXURY MEN'S FASHION  •  B2C GROWTH BLUEPRINT", {
+    s.addText("LUXURY MEN'S FASHION • B2C GROWTH BLUEPRINT", {
       x: 0.78,
       y: 1.06,
       w: 6.5,
@@ -1173,19 +1173,19 @@ async function buildPresentation() {
 
     const tiers = [
       {
-        tier: 'ZONE 01  •  PRIMARY RADIUS',
+        tier: 'ZONE 01 • PRIMARY RADIUS',
         places: 'B.N. Reddy Nagar, Vanasthalipuram, Hastinapuram',
         role: 'High-frequency video ads, Google Maps visibility & local store-visit remarketing.',
         accent: COLORS.gold,
       },
       {
-        tier: 'ZONE 02  •  SECONDARY RADIUS',
+        tier: 'ZONE 02 • SECONDARY RADIUS',
         places: 'LB Nagar & Chintalkunta',
         role: 'Educated lookbooks & Instagram/YouTube retargeting for nearby style buyers.',
         accent: COLORS.bronze,
       },
       {
-        tier: 'ZONE 03  •  EXPANSION TEST',
+        tier: 'ZONE 03 • EXPANSION TEST',
         places: 'Kothapet',
         role: 'Selective budget expansion once Primary store-visit payback is verified.',
         accent: COLORS.stone,
@@ -1542,7 +1542,7 @@ async function buildPresentation() {
         accentColor: st.accent,
       });
 
-      s.addText(`${st.num}  •  ${st.tag}`, {
+      s.addText(`${st.num} • ${st.tag}`, {
         x: sx + 0.18,
         y: sy + 0.16,
         w: sw - 0.36,
@@ -1683,6 +1683,7 @@ async function buildPresentation() {
         side: 'left',
         row: 0,
         name: 'Instagram Ads',
+        logo: 'assets/logos/instagram.svg',
         role: 'VIDEO DISCOVERY & POOL',
         desc: 'Luxury reels capturing 50%+ video viewers for warm remarketing.',
       },
@@ -1690,6 +1691,7 @@ async function buildPresentation() {
         side: 'left',
         row: 1,
         name: 'Facebook Ads',
+        logo: 'assets/logos/facebook.svg',
         role: 'EDUCATIONAL REMARKETING',
         desc: 'Retarget warm LB Nagar viewers with fabric, fit & outfit education.',
       },
@@ -1697,6 +1699,7 @@ async function buildPresentation() {
         side: 'left',
         row: 2,
         name: 'YouTube Ads',
+        logo: 'assets/logos/youtube.svg',
         role: 'POSITIONING STORYTELLING',
         desc: 'Shorts & in-stream videos building luxury authority & buyer intent.',
       },
@@ -1704,6 +1707,7 @@ async function buildPresentation() {
         side: 'right',
         row: 0,
         name: 'Google Display Ads',
+        logo: 'assets/logos/google_display.svg',
         role: 'VISUAL RECALL',
         desc: 'Maintain polished brand recall across apps until prospects visit.',
       },
@@ -1711,6 +1715,7 @@ async function buildPresentation() {
         side: 'right',
         row: 1,
         name: 'Google Business Profile',
+        logo: 'assets/logos/google_business.svg',
         role: 'GOAL: STORE VISIT',
         desc: 'Maps pins, store visuals & reviews turning intent into walk-ins.',
       },
@@ -1718,6 +1723,7 @@ async function buildPresentation() {
         side: 'right',
         row: 2,
         name: 'WhatsApp Community',
+        logo: 'assets/logos/whatsapp.svg',
         role: 'STOCK DROPS & REFERRALS',
         desc: 'Daily/weekly new-stock updates & referral perks for repeat visits.',
       },
@@ -1783,7 +1789,7 @@ async function buildPresentation() {
       margin: 0,
     });
 
-    s.addText('Store Visits  •  Stock Drops  •  Referrals', {
+    s.addText('Store Visits • Stock Drops • Referrals', {
       x: hubX + 0.15,
       y: hubY + 1.42,
       w: hubW - 0.30,
@@ -1819,10 +1825,18 @@ async function buildPresentation() {
         margin: 0,
       });
 
-      s.addText(n.name, {
+      s.addImage({
+        path: path.join(__dirname, n.logo),
         x: nx + 0.20,
         y: ny + 0.36,
-        w: nw - 0.40,
+        w: 0.32,
+        h: 0.32,
+      });
+
+      s.addText(n.name, {
+        x: nx + 0.60,
+        y: ny + 0.34,
+        w: nw - 0.76,
         h: 0.34,
         fontFace: FONTS.editorial,
         fontSize: 16,
@@ -2423,7 +2437,7 @@ async function buildPresentation() {
       accentColor: COLORS.gold,
     });
 
-    s.addText('NORTH STAR METRIC  •  TRACKED WEEKLY', {
+    s.addText('NORTH STAR METRIC • TRACKED WEEKLY', {
       x: MARGIN_X + 0.26,
       y: 1.68,
       w: 6.5,
@@ -2451,7 +2465,7 @@ async function buildPresentation() {
     const colW = (CONTENT_W - 0.26 * 2) / 3; // 3.817
     const groups = [
       {
-        stage: 'STAGE 01  •  VIDEO & REMARKETING POOL',
+        stage: 'STAGE 01 • VIDEO & REMARKETING POOL',
         color: COLORS.stone,
         metrics: [
           { name: 'Video Viewers (50%+)', desc: 'Local men entering the warm educational remarketing audience.' },
@@ -2459,7 +2473,7 @@ async function buildPresentation() {
         ],
       },
       {
-        stage: 'STAGE 02  •  HIGH-INTENT STORE VISITS',
+        stage: 'STAGE 02 • HIGH-INTENT STORE VISITS',
         color: COLORS.bronze,
         metrics: [
           { name: 'Maps & Store Directions', desc: 'Route taps driven by educated remarketing & Google Business Profile.' },
@@ -2467,7 +2481,7 @@ async function buildPresentation() {
         ],
       },
       {
-        stage: 'STAGE 03  •  COMMERCIAL PROFITABILITY',
+        stage: 'STAGE 03 • COMMERCIAL PROFITABILITY',
         color: COLORS.gold,
         metrics: [
           { name: 'Average Bill & Gross Profit', desc: 'Bills tracked against ₹5,000 benchmark and < 25% margin health.' },
@@ -2690,7 +2704,7 @@ async function buildPresentation() {
       }
     );
 
-    s.addText('Jontys Hub  •  B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079', {
+    s.addText('Jontys Hub • B.N. Reddy Nagar, LB Nagar, Hyderabad – 500079', {
       x: 0.78,
       y: 7.00,
       w: 5.2,
